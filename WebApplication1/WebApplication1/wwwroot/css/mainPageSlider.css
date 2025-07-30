@@ -1,0 +1,55 @@
+﻿.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    background-color: #f4f6fa;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+    .hero-content h1 {
+        font-size: 48px;
+        line-height: 1.2;
+        color: #1b1b1b;
+    }
+
+        .hero-content h1 span {
+            color: #0078d4;
+        }
+
+    .hero-content p {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #444;
+    }
+
+.download-btn {
+    display: inline-block;
+    margin-top: 30px;
+    background-color: #0078d4;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .download-btn:hover {
+        background-color: #005a9e; /* მუქი ლურჯი ტონი ჰოვერისთვის */
+        color: white;
+        box-shadow: 0 4px 12px rgba(0, 120, 212, 0.4);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}

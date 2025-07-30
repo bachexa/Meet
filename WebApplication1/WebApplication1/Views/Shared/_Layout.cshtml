@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MeetDesk - Meet Persons online, Chat, MakeConference </title>
+    <title>@ViewData["Title"] </title>
 
     <!-- Default styles -->
     @await Html.PartialAsync("_DefaultStyles")
@@ -51,16 +51,7 @@
 </header>
 
 
-<section class="hero-section">
-  <div class="hero-content">
-    <h1>Make friends with<br>of use with <span>Meet Desk</span></h1>
-            <p>Start meetings, share moments and work together easily!.</p>
-    <a href="#" class="download-btn">Download now</a>
-  </div>
-  <div class="hero-image">
-    <img src="/images/teams-hero.png" alt="Meet Desk Image">
-  </div>
-</section>
+
 
 
     @* <header>
@@ -85,17 +76,18 @@
         </nav>
     </header> *@
 
-    <div class="container my-4">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="page-wrapper">
+        @RenderBody()
     </div>
 
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-            <span class="text-muted">&copy; 2025 - MyApp - <a asp-controller="Home" asp-action="Privacy">Privacy</a></span>
+    <footer class="meetdesk-footer">
+        <div class="meetdesk-footer-content">
+            &copy; 2025 - MeetDesk. All rights reserved. <br />
+            <a href="/Home/Privacy">Privacy Policy</a>
         </div>
     </footer>
+
+
 
     <!-- Default scripts -->
     @await Html.PartialAsync("_DefaultScripts")
