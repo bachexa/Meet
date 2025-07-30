@@ -1,22 +1,134 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+﻿/* Reset & base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Header */
+.ms-header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 24px;
+}
+
+.ms-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Logo & Brand */
+.ms-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ms-logo {
+    width: 20px;
+    height: 20px;
+}
+
+.ms-divider {
+    width: 1px;
+    height: 20px;
+    background-color: #000;
+}
+
+.ms-brand {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Nav */
+.ms-nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .ms-nav a {
+        text-decoration: none;
+        color: #585858; /* მუქი ნაცრისფერი */
+        font-weight: 500;
+        font-size: 15px;
+        padding: 4px 8px;
+        transition: color 0.3s ease;
+    }
+
+        .ms-nav a:hover {
+            color: #0078d4; /* Microsoft blue */
+        }
+
+
+/* Buttons */
+.ms-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.ms-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #000;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    background-color: transparent;
+    transition: background-color 0.2s;
+}
+
+    .ms-btn:hover {
+        background-color: #f3f3f3;
+    }
+
+    .ms-btn.outline {
+        background-color: #fff;
+    }
+
+/* Toggle button for mobile */
+.ms-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ms-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+        .ms-nav.show {
+            display: flex;
+        }
+
+    .ms-buttons {
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .ms-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ms-toggle {
+        display: block;
+        margin-left: auto;
+    }
 }

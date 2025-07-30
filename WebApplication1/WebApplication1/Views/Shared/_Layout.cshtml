@@ -16,10 +16,48 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header>
+    <header class="ms-header">
+    <div class="ms-container">
+        <!-- Left: Logo + Brand -->
+        <div class="ms-left">
+            <a href="/" style="text-decoration: none;">
+    <span style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a;">
+        <span style="color: #0078d4;">Met</span>Desk
+    </span>
+</a>
+
+
+            <div class="ms-divider"></div>
+            
+        </div>
+
+        <!-- Mobile toggle button -->
+        <button class="ms-toggle" onclick="toggleMenu()">☰</button>
+
+        <!-- Center: Nav -->
+        <nav class="ms-nav" id="mainMenu">
+            <a href="#">Products</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">Solutions</a>
+            <a href="#">Resources</a>
+            <a href="#">Support</a>
+        </nav>
+
+        <!-- Right: Buttons -->
+        <div class="ms-buttons">
+            <a href="#" class="ms-btn">Download MetDesk</a>
+            <a href="#" class="ms-btn outline">Sign in</a>
+        </div>
+    </div>
+</header>
+
+
+
+    @* <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MeetDesk</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,7 +74,7 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> *@
 
     <div class="container my-4">
         <main role="main" class="pb-3">
@@ -55,5 +93,8 @@
 
     <!-- Additional page-specific scripts -->
     @await RenderSectionAsync("Scripts", required: false)
+
+    
+
 </body>
 </html>
