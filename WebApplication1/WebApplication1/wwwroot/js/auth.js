@@ -24,12 +24,12 @@
                         <div class="auth-separator">or</div>
 
                         <button class="auth-btn google" type="button">
-                            <img src="/images/google-icon.png" alt="Google" />
+                            <img src="/images/google-icon.png" alt="Google" width="20" height="20" />
                             Sign in with Google
                         </button>
 
                         <button class="auth-btn microsoft" type="button">
-                            <img src="/images/microsoft-icon.png" alt="Microsoft" />
+                            <img src="/images/microsoft-icon.png" alt="Microsoft"  width="20" height="20" />
                             Sign in with Microsoft
                         </button>
 
