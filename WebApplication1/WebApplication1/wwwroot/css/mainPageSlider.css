@@ -1,4 +1,10 @@
-﻿.hero-section {
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.hero-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,9 +53,119 @@
     }
 
 
-.hero-image img {
-    max-width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 600px;
+.slider {
+    position: relative;
+    width: 100vw;
+    overflow: hidden; /* ეს მნიშვნელოვანია რომ მხოლოდ ერთი სლაიდი ჩანდეს */
 }
+
+.slides-wrapper {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    width: calc(100vw * 3); /* ან JS-ით დაიანგარიშე დინამიკურად */
+}
+
+.slide {
+    flex: 0 0 100vw; /* სლაიდი ზუსტად 1 ეკრანის სიგანეა */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    box-sizing: border-box;
+}
+
+
+
+.hero-content {
+    max-width: 50%;
+}
+
+    .hero-content h1 {
+        font-size: 48px;
+        line-height: 1.2;
+        color: #1b1b1b;
+    }
+
+    .hero-content p {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #444;
+    }
+
+.download-btn {
+    display: inline-block;
+    margin-top: 30px;
+    background-color: #0078d4;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .download-btn:hover {
+        background-color: #005a9e;
+        box-shadow: 0 4px 12px rgba(0, 120, 212, 0.4);
+    }
+
+.hero-image {
+    width: 100%;
+    max-width: 600px;
+    text-align: right;
+}
+
+    .hero-image img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto; /* 👉 ეს ხსნის მარცხნივ გასვლას */
+    }
+
+
+/* წერტილები */
+.slider-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+    .dot.active {
+        background-color: #0078d4;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slide {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .hero-content,
+    .hero-image {
+        max-width: 100%;
+    }
+
+        .hero-content h1 {
+            font-size: 32px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+        }
+
+        .hero-image img {
+            width: 100%;
+        }
+}
+
