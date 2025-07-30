@@ -118,3 +118,17 @@
         border-bottom: 1px solid #ccc;
         margin: 0 10px;
     }
+
+
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4); /* შავი გამჭვირვალე ფონით */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
