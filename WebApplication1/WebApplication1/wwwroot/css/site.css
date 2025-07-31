@@ -140,23 +140,34 @@ body {
             text-decoration: underline;
         }
 
-
-.lang-switcher {
-    margin-left: 10px;
-    display: inline-block;
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .lang-btn {
     background: none;
     border: none;
-    font-weight: bold;
-    cursor: pointer;
+    font-weight: 600;
     color: #0078d4;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+    font-size: 14px;
 }
 
     .lang-btn:hover {
-        text-decoration: underline;
+        color: #005a9e;
+        transform: scale(1.05);
     }
+
+.separator {
+    color: #999;
+    font-weight: 300;
+}
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
