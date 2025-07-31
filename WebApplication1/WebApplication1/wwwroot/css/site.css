@@ -141,6 +141,22 @@ body {
         }
 
 
+.lang-switcher {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: #0078d4;
+}
+
+    .lang-btn:hover {
+        text-decoration: underline;
+    }
 
 /* Responsive */
 @media (max-width: 768px) {

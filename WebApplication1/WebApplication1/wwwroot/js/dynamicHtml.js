@@ -68,6 +68,10 @@ export class DynamicHtmlManager {
                 <div class="ms-buttons">
                     <button class="ms-btn" type="button">${t.downloadMetDesk}</button>
                     <button class="ms-btn signin-btn" type="button">${t.signIn}</button>
+                    <div class="lang-switcher">
+                        <button class="lang-btn" data-lang="ka">KA</button> |
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
                 </div>
             </div>
             </header>`;

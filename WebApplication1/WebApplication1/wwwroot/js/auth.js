@@ -1,31 +1,25 @@
 ﻿import { DynamicHtmlManager } from './dynamicHtml.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const signInButton = document.querySelector('.signin-btn');
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('signin-btn')) {
+        const existingOverlay = document.getElementById('authOverlay');
+        if (existingOverlay) {
+            existingOverlay.remove();
+        }
 
-    if (signInButton) {
-        signInButton.addEventListener('click', () => {
-            // თუ უკვე არსებობს authOverlay — წაშალე
-            const existingOverlay = document.getElementById('authOverlay');
-            if (existingOverlay) {
-                existingOverlay.remove();
-            }
+        const lang = window.currentLang || 'en';
+        const overlayHtml = DynamicHtmlManager.GetAuthHtml(lang);
 
-            // HTML ბლოკი
-            const overlayHtml = DynamicHtmlManager.GetAuthHtml('en');
+        const div = document.createElement('div');
+        div.innerHTML = overlayHtml;
+        document.body.appendChild(div);
 
-            // დინამიური DOM ელემენტის შექმნა
-            const div = document.createElement('div');
-            div.innerHTML = overlayHtml;
-            document.body.appendChild(div); // ვამატებთ მთელ გვერდზე
-
-            // გათიშვის ღილაკი
-            const closeBtn = div.querySelector('.close-btn');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    div.remove();
-                });
-            }
-        });
+        const closeBtn = div.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                div.remove();
+            });
+        }
     }
 });
+
