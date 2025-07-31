@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // HTML ბლოკი
-            const overlayHtml = DynamicHtmlManager.GetAuthHtml();
+            const overlayHtml = DynamicHtmlManager.GetAuthHtml('en');
 
             // დინამიური DOM ელემენტის შექმნა
             const div = document.createElement('div');

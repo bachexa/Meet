@@ -16,43 +16,10 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header class="ms-header">
-    <div class="ms-container">
-        <!-- Left: Logo + Brand -->
-        <div class="ms-left">
-            <a href="/" style="text-decoration: none;">
-    <span style="font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: 600; color: #1a1a1a;">
-        <span style="color: #0078d4;">Meet</span>Desk
-    </span>
-    </a>
-        <div class="ms-divider"></div>
-            
-        </div>
+    <div id="layeoutHeader">
 
-        <!-- Mobile toggle button -->
-        <button class="ms-toggle" onclick="toggleMenu()">☰</button>
-
-        <!-- Center: Nav -->
-        <nav class="ms-nav" id="mainMenu">
-            <a href="#">Products</a>
-            <a href="#">Features</a>
-            <a href="#">Pricing</a>
-            <a href="#">Solutions</a>
-            <a href="#">Resources</a>
-            <a href="#">Support</a>
-        </nav>
-
-        <!-- Right: Buttons -->
-        <div class="ms-buttons">
-            <button class="ms-btn" type="button">Download MetDesk</button>
-            <button class="ms-btn signin-btn" type="button">Sign in</button>
-        </div>
     </div>
-</header>
-
-
-
-
+        
 
     @* <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -80,15 +47,8 @@
         @RenderBody()
     </div>
 
-    <footer class="meetdesk-footer">
-        <div class="meetdesk-footer-content">
-            &copy; 2025 - MeetDesk. All rights reserved. <br />
-            <a href="/Home/Privacy">Privacy Policy</a>
-        </div>
-    </footer>
-
-
-
+    <div id="layeoutFooter"></div>
+   
     <!-- Default scripts -->
     @await Html.PartialAsync("_DefaultScripts")
 
