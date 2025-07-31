@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerContainer = document.getElementById('layeoutHeader');
     const footerContainer = document.getElementById('layeoutFooter');
     if (headerContainer) {
-        headerContainer.innerHTML = DynamicHtmlManager.GetLayoutHeaderModal();
-        footerContainer.innerHTML = DynamicHtmlManager.GetLayoutFooterModal();
+        headerContainer.innerHTML = DynamicHtmlManager.GetLayoutHeaderModal("en");
+        footerContainer.innerHTML = DynamicHtmlManager.GetLayoutFooterModal("en");
     }
 
     window.toggleMenu = function () {

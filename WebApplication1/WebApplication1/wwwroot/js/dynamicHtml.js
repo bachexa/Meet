@@ -36,7 +36,8 @@ export class DynamicHtmlManager {
         return `<div class="modal"> ... </div>`;
     }
 
-    static GetLayoutHeaderModal() {
+    static GetLayoutHeaderModal(lang) {
+        const t = translations[lang].layoutHeader;
         return `<header class="ms-header">
                 <div class="ms-container">
                     <!-- Left: Logo + Brand -->
@@ -55,28 +56,29 @@ export class DynamicHtmlManager {
 
                 <!-- Center: Nav -->
                 <nav class="ms-nav" id="mainMenu">
-                    <a href="#">Products</a>
-                    <a href="#">Features</a>
-                    <a href="#">Pricing</a>
-                    <a href="#">Solutions</a>
-                    <a href="#">Resources</a>
-                    <a href="#">Support</a>
+                    <a href="#">${t.products}</a>
+                    <a href="#">${t.features}</a>
+                    <a href="#">${t.pricing}</a>
+                    <a href="#">${t.solutions}</a>
+                    <a href="#">${t.resources}</a>
+                    <a href="#">${t.support}</a>
                 </nav>
 
                 <!-- Right: Buttons -->
                 <div class="ms-buttons">
-                    <button class="ms-btn" type="button">Download MetDesk</button>
-                    <button class="ms-btn signin-btn" type="button">Sign in</button>
+                    <button class="ms-btn" type="button">${t.downloadMetDesk}</button>
+                    <button class="ms-btn signin-btn" type="button">${t.signIn}</button>
                 </div>
             </div>
             </header>`;
     }
 
-    static GetLayoutFooterModal() {
+    static GetLayoutFooterModal(lang) {
+        const t = translations[lang].layoutFooter;
         return ` <footer class="meetdesk-footer">
                     <div class="meetdesk-footer-content">
-                        &copy; 2025 - MeetDesk. All rights reserved. <br />
-                        <a href="/Home/Privacy">Privacy Policy</a>
+                        ${t.firtsText} <br />
+                        <a href="/Home/Privacy">${t.secondText}</a>
                     </div>
                  </footer>`;
     }
