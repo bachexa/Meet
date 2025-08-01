@@ -65,14 +65,27 @@ export class DynamicHtmlManager {
                 </nav>
 
                 <!-- Right: Buttons -->
-                <div class="ms-buttons">
-                    <button class="ms-btn" type="button">${t.downloadMetDesk}</button>
-                    <button class="ms-btn signin-btn" type="button">${t.signIn}</button>
-                    <div class="lang-switcher">
-                        <button class="lang-btn" data-lang="ka">GE</button> |
-                        <button class="lang-btn" data-lang="en">EN</button>
+                
+
+               <div class="ms-buttons">
+                <button class="ms-btn" type="button">${t.downloadMetDesk}</button>
+                <button class="ms-btn signin-btn" type="button">${t.signIn}</button>
+
+                    <!-- Language Dropdown styled as button -->
+                    <div class="lang-dropdown">
+                        <button class="ms-btn lang-toggle" type="button" aria-label="Change language">
+                            <svg xmlns="" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                      d="M12 3c2.364 0 4.5.857 6.088 2.27M12 3c-2.364 0-4.5.857-6.088 2.27M12 3v3m6.088-0.73C19.046 6.64 20 9.204 20 12c0 2.796-.954 5.36-1.912 6.73M17 12H7m11.088 6.73C16.5 20.143 14.364 21 12 21c-2.364 0-4.5-.857-6.088-2.27M12 21v-3M5.912 18.73C4.954 17.36 4 14.796 4 12c0-2.796.954-5.36 1.912-6.73M7 12c0-3.866 2.239-7 5-7s5 3.134 5 7c0 3.866-2.239 7-5 7s-5-3.134-5-7Z"/>
+                            </svg>
+                        </button>
+                        <div class="lang-menu" id="langMenu">
+                            <button class="lang-btn" data-lang="ka">GEO</button>
+                            <button class="lang-btn" data-lang="en">ENG</button>
+                        </div>
                     </div>
                 </div>
+               </div>
             </div>
             </header>`;
     }

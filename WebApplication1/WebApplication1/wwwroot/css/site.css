@@ -167,6 +167,59 @@ body {
     font-weight: 300;
 }
 
+/* ენის dropdown ღილაკის კონტეინერი */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* ენის ღილაკი — როგორც სხვა ღილაკები */
+.lang-toggle {
+    all: unset;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .lang-toggle svg {
+        width: 20px;
+        height: 20px;
+        color: #555;
+    }
+
+/* ჩამოშლადი მენიუ */
+.lang-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    z-index: 10;
+}
+
+    .lang-menu .lang-btn {
+        width: 100%;
+        text-align: left;
+        padding: 10px 12px;
+        border: none;
+        background: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+        .lang-menu .lang-btn:hover {
+            background-color: #f3f3f3;
+        }
+
 
 
 /* Responsive */
