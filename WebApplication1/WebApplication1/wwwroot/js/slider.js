@@ -1,26 +1,39 @@
 ﻿import { DynamicHtmlManager } from './dynamicHtml.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+const sliderDataFromCont = document.querySelector('.sliderCont');
+const sliderData = sliderDataFromCont
+    ? JSON.parse(sliderDataFromCont.getAttribute('data-slider'))
+    : [];
 
-    const lang = window.currentLang || 'en';
-
-    const sliderDataFromCont = document.querySelector('.sliderCont');
-    const sliderData = JSON.parse(sliderDataFromCont.getAttribute('data-slider'));
-
-    const filtered = sliderData.filter(item => item.Language === lang);
-
-    // Step 1: ჩასმა დინამიურად
+function renderSliderByLang(lang) {
     const sliderContainer = document.querySelector('.slider');
-    sliderContainer.innerHTML = DynamicHtmlManager.GetSliderModal(filtered);
+    if (!sliderContainer || !sliderData.length) return;
 
-    // Step 2: სლაიდერის ინიციალიზაცია
+    const filtered = sliderData.filter(slide => slide.Language === lang);
+    sliderContainer.innerHTML = DynamicHtmlManager.GetSliderModal(filtered);
+    initializeSlider();
+}
+
+// 🟡 This listener must be outside DOMContentLoaded
+document.addEventListener('languageChanged', (e) => {
+    const newLang = e.detail.lang || 'en';
+    renderSliderByLang(newLang);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const initialLang = window.currentLang || 'en';
+    renderSliderByLang(initialLang);
+});
+
+function initializeSlider() {
     const wrapper = document.getElementById('slidesWrapper');
     const dots = document.querySelectorAll('.dot');
+    if (!wrapper || dots.length === 0) return;
+
     let currentIndex = 0;
-    const totalSlides = dots.length;
 
     function showSlide(index) {
-        wrapper.style.transform = `translateX(-${index * 100}vw)`; // ან %, თუ width 100%-ზე გაქვს
+        wrapper.style.transform = `translateX(-${index * 100}vw)`;
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === index);
         });
@@ -35,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalSlides;
+        currentIndex = (currentIndex + 1) % dots.length;
         showSlide(currentIndex);
     }, 15000);
 
     showSlide(currentIndex);
-});
+}

@@ -10,10 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
         headerContainer.innerHTML = DynamicHtmlManager.GetLayoutHeaderModal(lang);
         footerContainer.innerHTML = DynamicHtmlManager.GetLayoutFooterModal(lang);
         bindLanguageButtons();
+
+        // 🟢 Notify all other components about language change
+        const langChangedEvent = new CustomEvent('languageChanged', { detail: { lang } });
+        document.dispatchEvent(langChangedEvent);
     }
 
     function bindLanguageButtons() {
-        // Language switch buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const selectedLang = btn.getAttribute('data-lang');
@@ -22,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // 🌐 toggle button
         const langToggle = document.querySelector('.lang-toggle');
         if (langToggle) {
             langToggle.addEventListener('click', () => {
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Outside click hides the language dropdown
+    // Hide language menu when clicking outside
     document.addEventListener('click', function (event) {
         const dropdown = document.querySelector('.lang-dropdown');
         if (dropdown && !dropdown.contains(event.target)) {
@@ -43,6 +45,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    renderLayout(window.currentLang); // Initial load
+    renderLayout(window.currentLang); // First time render
 });
-
