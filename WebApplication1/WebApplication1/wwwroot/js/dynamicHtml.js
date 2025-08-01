@@ -90,15 +90,30 @@ export class DynamicHtmlManager {
             </header>`;
     }
 
-    static GetLayoutFooterModal(lang) {
-        const t = translations[lang].layoutFooter;
-        return ` <footer class="meetdesk-footer">
-                    <div class="meetdesk-footer-content">
-                        ${t.firtsText} <br />
-                        <a href="/Home/Privacy">${t.secondText}</a>
+            static GetLayoutFooterModal(lang) {
+                const t = translations[lang].layoutFooter;
+                const m = translations[lang].layoutHeader;
+                return `
+                <footer class="meetdesk-footer">
+                    <div class="meetdesk-footer-container">
+                        <!-- Footer Links -->
+                        <div class="footer-links">
+                            <a href="#">${m.products}</a>
+                            <a href="#">${m.features}</a>
+                            <a href="#">${m.pricing}</a>
+                            <a href="#">${m.solutions}</a>
+                            <a href="#">${m.support}</a>
+                            <a href="/Home/Privacy">${t.secondText}</a>
+                        </div>
+
+                        <!-- Footer Description -->
+                        <div class="footer-bottom-text">
+                            ${t.firtsText}
+                        </div>
                     </div>
-                 </footer>`;
-    }
+                </footer>`;
+            }
+
 
     static GetSliderModal() {
         return `<div class="slides-wrapper" id="slidesWrapper">
@@ -115,7 +130,7 @@ export class DynamicHtmlManager {
                             <a href="#" class="download-btn">Download now</a>
                         </div>
                         <div class="hero-image">
-                            <img src="/images/teams-hero.png" style="margin-left: -200px;" alt="Slide 1">
+                            <img src="/images/teams-hero.png" style="margin-left: 0px;" alt="Slide 1">
                         </div>
                     </div>
 
