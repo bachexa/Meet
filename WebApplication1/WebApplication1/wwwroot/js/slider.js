@@ -1,9 +1,17 @@
 ﻿import { DynamicHtmlManager } from './dynamicHtml.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const lang = window.currentLang || 'en';
+
+    const sliderDataFromCont = document.querySelector('.sliderCont');
+    const sliderData = JSON.parse(sliderDataFromCont.getAttribute('data-slider'));
+
+    const filtered = sliderData.filter(item => item.Language === lang);
+
     // Step 1: ჩასმა დინამიურად
     const sliderContainer = document.querySelector('.slider');
-    sliderContainer.innerHTML = DynamicHtmlManager.GetSliderModal();
+    sliderContainer.innerHTML = DynamicHtmlManager.GetSliderModal(filtered);
 
     // Step 2: სლაიდერის ინიციალიზაცია
     const wrapper = document.getElementById('slidesWrapper');

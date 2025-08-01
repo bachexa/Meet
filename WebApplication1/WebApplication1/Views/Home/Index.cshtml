@@ -2,6 +2,11 @@
     ViewData["Title"] = "MeetDesk - Meet Persons online, Chat, MakeConference";
 }
 
+@model List<Slider>
+
+<div class="sliderCont" data-slider='@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model))'>
+    <!-- აქ შეგიძლია Static fallback html -->
+</div>
 
 <section class="slider">
     

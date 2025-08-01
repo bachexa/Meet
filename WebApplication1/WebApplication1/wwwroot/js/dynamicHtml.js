@@ -114,81 +114,33 @@ export class DynamicHtmlManager {
                 </footer>`;
             }
 
+    static GetSliderModal(filteredSlides) {
+        const slidesHtml = filteredSlides.map((slide, index) => `
+        <div class="slide">
+            <div class="hero-content">
+                <h1>${slide.HeaderText}</h1>
+                <p>${slide.ParagraphText}</p>
+                <a href="#" class="download-btn">Download now</a>
+            </div>
+            <div class="hero-image">
+                <img src="${slide.Img}" style="margin-left: 0px;" alt="Slide ${index + 1}">
+            </div>
+        </div>
+    `).join('');
 
-    static GetSliderModal() {
-        return `<div class="slides-wrapper" id="slidesWrapper">
+        const dotsHtml = filteredSlides.map((_, index) => `
+        <span class="dot${index === 0 ? ' active' : ''}" data-index="${index}"></span>
+    `).join('');
 
-                    <div class="slide">
-                        <div class="hero-content">
-                            <h1>
-                                Make friends with<br>
-                                <span style="font-weight:700;font-size:42px;color:#1a1a1a;">
-                                    <span style="color:#0078d4;">Meet</span>Desk
-                                </span>
-                            </h1>
-                            <p>Start meetings, share moments and work together easily!</p>
-                            <a href="#" class="download-btn">Download now</a>
-                        </div>
-                        <div class="hero-image">
-                            <img src="/images/teams-hero.png" style="margin-left: 0px;" alt="Slide 1">
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <div class="hero-content">
-                            <h1>
-                                Find a friend if they are free. Via:
-                                <span style="font-weight:700;font-size:42px;color:#1a1a1a;">
-                                    <span style="color:#0078d4;">Meet</span>Desk
-                                </span>
-                            </h1>
-                            <p>Start Searching, share moments and work together easily!.</p>
-                            <a href="#" class="download-btn">Start now</a>
-                        </div>
-                        <div class="hero-image">
-                            <img src="/images/teams-hero2.png" alt="Slide 2">
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <div class="hero-content">
-                            <h1>
-                                Organize your Daylly meetings via
-                                <span style="font-weight:700;font-size:42px;color:#1a1a1a;">
-                                    <span style="color:#0078d4;">Meet</span>Desk
-                                </span>
-                            </h1>
-                            <p>Start Searching, share moments and work together easily!.</p>
-                            <a href="#" class="download-btn">Try it free</a>
-                        </div>
-                        <div class="hero-image">
-                            <img src="/images/teams-hero3.png" alt="Slide 3">
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <div class="hero-content">
-                            <h1>
-                                Organize your Daylly meetings via
-                                <span style="font-weight:700;font-size:42px;color:#1a1a1a;">
-                                    <span style="color:#0078d4;">Meet</span>Desk
-                                </span>
-                            </h1>
-                            <p>Start Searching, share moments and work together easily!.</p>
-                            <a href="#" class="download-btn">Try it free</a>
-                        </div>
-                        <div class="hero-image">
-                            <img src="/images/teams-hero4.png" alt="Slide 3">
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="slider-dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
-                    <span class="dot" data-index="3"></span>
-                </div>`;
+        return `
+        <div class="slides-wrapper" id="slidesWrapper">
+            ${slidesHtml}
+        </div>
+        <div class="slider-dots">
+            ${dotsHtml}
+        </div>
+    `;
     }
+
+    
 }

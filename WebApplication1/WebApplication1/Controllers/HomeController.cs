@@ -15,7 +15,46 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var slider = new List<Slider>();
+            slider.Add(new Slider
+            {
+                HeaderText = "Organize your Daylly meetings via<br /><span style='font-weight:700;font-size:42px;color:#1a1a1a;'><span style='color:#0078d4;'>Meet</span>Desk</span>",
+                ParagraphText = "Start meetings, share moments and work together easily!",
+                Img = "/images/teams-hero.png",
+                Language = "en"
+            });
+
+            slider.Add(new Slider
+            {
+                HeaderText = "Find a friend if they are free. Via:<br />" +
+                 "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
+                 "<span style='color:#0078d4;'>Meet</span>Desk</span>",
+                ParagraphText = "Start meetings, share moments and work together easily!",
+                Img = "/images/teams-hero2.png",
+                Language = "en"
+            });
+
+            slider.Add(new Slider
+            {
+                HeaderText = "Organize your Daylly meetings via<br />" +
+                 "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
+                 "<span style='color:#0078d4;'>Meet</span>Desk</span>",
+                ParagraphText = "Start meetings, share moments and work together easily!",
+                Img = "/images/teams-hero3.png",
+                Language = "en"
+            });
+
+            slider.Add(new Slider
+            {
+                HeaderText = "Organize your Daylly meetings via<br />" +
+                 "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
+                 "<span style='color:#0078d4;'>Meet</span>Desk</span>",
+                ParagraphText = "Start meetings, share moments and work together easily!",
+                Img = "/images/teams-hero4.png",
+                Language = "en"
+            });
+
+            return View(slider);
         }
 
         public IActionResult Privacy()
