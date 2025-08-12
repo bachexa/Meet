@@ -114,33 +114,39 @@ export class DynamicHtmlManager {
                 </footer>`;
             }
 
+
     static GetSliderModal(filteredSlides) {
-        const slidesHtml = filteredSlides.map((slide, index) => `
-        <div class="slide">
-            <div class="hero-content">
-                <h1>${slide.HeaderText}</h1>
-                <p>${slide.ParagraphText}</p>
-                <a href="#" class="download-btn">Download now</a>
-            </div>
-            <div class="hero-image">
-                <img src="${slide.Img}" style="margin-left: 0px;" alt="Slide ${index + 1}">
-            </div>
-        </div>
-    `).join('');
+        const slidesHtml = filteredSlides.map((slide, index) => {
+            const header = slide.headerText ?? slide.HeaderText ?? '';
+            const text = slide.paragraphText ?? slide.ParagraphText ?? '';
+            const img = slide.img ?? slide.Img ?? '';
 
-        const dotsHtml = filteredSlides.map((_, index) => `
-        <span class="dot${index === 0 ? ' active' : ''}" data-index="${index}"></span>
-    `).join('');
+            return `
+              <div class="slide">
+                <div class="hero-content">
+                  <h1>${header}</h1>
+                  <p>${text}</p>
+                  <a href="#" class="download-btn">Download now</a>
+                </div>
+                <div class="hero-image">
+                  <img src="${img}" alt="Slide ${index + 1}">
+                </div>
+              </div>
+            `;
+            }).join('');
 
-        return `
-        <div class="slides-wrapper" id="slidesWrapper">
-            ${slidesHtml}
-        </div>
-        <div class="slider-dots">
-            ${dotsHtml}
-        </div>
-    `;
-    }
+            const dotsHtml = filteredSlides.map((_, i) =>
+                `<span class="dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>`
+            ).join('');
+
+                return `
+            <div class="slides-wrapper" id="slidesWrapper">
+              ${slidesHtml}
+            </div>
+            <div class="slider-dots">${dotsHtml}</div>
+          `;
+         }
+
 
     
 }
