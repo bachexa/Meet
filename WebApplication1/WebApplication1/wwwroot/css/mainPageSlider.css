@@ -171,14 +171,15 @@
 
 
 
+
 .discover {
     padding: 72px 24px;
     background: linear-gradient(180deg, #fafbff 0%, #f4f6fa 100%);
 }
 
 .discover-head h2 {
-    max-width: 1200px;
     margin: 0 auto 28px;
+    margin-left: 60px;
     font-size: 44px;
     line-height: 1.15;
     color: #1b1b1b;
