@@ -147,59 +147,40 @@ export class DynamicHtmlManager {
           `;
          }
 
-    static GetDiscoverSectionModal(lang) {
-        
-        return ` <div class="discover-head">
-                    <h2>Discover what’s happening with <span>MeetDesk</span></h2>
-                 </div>
+    static GetDiscoverSectionModalFromModel(section) {
+        if (!section) return '';
 
-                <div class="discover-grid">
-                    <!-- Card 1 -->
-                    <article class="discover-card">
-                        <div class="card-media">
-                            <img src="/images/discover-1.png" alt="New MeetDesk features overview">
-                        </div>
-                        <div class="card-body">
-                            <h3>From Threads to Workflows: New Features that Boost Productivity</h3>
-                            <p>Work faster with threads, multi-emoji reactions and emoji-triggered workflows built into MeetDesk.</p>
-                            <a href="#" class="card-cta">
-                                <span class="cta-dot">➜</span>
-                                Learn more
-                            </a>
-                        </div>
-                    </article>
+        const headerHtml = `
+        <div class="discover-head">
+            <h2>${section.DiscoverHeader ?? ''}</h2>
+        </div>
+    `;
 
-                    <!-- Card 2 -->
-                    <article class="discover-card">
-                        <div class="card-media">
-                            <img src="/images/discover-2.png" alt="2025 Work Trend Index report">
-                        </div>
-                        <div class="card-body">
-                            <h3>2025: The Year the Frontier Firm Is Born</h3>
-                            <p>Read the latest research and insights from the Work Trend Index Annual Report.</p>
-                            <a href="#" class="card-cta">
-                                <span class="cta-dot">➜</span>
-                                Read the report
-                            </a>
-                        </div>
-                    </article>
+        const cardsHtml = (section.cards || [])
+            .map(card => `
+            <article class="discover-card">
+                <div class="card-media">
+                    <img src="${card.img ?? ''}" alt="${card.discoverCardHeader ?? 'Discover item'}">
+                </div>
+                <div class="card-body">
+                    <h3>${card.discoverCardHeader ?? ''}</h3>
+                    <p>${card.discoverCardHeaderDescription ?? ''}</p>
+                    <a href="#" class="card-cta">
+                        <span class="cta-dot">➜</span>
+                        ${card.discoverCardButton ?? ''}
+                    </a>
+                </div>
+            </article>
+        `)
+            .join('');
 
-                    <!-- Card 3 -->
-                    <article class="discover-card">
-                        <div class="card-media">
-                            <img src="/images/discover-3.png" alt="Copilot in MeetDesk productivity">
-                        </div>
-                        <div class="card-body">
-                            <h3>Prompt like a pro with MeetDesk Copilot</h3>
-                            <p>Transform meetings with prompts: capture ideas, summarize decisions and move work forward.</p>
-                            <a href="#" class="card-cta">
-                                <span class="cta-dot">➜</span>
-                                Learn more
-                            </a>
-                        </div>
-                    </article>
-
-                </div>`;
+        return `
+        ${headerHtml}
+        <div class="discover-grid">
+            ${cardsHtml}
+        </div>
+    `;
     }
+
     
 }

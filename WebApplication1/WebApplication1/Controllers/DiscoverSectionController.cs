@@ -12,8 +12,12 @@ namespace WebApplication1.Controllers
         public IActionResult Get([FromQuery] string lang = "en")
         {
             var dsList = BuildDiscoverSectionList();
-            var filtred = dsList.Where(s=>s.Language == lang);
-            return Ok(filtred);// JSON
+            var section = dsList.FirstOrDefault(s => s.Language == lang);
+
+            if (section == null)
+                return NotFound();
+
+            return Ok(section); // single object
         }
 
         private List<DiscoverSection> BuildDiscoverSectionList()

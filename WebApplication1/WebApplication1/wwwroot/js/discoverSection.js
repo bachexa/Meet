@@ -1,19 +1,36 @@
 ﻿import { DynamicHtmlManager } from './dynamicHtml.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+async function fetchDiscover(lang) {
+    const url = `/api/discoversection?lang=${encodeURIComponent(lang)}`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error(`Failed to load discover: ${res.status}`);
+    return await res.json(); // { DiscoverHeader, Language, Cards: [...] }
+}
+
+async function renderDiscoverByLang(lang) {
     const discoverSection = document.querySelector('.discover');
+    if (!discoverSection) return;
 
-    function renderDiscover(lang) {
-        if (discoverSection) {
-            discoverSection.innerHTML = DynamicHtmlManager.GetDiscoverSectionModal(lang);
-        }
+    try {
+        const sectionModel = await fetchDiscover(lang);
+        discoverSection.innerHTML = DynamicHtmlManager.GetDiscoverSectionModalFromModel(sectionModel);
+    } catch (err) {
+        console.error(err);
+        discoverSection.innerHTML = `
+            <div class="discover-error">
+                <p>Couldn’t load Discover content. Please try again.</p>
+            </div>`;
     }
+}
 
-    // First render
-    renderDiscover(window.currentLang || 'en');
+// First render
+document.addEventListener('DOMContentLoaded', () => {
+    const initialLang = window.currentLang || 'en';
+    renderDiscoverByLang(initialLang);
+});
 
-    // Listen for language changes from site.js
-    document.addEventListener('languageChanged', (e) => {
-        renderDiscover(e.detail.lang);
-    });
+// React to language changes from site.js
+document.addEventListener('languageChanged', (e) => {
+    const newLang = (e?.detail?.lang) || 'en';
+    renderDiscoverByLang(newLang);
 });

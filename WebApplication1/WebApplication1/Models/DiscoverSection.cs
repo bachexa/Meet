@@ -2,16 +2,8 @@
 {
     public class DiscoverSection
     {
-        public string? DiscoverHeader { get; set; }
-
-        public string? Img { get; set; }
-
+        public string? DiscoverHeader { get; set; }  // only once
         public string? Language { get; set; }
-
-        public string? DiscoverCardHeader { get; set; }
-
-        public string? DiscoverCardHeaderDescription { get; set; }
-
-        public string? DiscoverCardButton { get; set; }
+        public List<DiscoverCard> Cards { get; set; } = new();
     }
 }
