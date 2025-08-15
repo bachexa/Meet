@@ -120,13 +120,14 @@ export class DynamicHtmlManager {
             const header = slide.headerText ?? slide.HeaderText ?? '';
             const text = slide.paragraphText ?? slide.ParagraphText ?? '';
             const img = slide.img ?? slide.Img ?? '';
+            const sliderButton = slide.sliderButton ?? slide.sliderButton ?? '';
 
             return `
               <div class="slide">
                 <div class="hero-content">
                   <h1>${header}</h1>
                   <p>${text}</p>
-                  <a href="#" class="download-btn">Download now</a>
+                  <a href="#" class="download-btn">${sliderButton}</a>
                 </div>
                 <div class="hero-image">
                   <img src="${img}" alt="Slide ${index + 1}">
@@ -152,10 +153,9 @@ export class DynamicHtmlManager {
 
         const headerHtml = `
         <div class="discover-head">
-            <h2>${section.DiscoverHeader ?? ''}</h2>
+            <h2>${section.discoverHeader ?? ''}</h2>
         </div>
     `;
-
         const cardsHtml = (section.cards || [])
             .map(card => `
             <article class="discover-card">

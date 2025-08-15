@@ -25,7 +25,8 @@ namespace WebApplication1.Controllers
                 HeaderText = "Organize your Daylly meetings via<br /><span style='font-weight:700;font-size:42px;color:#1a1a1a;'><span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "Start meetings, share moments and work together easily!",
                 Img = "/images/teams-hero.png",
-                Language = "en"
+                Language = "en",
+                SliderButton = "Download now"
             });
 
             slider.Add(new Slider
@@ -35,7 +36,8 @@ namespace WebApplication1.Controllers
                               "<span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "Start meetings, share moments and work together easily!",
                 Img = "/images/teams-hero2.png",
-                Language = "en"
+                Language = "en",
+                SliderButton = "Download now"
             });
 
             slider.Add(new Slider
@@ -45,7 +47,8 @@ namespace WebApplication1.Controllers
                               "<span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "Start meetings, share moments and work together easily!",
                 Img = "/images/teams-hero3.png",
-                Language = "en"
+                Language = "en",
+                SliderButton = "Download now"
             });
 
             slider.Add(new Slider
@@ -55,7 +58,8 @@ namespace WebApplication1.Controllers
                               "<span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "Start meetings, share moments and work together easily!",
                 Img = "/images/teams-hero4.png",
-                Language = "en"
+                Language = "en",
+                SliderButton = "Download now"
             });
 
             slider.Add(new Slider
@@ -63,7 +67,8 @@ namespace WebApplication1.Controllers
                 HeaderText = "დაასაწყობე შენი ყოველდღიური შეხვედრები<br /><span style='font-weight:700;font-size:42px;color:#1a1a1a;'><span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
                 Img = "/images/teams-hero.png",
-                Language = "ka"
+                Language = "ka",
+                SliderButton = "გადმოწერეთ"
             });
 
             slider.Add(new Slider
@@ -73,7 +78,8 @@ namespace WebApplication1.Controllers
                               "<span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
                 Img = "/images/teams-hero2.png",
-                Language = "ka"
+                Language = "ka",
+                SliderButton = "გადმოწერეთ"
             });
 
             slider.Add(new Slider
@@ -83,7 +89,8 @@ namespace WebApplication1.Controllers
                               "<span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
                 Img = "/images/teams-hero3.png",
-                Language = "ka"
+                Language = "ka",
+                SliderButton = "გადმოწერეთ"
             });
 
             slider.Add(new Slider
@@ -93,7 +100,8 @@ namespace WebApplication1.Controllers
                               "<span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
                 Img = "/images/teams-hero4.png",
-                Language = "ka"
+                Language = "ka",
+                SliderButton = "გადმოწერეთ"
             });
 
             return slider;
