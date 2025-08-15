@@ -1,27 +1,20 @@
 ﻿import { DynamicHtmlManager } from './dynamicHtml.js';
-
-async function fetchSlides(lang) {
-    // If your app may live under a virtual dir, consider using a base from a server-provided global
-    const url = `/api/slider?lang=${encodeURIComponent(lang)}`;
-    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-    if (!res.ok) throw new Error(`Failed to load slides: ${res.status}`);
-    return await res.json();
-}
+import { fetchJSON } from './backCalls.js';
 
 async function renderSliderByLang(lang) {
     const sliderContainer = document.querySelector('.slider');
     if (!sliderContainer) return;
 
     try {
-        const slides = await fetchSlides(lang);
+        const slides = await fetchJSON('/api/slider', { lang }); // <-- use fetchJSON here
         sliderContainer.innerHTML = DynamicHtmlManager.GetSliderModal(slides || []);
         initializeSlider();
     } catch (err) {
         console.error(err);
         sliderContainer.innerHTML = `
-            <div class="slider-error">
-                <p>Couldn’t load the slider. Please try again.</p>
-            </div>`;
+      <div class="slider-error">
+        <p>Couldn’t load the slider. Please try again.</p>
+      </div>`;
     }
 }
 
