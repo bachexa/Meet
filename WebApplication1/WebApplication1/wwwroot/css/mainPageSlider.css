@@ -4,35 +4,61 @@
     overflow-x: hidden;
 }
 
-.hero-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 60px 80px;
-    background-color: #f4f6fa;
-    gap: 40px;
-    flex-wrap: wrap;
-}
+/* === SLIDE ANIMATIONS ONLY === */
 
+/* Animate hero text block */
 .hero-content {
-    max-width: 50%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: riseIn 0.8s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
+    /* Animate heading */
     .hero-content h1 {
-        font-size: 48px;
-        line-height: 1.2;
-        color: #1b1b1b;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: riseIn 0.8s ease-out forwards;
+        animation-delay: 0.4s;
     }
 
-        .hero-content h1 span {
-            color: #0078d4;
-        }
-
+    /* Animate paragraph */
     .hero-content p {
-        margin-top: 20px;
-        font-size: 18px;
-        color: #444;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: riseIn 0.8s ease-out forwards;
+        animation-delay: 0.6s;
     }
+
+/* Animate button */
+.download-btn {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: riseIn 0.8s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+/* Animate image */
+.hero-image {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: riseIn 1s ease-out forwards;
+    animation-delay: 1s;
+}
+
+/* Keyframes (same as discover) */
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .download-btn {
     display: inline-block;

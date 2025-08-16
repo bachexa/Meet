@@ -1,5 +1,5 @@
 ﻿.discover {
-    padding: 72px 24px;
+    padding: 28px 24px;
     background: linear-gradient(180deg, #fafbff 0%, #f4f6fa 100%);
 }
 
@@ -10,11 +10,30 @@
     line-height: 1.15;
     color: #1b1b1b;
     letter-spacing: -0.5px;
+
+    /* Animation setup */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: riseIn 0.8s ease-out forwards;
 }
 
     .discover-head h2 span {
         color: #0078d4;
     }
+
+
+/* Keyframes for rise-up effect */
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .discover-grid {
     max-width: 1200px;
@@ -24,6 +43,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+/* Base card */
 .discover-card {
     background: #fff;
     border-radius: 20px;
@@ -33,12 +53,44 @@
     display: flex;
     flex-direction: column;
     transition: transform .2s ease, box-shadow .2s ease;
+    /* Prepare for animation */
+    opacity: 0;
+    transform: translateY(0); /* reset, hover will control this */
+    animation: fadeInOnly 0.8s ease-out forwards;
 }
 
+    /* Hover (your original effect) */
     .discover-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 18px 40px rgba(0,0,0,0.12);
     }
+
+/* Entrance keyframes (fade + temporary lift using translateY on a shadow layer) */
+@keyframes fadeInOnly {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered load effect */
+.discover-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.discover-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.discover-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
 
 .card-media {
     aspect-ratio: 16/9; /* იჭერს პროპორციას */
