@@ -1,31 +1,34 @@
 ﻿import { DynamicHtmlManager } from './dynamicHtml.js';
 import { fetchJSON } from './backCalls.js';
 
+let discoverRequestSeq = 0;
+let discoverAbortController = null;
+
 async function renderDiscoverByLang(lang) {
-    const discoverSection = document.querySelector('.discover');
-    if (!discoverSection) return;
+    const container = document.querySelector('.discover');
+    if (!container) return;
+
+    if (discoverAbortController) discoverAbortController.abort();
+    discoverAbortController = new AbortController();
+
+    const seq = ++discoverRequestSeq;
 
     try {
-        const sectionModel = await fetchJSON('/api/discoversection', { lang });
-        discoverSection.innerHTML =
-            DynamicHtmlManager.GetDiscoverSectionModalFromModel(sectionModel);
+        const model = await fetchJSON('/api/discoversection', { lang }, { signal: discoverAbortController.signal });
+        if (seq !== discoverRequestSeq) return; // stale, ignore
+
+        container.innerHTML = DynamicHtmlManager.GetDiscoverSectionModalFromModel(model);
     } catch (err) {
+        if (err.name === 'AbortError') return;
         console.error(err);
-        discoverSection.innerHTML = `
+        container.innerHTML = `
       <div class="discover-error">
         <p>Couldn’t load Discover content. Please try again.</p>
       </div>`;
     }
 }
 
-// First render
-document.addEventListener('DOMContentLoaded', () => {
-    const initialLang = window.currentLang || 'en';
-    renderDiscoverByLang(initialLang);
-});
-
-// React to language changes from site.js
 document.addEventListener('languageChanged', (e) => {
-    const newLang = (e?.detail?.lang) || 'en';
+    const newLang = e?.detail?.lang || 'en';
     renderDiscoverByLang(newLang);
 });

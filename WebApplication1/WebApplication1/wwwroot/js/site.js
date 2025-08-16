@@ -1,49 +1,45 @@
-﻿import { DynamicHtmlManager } from './dynamicHtml.js';
+﻿// site.js
+import { DynamicHtmlManager } from './dynamicHtml.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const headerContainer = document.getElementById('layeoutHeader');
     const footerContainer = document.getElementById('layeoutFooter');
 
-    window.currentLang = "en";  // Default language
+    window.currentLang = 'en';
 
     function renderLayout(lang) {
         headerContainer.innerHTML = DynamicHtmlManager.GetLayoutHeaderModal(lang);
         footerContainer.innerHTML = DynamicHtmlManager.GetLayoutFooterModal(lang);
-        bindLanguageButtons();
 
-        // 🟢 Notify all other components about language change
-        const langChangedEvent = new CustomEvent('languageChanged', { detail: { lang } });
-        document.dispatchEvent(langChangedEvent);
+        // Notify other modules
+        document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
     }
 
-    function bindLanguageButtons() {
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const selectedLang = btn.getAttribute('data-lang');
-                window.currentLang = selectedLang;
-                renderLayout(selectedLang);
-            });
-        });
+    // Event delegation for .lang-btn created by re-renders
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.lang-btn');
+        if (!btn) return;
+        const selectedLang = btn.getAttribute('data-lang');
+        if (!selectedLang || selectedLang === window.currentLang) return;
+        window.currentLang = selectedLang;
+        renderLayout(selectedLang);
+    });
 
-        const langToggle = document.querySelector('.lang-toggle');
-        if (langToggle) {
-            langToggle.addEventListener('click', () => {
-                const menu = document.getElementById('langMenu');
-                if (menu) {
-                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-                }
-            });
+    // Toggle language menu
+    document.addEventListener('click', (e) => {
+        const toggle = e.target.closest('.lang-toggle');
+        if (toggle) {
+            const menu = document.getElementById('langMenu');
+            if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            return;
         }
-    }
-
-    // Hide language menu when clicking outside
-    document.addEventListener('click', function (event) {
+        // click outside -> close
         const dropdown = document.querySelector('.lang-dropdown');
-        if (dropdown && !dropdown.contains(event.target)) {
+        if (dropdown && !dropdown.contains(e.target)) {
             const menu = document.getElementById('langMenu');
             if (menu) menu.style.display = 'none';
         }
     });
 
-    renderLayout(window.currentLang); // First time render
+    renderLayout(window.currentLang); // initial render -> also emits `languageChanged`
 });
