@@ -142,78 +142,75 @@ export class DynamicHtmlManager {
     static GetSolutionsSectionModalFromModel(section) {
         //if (!section) return '';
         return `<div class="solutions-container">
-        <!-- Left side -->
-        <div class="solutions-text">
-            <h5 class="solutions-subtitle">SOLUTIONS</h5>
-            <h2 class="solutions-title">Streamline communications all in one place via <span>MeetDesk</span></h2>
+                  <!-- Left side -->
+                  <div class="solutions-text">
+                    <h5 class="solutions-subtitle">SOLUTIONS</h5>
+                    <h2 class="solutions-title">Streamline communications all in one place via <span>MeetDesk</span></h2>
 
-            <div class="accordion">
-                <div class="accordion-item active">
-                    <button class="accordion-header">Meet</button>
-                    <div class="accordion-content">
-                        <p>
+                    <div class="accordion">
+                      <div class="accordion-item active">
+                        <button class="accordion-header" data-slide="0">Meet</button>
+                        <div class="accordion-content">
+                          <p>
                             Make meetings more impactful with features like PowerPoint Live, Microsoft Whiteboard,
                             and AI-generated meeting notes.
-                        </p>
-                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                          </p>
+                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <button class="accordion-header" data-slide="1">Call</button>
+                        <div class="accordion-content">
+                          <p>Connect instantly with high-quality voice and video calls.</p>
+                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <button class="accordion-header" data-slide="2">Collaborate</button>
+                        <div class="accordion-content">
+                          <p>Work together seamlessly with shared documents and tasks.</p>
+                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <button class="accordion-header" data-slide="2">Chat</button>
+                        <div class="accordion-content">
+                          <p>Stay connected with direct and group messaging.</p>
+                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <button class="accordion-header" data-slide="1">Search Free Persons</button>
+                        <div class="accordion-content">
+                          <p>Stay connected with direct and group messaging.</p>
+                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </div>
+                      </div>
                     </div>
-                </div>
+                  </div>
 
-                <div class="accordion-item">
-                    <button class="accordion-header">Call</button>
-                    <div class="accordion-content">
-                        <p>Connect instantly with high-quality voice and video calls.</p>
-                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                  <!-- Right side (no changes needed here) -->
+                  <div class="solutions-image">
+                    <div class="solutions-slider" role="region" aria-roledescription="carousel" aria-label="Solutions screenshots" tabindex="0">
+                      <div class="solutions-track">
+                        <div class="solutions-slide" role="group" aria-label="Slide 1 of 3">
+                          <img src="images/solutions-sample.png" alt="MeetDesk dashboard" loading="lazy">
+                        </div>
+                        <div class="solutions-slide" role="group" aria-label="Slide 2 of 3">
+                          <img src="images/solutions-sample-2.png" alt="Calendar & meetings" loading="lazy">
+                        </div>
+                        <div class="solutions-slide" role="group" aria-label="Slide 3 of 3">
+                          <img src="images/solutions-sample-3.png" alt="Chat & collaboration" loading="lazy">
+                        </div>
+                      </div>
+                      <div class="solutions-dots" aria-label="Slide navigation"></div>
                     </div>
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header">Collaborate</button>
-                    <div class="accordion-content">
-                        <p>Work together seamlessly with shared documents and tasks.</p>
-                       <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header">Chat</button>
-                    <div class="accordion-content">
-                        <p>Stay connected with direct and group messaging.</p>
-                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
-                    </div>
-                </div>
-
-
-                <div class="accordion-item">
-                    <button class="accordion-header">Search Free Persons</button>
-                    <div class="accordion-content">
-                        <p>Stay connected with direct and group messaging.</p>
-                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-            <!-- Right side -->
-            <div class="solutions-image">
-  <div class="solutions-slider" role="region" aria-roledescription="carousel" aria-label="Solutions screenshots" tabindex="0">
-    <div class="solutions-track">
-      <div class="solutions-slide" role="group" aria-label="Slide 1 of 3">
-        <img src="images/solutions-sample.png" alt="MeetDesk dashboard" loading="lazy">
-      </div>
-      <div class="solutions-slide" role="group" aria-label="Slide 2 of 3">
-        <img src="images/solutions-sample-2.png" alt="Calendar & meetings" loading="lazy">
-      </div>
-      <div class="solutions-slide" role="group" aria-label="Slide 3 of 3">
-        <img src="images/solutions-sample-3.png" alt="Chat & collaboration" loading="lazy">
-      </div>
-    </div>
-    <div class="solutions-dots" aria-label="Slide navigation"></div>
-  </div>
-</div>
-
-            
-
-        </div>`;
+                `;
     }
 }

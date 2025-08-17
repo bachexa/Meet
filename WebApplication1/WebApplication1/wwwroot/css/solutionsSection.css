@@ -219,11 +219,8 @@
     min-width: 100%;
     user-select: none;
 }
-.solutions-slide img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
+
+
 
 /* Prev/Next */
 .solutions-prev,
@@ -310,4 +307,25 @@
         height: auto;
         max-width: none; /* <-- key override */
         border-radius: 12px;
+    }
+
+
+
+/* Uniform slide height (square). Change to 4/3 if you prefer. */
+.solutions-slider {
+    aspect-ratio: 1 / 1;
+}
+/* or: aspect-ratio: 4 / 3; */
+.solutions-track {
+    height: 100%;
+}
+
+.solutions-slide {
+    height: 100%;
+}
+
+    .solutions-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* fills frame without distortion */
     }
