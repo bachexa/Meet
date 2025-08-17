@@ -239,6 +239,14 @@ body {
         }
 
 
+.ms-btn.lang-toggle svg {
+    width: 20px; /* adjust to taste */
+    height: 20px;
+    display: block;
+}
+
+
+
 
 /* Responsive */
 @media (max-width: 768px) {

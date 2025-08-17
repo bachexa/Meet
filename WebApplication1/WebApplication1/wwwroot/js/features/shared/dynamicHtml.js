@@ -59,7 +59,14 @@ export class DynamicHtmlManager {
             <button class="ms-btn signin-btn" type="button">${t('layoutHeader.signIn', null, lang)}</button>
 
             <div class="lang-dropdown">
-              <button class="ms-btn lang-toggle" type="button" aria-label="Change language">🌐</button>
+              <button class="ms-btn lang-toggle" type="button" aria-label="Change language">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18" 
+          fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </svg>
+</button>
+
               <div class="lang-menu" id="langMenu">
                 <button class="lang-btn" data-lang="ka">GEO</button>
                 <button class="lang-btn" data-lang="en">ENG</button>
@@ -176,7 +183,7 @@ export class DynamicHtmlManager {
                       </div>
 
                       <div class="accordion-item">
-                        <button class="accordion-header" data-slide="2">Chat</button>
+                        <button class="accordion-header" data-slide="3">Chat</button>
                         <div class="accordion-content">
                           <p>Stay connected with direct and group messaging.</p>
                           <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
@@ -184,7 +191,7 @@ export class DynamicHtmlManager {
                       </div>
 
                       <div class="accordion-item">
-                        <button class="accordion-header" data-slide="1">Search Free Persons</button>
+                        <button class="accordion-header" data-slide="4">Search Free Persons</button>
                         <div class="accordion-content">
                           <p>Stay connected with direct and group messaging.</p>
                           <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
@@ -197,15 +204,27 @@ export class DynamicHtmlManager {
                   <div class="solutions-image">
                     <div class="solutions-slider" role="region" aria-roledescription="carousel" aria-label="Solutions screenshots" tabindex="0">
                       <div class="solutions-track">
-                        <div class="solutions-slide" role="group" aria-label="Slide 1 of 3">
+
+                        <div class="solutions-slide" role="group" aria-label="Slide 1 of 5">
                           <img src="images/solutions-sample.png" alt="MeetDesk dashboard" loading="lazy">
                         </div>
-                        <div class="solutions-slide" role="group" aria-label="Slide 2 of 3">
+
+                        <div class="solutions-slide" role="group" aria-label="Slide 2 of 5">
                           <img src="images/solutions-sample-2.png" alt="Calendar & meetings" loading="lazy">
                         </div>
-                        <div class="solutions-slide" role="group" aria-label="Slide 3 of 3">
+
+                        <div class="solutions-slide" role="group" aria-label="Slide 3 of 5">
                           <img src="images/solutions-sample-3.png" alt="Chat & collaboration" loading="lazy">
                         </div>
+
+                        <div class="solutions-slide" role="group" aria-label="Slide 4 of 5">
+                          <img src="images/solutions-sample.png" alt="Chat & collaboration" loading="lazy">
+                        </div>
+
+                         <div class="solutions-slide" role="group" aria-label="Slide 5 of 5">
+                          <img src="images/solutions-sample-2.png" alt="Chat & collaboration" loading="lazy">
+                        </div>
+
                       </div>
                       <div class="solutions-dots" aria-label="Slide navigation"></div>
                     </div>

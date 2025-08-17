@@ -103,10 +103,6 @@ function initSolutionsSlider(container) {
 
 
 
-
-
-
-
 function initAccordionA11y(container) {
     const items = container.querySelectorAll('.accordion-item');
     items.forEach((item, i) => {
