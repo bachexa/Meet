@@ -137,4 +137,67 @@ export class DynamicHtmlManager {
 
         return `${headerHtml}<div class="discover-grid">${cardsHtml}</div>`;
     }
+
+
+    static GetSolutionsSectionModalFromModel(section) {
+        //if (!section) return '';
+        return `<div class="solutions-container">
+        <!-- Left side -->
+        <div class="solutions-text">
+            <h5 class="solutions-subtitle">SOLUTIONS</h5>
+            <h2 class="solutions-title">Streamline communications all in one place via <span>MeetDesk</span></h2>
+
+            <div class="accordion">
+                <div class="accordion-item active">
+                    <button class="accordion-header">Meet</button>
+                    <div class="accordion-content">
+                        <p>
+                            Make meetings more impactful with features like PowerPoint Live, Microsoft Whiteboard,
+                            and AI-generated meeting notes.
+                        </p>
+                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Call</button>
+                    <div class="accordion-content">
+                        <p>Connect instantly with high-quality voice and video calls.</p>
+                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Collaborate</button>
+                    <div class="accordion-content">
+                        <p>Work together seamlessly with shared documents and tasks.</p>
+                       <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Chat</button>
+                    <div class="accordion-content">
+                        <p>Stay connected with direct and group messaging.</p>
+                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Search Free Persons</button>
+                    <div class="accordion-content">
+                        <p>Stay connected with direct and group messaging.</p>
+                        <a href="#" class="card-cta"> <span class="cta-dot">➜</span>Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Right side -->
+            <div class="solutions-image">
+                <img src="images/solutions-sample.png" alt="Solutions illustration">
+            </div>
+        </div>`;
+    }
 }
