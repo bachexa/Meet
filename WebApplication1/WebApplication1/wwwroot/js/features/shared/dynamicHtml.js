@@ -145,92 +145,75 @@ export class DynamicHtmlManager {
         return `${headerHtml}<div class="discover-grid">${cardsHtml}</div>`;
     }
 
-
     static GetSolutionsSectionModalFromModel(section) {
         if (!section) return '';
-        return `<div class="solutions-container">
-                  <!-- Left side -->
-                  <div class="solutions-text">
-                    <h5 class="solutions-subtitle">SOLUTIONS</h5>
-                    <h2 class="solutions-title">Streamline communications all in one place via <span>MeetDesk</span></h2>
 
-                    <div class="accordion">
+        // helpers: support both PascalCase and camelCase; normalize relative image paths
+        const pick = (obj, ...keys) => {
+            for (const k of keys) if (obj && obj[k] != null) return obj[k];
+            return undefined;
+        };
+        const normalizeImg = (p) => {
+            if (!p) return '';
+            if (/^https?:\/\//i.test(p) || p.startsWith('/')) return p; // absolute URL or root path
+            return p.startsWith('images/') ? p : `images/${p}`;          // ensure "images/" prefix
+        };
 
-                      <div class="accordion-item active">
-                        <button class="accordion-header" data-slide="0">Meet</button>
-                        <div class="accordion-content">
-                          <p>
-                            Make meetings more impactful with features like PowerPoint Live, Microsoft Whiteboard,
-                            and AI-generated meeting notes.
-                          </p>
-                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
-                        </div>
-                      </div>
+        const title = pick(section, 'solutionName', 'SolutionName') ?? 'SOLUTIONS';
+        // SolutionDescription may include HTML (e.g., <span>MeetDesk</span>)—we trust your data here
+        const subtitle = pick(section, 'solutionDescription', 'SolutionDescription') ?? '';
 
-                      <div class="accordion-item">
-                        <button class="accordion-header" data-slide="1">Call</button>
-                        <div class="accordion-content">
-                          <p>Connect instantly with high-quality voice and video calls.</p>
-                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
-                        </div>
-                      </div>
+        const cards = pick(section, 'cards', 'Cards') ?? [];
+        const safeCards = Array.isArray(cards) ? cards : [];
+        const total = safeCards.length || 0;
 
-                      <div class="accordion-item">
-                        <button class="accordion-header" data-slide="2">Collaborate</button>
-                        <div class="accordion-content">
-                          <p>Work together seamlessly with shared documents and tasks.</p>
-                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
-                        </div>
-                      </div>
-
-                      <div class="accordion-item">
-                        <button class="accordion-header" data-slide="3">Chat</button>
-                        <div class="accordion-content">
-                          <p>Stay connected with direct and group messaging.</p>
-                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
-                        </div>
-                      </div>
-
-                      <div class="accordion-item">
-                        <button class="accordion-header" data-slide="4">Search Free Persons</button>
-                        <div class="accordion-content">
-                          <p>Stay connected with direct and group messaging.</p>
-                          <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Right side (no changes needed here) -->
-                  <div class="solutions-image">
-                    <div class="solutions-slider" role="region" aria-roledescription="carousel" aria-label="Solutions screenshots" tabindex="0">
-                      <div class="solutions-track">
-
-                        <div class="solutions-slide" role="group" aria-label="Slide 1 of 5">
-                          <img src="images/solutions-sample.png" alt="MeetDesk dashboard" loading="lazy">
-                        </div>
-
-                        <div class="solutions-slide" role="group" aria-label="Slide 2 of 5">
-                          <img src="images/solutions-sample-2.png" alt="Calendar & meetings" loading="lazy">
-                        </div>
-
-                        <div class="solutions-slide" role="group" aria-label="Slide 3 of 5">
-                          <img src="images/solutions-sample-3.png" alt="Chat & collaboration" loading="lazy">
-                        </div>
-
-                        <div class="solutions-slide" role="group" aria-label="Slide 4 of 5">
-                          <img src="images/solutions-sample.png" alt="Chat & collaboration" loading="lazy">
-                        </div>
-
-                         <div class="solutions-slide" role="group" aria-label="Slide 5 of 5">
-                          <img src="images/solutions-sample-2.png" alt="Chat & collaboration" loading="lazy">
-                        </div>
-
-                      </div>
-                      <div class="solutions-dots" aria-label="Slide navigation"></div>
-                    </div>
-                  </div>
+        // Accordion items (first one active)
+        const accordionHtml = safeCards.map((card, i) => {
+            const name = pick(card, 'solutionCardName', 'SolutionCardName') ?? `Item ${i + 1}`;
+            const desc = pick(card, 'solutionCardDescription', 'SolutionCardDescription') ?? '';
+            const btn = pick(card, 'solutionCardButton', 'SolutionCardButton') ?? '';
+            return `
+              <div class="accordion-item${i === 0 ? ' active' : ''}">
+                <button class="accordion-header" data-slide="${i}">${name}</button>
+                <div class="accordion-content">
+                  <p>${desc}</p>
+                  ${btn ? `<a href="#" class="card-cta"><span class="cta-dot">➜</span>${btn}</a>` : ''}
                 </div>
-                `;
+              </div>`;
+                }).join('');
+
+                // Slides (match the same order & count)
+                const slidesHtml = safeCards.map((card, i) => {
+                    const img = normalizeImg(pick(card, 'solutionCardSilderImg', 'SolutionCardSilderImg'));
+                    const alt = pick(card, 'solutionCardName', 'SolutionCardName') ?? `Slide ${i + 1}`;
+                    return `
+              <div class="solutions-slide" role="group" aria-label="Slide ${i + 1} of ${total || 1}">
+                <img src="${img}" alt="${alt}" loading="lazy">
+              </div>`;
+        }).join('');
+
+        return `
+            <div class="solutions-container">
+              <!-- Left side -->
+              <div class="solutions-text">
+                <h5 class="solutions-subtitle">${title}</h5>
+                <h2 class="solutions-title">${subtitle}</h2>
+                <div class="accordion">
+                  ${accordionHtml}
+                </div>
+              </div>
+
+              <!-- Right side -->
+              <div class="solutions-image">
+                <div class="solutions-slider" role="region" aria-roledescription="carousel" aria-label="Solutions screenshots" tabindex="0">
+                  <div class="solutions-track">
+                    ${slidesHtml}
+                  </div>
+                  <div class="solutions-dots" aria-label="Slide navigation"></div>
+                </div>
+              </div>
+           </div>`;
     }
+
+    
 }
