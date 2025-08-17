@@ -150,8 +150,8 @@ async function mount(lang) {
     aborter = new AbortController();
 
     try {
-        //const model = await fetchJSON('/api/discoversection', { lang }, { signal: aborter.signal });
-        container.innerHTML = DynamicHtmlManager.GetSolutionsSectionModalFromModel('');
+        const model = await fetchJSON('/api/solutionsSection', { lang }, { signal: aborter.signal });
+        container.innerHTML = DynamicHtmlManager.GetSolutionsSectionModalFromModel(model);
         initAccordionA11y(container);
         wireAccordion(container);
         initSolutionsSlider(container); // NEW

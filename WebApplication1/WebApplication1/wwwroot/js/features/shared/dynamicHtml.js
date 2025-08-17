@@ -60,12 +60,12 @@ export class DynamicHtmlManager {
 
             <div class="lang-dropdown">
               <button class="ms-btn lang-toggle" type="button" aria-label="Change language">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18" 
-          fill="none" stroke="currentColor" stroke-width="1.8"/>
-  </svg>
-</button>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18" 
+                          fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+              </button>
 
               <div class="lang-menu" id="langMenu">
                 <button class="lang-btn" data-lang="ka">GEO</button>
@@ -147,7 +147,7 @@ export class DynamicHtmlManager {
 
 
     static GetSolutionsSectionModalFromModel(section) {
-        //if (!section) return '';
+        if (!section) return '';
         return `<div class="solutions-container">
                   <!-- Left side -->
                   <div class="solutions-text">
@@ -155,6 +155,7 @@ export class DynamicHtmlManager {
                     <h2 class="solutions-title">Streamline communications all in one place via <span>MeetDesk</span></h2>
 
                     <div class="accordion">
+
                       <div class="accordion-item active">
                         <button class="accordion-header" data-slide="0">Meet</button>
                         <div class="accordion-content">
