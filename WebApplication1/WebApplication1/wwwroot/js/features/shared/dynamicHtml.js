@@ -196,8 +196,24 @@ export class DynamicHtmlManager {
 
             <!-- Right side -->
             <div class="solutions-image">
-                <img src="images/solutions-sample.png" alt="Solutions illustration">
-            </div>
+  <div class="solutions-slider" role="region" aria-roledescription="carousel" aria-label="Solutions screenshots" tabindex="0">
+    <div class="solutions-track">
+      <div class="solutions-slide" role="group" aria-label="Slide 1 of 3">
+        <img src="images/solutions-sample.png" alt="MeetDesk dashboard" loading="lazy">
+      </div>
+      <div class="solutions-slide" role="group" aria-label="Slide 2 of 3">
+        <img src="images/solutions-sample-2.png" alt="Calendar & meetings" loading="lazy">
+      </div>
+      <div class="solutions-slide" role="group" aria-label="Slide 3 of 3">
+        <img src="images/solutions-sample-3.png" alt="Chat & collaboration" loading="lazy">
+      </div>
+    </div>
+    <div class="solutions-dots" aria-label="Slide navigation"></div>
+  </div>
+</div>
+
+            
+
         </div>`;
     }
 }

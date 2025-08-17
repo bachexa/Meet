@@ -185,3 +185,125 @@
         .solutions-image img:hover {
             transform: translateY(-6px);
         }
+
+
+/* ===== Solutions slider (right side) ===== */
+.solutions-image {
+    flex: 1;
+    min-width: 340px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: riseIn 0.8s ease-out forwards;
+    animation-delay: 1.4s;
+}
+
+/* Slider shell */
+.solutions-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    /* preserve your hover float */
+    transition: transform 0.4s ease;
+}
+.solutions-slider:hover { transform: translateY(-6px); }
+
+/* Track & slides */
+.solutions-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+.solutions-slide {
+    min-width: 100%;
+    user-select: none;
+}
+.solutions-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Prev/Next */
+.solutions-prev,
+.solutions-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(255,255,255,0.9);
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    font-size: 20px;
+    line-height: 38px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.solutions-prev { left: 12px; }
+.solutions-next { right: 12px; }
+.solutions-prev:hover,
+.solutions-next:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    background: #fff;
+}
+
+/* Dots */
+.solutions-dots {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 10px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* keep clicks only on buttons */
+}
+.solutions-dot {
+    pointer-events: auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.solutions-dot.active {
+    background: #0078d4;
+    transform: scale(1.25);
+}
+.solutions-dot:hover { transform: scale(1.15); }
+
+/* Respect your existing container img hover float; remove the old single-image styles */
+.solutions-image img { border-radius: 12px; } /* keep rounded corners */
+
+
+
+/* Make the slider use the full width */
+.solutions-image .solutions-slider {
+    width: 100%;
+    display: block;
+}
+
+/* Ensure slides stretch edge-to-edge */
+.solutions-image .solutions-track {
+    width: 100%;
+}
+
+.solutions-image .solutions-slide {
+    min-width: 100%;
+}
+
+    /* Override the old 90% cap */
+    .solutions-image .solutions-slide img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: none; /* <-- key override */
+        border-radius: 12px;
+    }
