@@ -3,11 +3,12 @@ import { fetchJSON } from '../../core/api.js';
 import { DynamicHtmlManager } from '../shared/dynamicHtml.js';
 
 let aborter = null;
-let sliderTimer = null; // NEW
+let sliderTimer = null; // used by autoplay
 function destroy() {
     if (aborter) { aborter.abort(); aborter = null; }
-    if (sliderTimer) { clearInterval(sliderTimer); sliderTimer = null; } // NEW
+    if (sliderTimer) { clearInterval(sliderTimer); sliderTimer = null; }
 }
+
 
 function initSolutionsSlider(container) {
     const root = container.querySelector('.solutions-image .solutions-slider');
@@ -21,11 +22,6 @@ function initSolutionsSlider(container) {
     const count = slides.length;
     let index = 0;
 
-    // If only one slide, no dots or autoplay needed
-    if (count <= 1) {
-        if (dotsWrap) dotsWrap.style.display = 'none';
-    }
-
     // Build dots
     dotsWrap.innerHTML = '';
     const dots = slides.map((_, i) => {
@@ -33,10 +29,19 @@ function initSolutionsSlider(container) {
         b.type = 'button';
         b.className = 'solutions-dot';
         b.setAttribute('aria-label', `Go to slide ${i + 1}`);
-        b.addEventListener('click', () => { index = i; update(); }, { signal: aborter.signal });
+        b.addEventListener('click', (e) => {
+            e.stopPropagation();          // don't let swipe handler eat the click
+            index = i;
+            update();
+            restartAuto();                // optional: keep autoplay alive after click
+        }, { signal: aborter.signal });
         dotsWrap.appendChild(b);
         return b;
     });
+
+    // Prevent swipe starting from the dots
+    dotsWrap.addEventListener('pointerdown', (e) => e.stopPropagation(), { signal: aborter.signal });
+    dotsWrap.addEventListener('pointerup', (e) => e.stopPropagation(), { signal: aborter.signal });
 
     function update() {
         track.style.transform = `translateX(-${index * 100}%)`;
@@ -50,29 +55,34 @@ function initSolutionsSlider(container) {
     function next() { index = (index + 1) % count; update(); }
     function prev() { index = (index - 1 + count) % count; update(); }
 
-    // Keyboard (when slider has focus)
-    root.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
-        else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
-    }, { signal: aborter.signal });
-
-    // Autoplay (pause on hover/focus). Skip if single slide.
+    // --- Autoplay helpers (THIS IS THE PART YOU NEED) ---
     function startAuto() {
-        if (count <= 1) return;
+        if (count <= 1) return;              // nothing to auto-advance
         if (sliderTimer) clearInterval(sliderTimer);
         sliderTimer = setInterval(next, 5000);
     }
     function stopAuto() {
         if (sliderTimer) { clearInterval(sliderTimer); sliderTimer = null; }
     }
+    function restartAuto() { stopAuto(); startAuto(); }
+
+    // Keyboard
+    root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); next(); restartAuto(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); restartAuto(); }
+    }, { signal: aborter.signal });
+
+    // Hover/focus pauses
     root.addEventListener('mouseenter', stopAuto, { signal: aborter.signal });
     root.addEventListener('mouseleave', startAuto, { signal: aborter.signal });
     root.addEventListener('focusin', stopAuto, { signal: aborter.signal });
     root.addEventListener('focusout', startAuto, { signal: aborter.signal });
 
-    // Basic swipe (pointer events)
+    // Swipe (ignore when starting on dots)
     let startX = null, trackingId = null;
     root.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        if (e.target.closest('.solutions-dots')) return;
         startX = e.clientX;
         trackingId = e.pointerId;
         root.setPointerCapture(trackingId);
@@ -81,18 +91,24 @@ function initSolutionsSlider(container) {
     root.addEventListener('pointerup', (e) => {
         if (trackingId !== e.pointerId || startX === null) return;
         const dx = e.clientX - startX;
-        const threshold = 40; // px
+        const threshold = 40;
         if (dx > threshold) prev();
         else if (dx < -threshold) next();
         try { root.releasePointerCapture(trackingId); } catch { }
         startX = null; trackingId = null;
+        restartAuto();
     }, { signal: aborter.signal });
 
+    // Initial paint + autoplay
     update();
     startAuto();
 
+    // Resize keeps alignment correct
     window.addEventListener('resize', update, { signal: aborter.signal });
 }
+
+
+
 
 
 
