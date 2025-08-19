@@ -184,7 +184,7 @@ export class DynamicHtmlManager {
 
                 // Slides (match the same order & count)
                 const slidesHtml = safeCards.map((card, i) => {
-                    const img = normalizeImg(pick(card, 'solutionCardSilderImg', 'SolutionCardSilderImg'));
+                    const img = normalizeImg(pick(card, 'solutionCardSliderImg', 'solutionCardSliderImg'));
                     const alt = pick(card, 'solutionCardName', 'SolutionCardName') ?? `Slide ${i + 1}`;
                     return `
               <div class="solutions-slide" role="group" aria-label="Slide ${i + 1} of ${total || 1}">

@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "Meet",
                             SolutionCardDescription = "Make meetings more impactful with features like PowerPoint Live, Microsoft Whiteboard,and AI-generated meeting notes.",
                             SolutionCardButton = "Learn more",
-                            SolutionCardSilderImg = "images/solutions-sample.png",
+                            SolutionCardSliderImg = "images/solutions-sample.png",
                             Language = "en"
                         },
                         new SolutionCard
@@ -43,7 +43,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "Call",
                             SolutionCardDescription = "Connect instantly with high-quality voice and video calls.",
                             SolutionCardButton = "Learn more",
-                            SolutionCardSilderImg = "images/solutions-sample-2.png",
+                            SolutionCardSliderImg = "images/solutions-sample-2.png",
                             Language = "en"
                         },
                         new SolutionCard
@@ -51,7 +51,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "Collaborate",
                             SolutionCardDescription = "Work together seamlessly with shared documents and tasks.",
                             SolutionCardButton = "Learn more",
-                            SolutionCardSilderImg = "solutions-sample-3.png",
+                            SolutionCardSliderImg = "solutions-sample-3.png",
                             Language= "en"
                         },
                         new SolutionCard
@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "Chat",
                             SolutionCardDescription = "Stay connected with direct and group messaging.",
                             SolutionCardButton = "Learn more",
-                            SolutionCardSilderImg = "images/solutions-sample.png",
+                            SolutionCardSliderImg = "images/solutions-sample.png",
                             Language= "en"
                         },
                         new SolutionCard
@@ -67,7 +67,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "Search Free Persons",
                             SolutionCardDescription = "Stay connected with direct and group messaging.",
                             SolutionCardButton = "Learn more",
-                            SolutionCardSilderImg = "images/solutions-sample-2.png",
+                            SolutionCardSliderImg = "images/solutions-sample-2.png",
                             Language= "en"
                         }
                     }
@@ -85,7 +85,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "შეხვედრა",
                             SolutionCardDescription = "გახადეთ შეხვედრები უფრო შთამბეჭდავი ისეთი ფუნქციებით, როგორიცაა PowerPoint Live, Microsoft Whiteboard და ხელოვნური ინტელექტის მიერ გენერირებული შეხვედრების ჩანაწერები.",
                             SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSilderImg = "images/solutions-sample.png",
+                            SolutionCardSliderImg = "images/solutions-sample.png",
                             Language = "ka"
                         },
                         new SolutionCard
@@ -93,7 +93,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "ზარი",
                             SolutionCardDescription = "მყისიერად დაუკავშირდით მაღალი ხარისხის ხმოვან და ვიდეო ზარებს.",
                             SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSilderImg = "images/solutions-sample-2.png",
+                            SolutionCardSliderImg = "images/solutions-sample-2.png",
                             Language = "ka"
                         },
                         new SolutionCard
@@ -101,7 +101,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "თანამშრომლობა",
                             SolutionCardDescription = "შეუფერხებლად იმუშავეთ ერთად გაზიარებულ დოკუმენტებთან და დავალებებთან.",
                             SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSilderImg = "solutions-sample-3.png",
+                            SolutionCardSliderImg = "solutions-sample-3.png",
                             Language= "ka"
                         },
                         new SolutionCard
@@ -109,7 +109,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "ჩატი",
                             SolutionCardDescription = "დარჩით კავშირზე პირდაპირი და ჯგუფური შეტყობინებებით.",
                             SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSilderImg = "images/solutions-sample.png",
+                            SolutionCardSliderImg = "images/solutions-sample.png",
                             Language= "ka"
                         },
                         new SolutionCard
@@ -117,7 +117,7 @@ namespace WebApplication1.Controllers
                             SolutionCardName = "თავისუფალი პირების ძიება",
                             SolutionCardDescription = "დარჩით კავშირზე პირდაპირი და ჯგუფური შეტყობინებებით.",
                             SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSilderImg = "images/solutions-sample-2.png",
+                            SolutionCardSliderImg = "images/solutions-sample-2.png",
                             Language= "ka"
                         }
                     }

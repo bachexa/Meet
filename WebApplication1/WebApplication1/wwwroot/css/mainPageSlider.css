@@ -82,14 +82,14 @@
 
 .slider {
     position: relative;
-    width: 100vw;
+    width: 100%;
     overflow: hidden; /* ეს მნიშვნელოვანია რომ მხოლოდ ერთი სლაიდი ჩანდეს */
 }
 
 .slides-wrapper {
     display: flex;
     transition: transform 0.6s ease-in-out;
-    width: calc(100vw * 3); /* ან JS-ით დაიანგარიშე დინამიკურად */
+   
 }
 
 .slide {
