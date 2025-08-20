@@ -145,6 +145,7 @@ export class DynamicHtmlManager {
         return `${headerHtml}<div class="discover-grid">${cardsHtml}</div>`;
     }
 
+
     static GetSolutionsSectionModalFromModel(section) {
         if (!section) return '';
 

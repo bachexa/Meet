@@ -11,7 +11,204 @@
 </section>
 
 
+<section class="ms-plans" aria-label="Plans and add-ons">
+    <div class="ms-plans__container">
+        <header class="ms-plans__header">
+            <p class="solutions-subtitle">Products and services</p>
+            <h1 class="solutions-title">Find the right <span>MeetDesk</span> plan and add-ons for your needs</h1>
+            <div class="ms-plans__tabs" role="tablist" aria-label="Plan categories">
+                <button role="tab" aria-selected="true" aria-controls="panel-home" id="tab-home" class="ms-tab is-active" data-tab="home">Home</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-business" id="tab-business" class="ms-tab" data-tab="business">Business</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-enterprise" id="tab-enterprise" class="ms-tab" data-tab="enterprise">Enterprise</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-education" id="tab-education" class="ms-tab" data-tab="education">Education</button>
+            </div>
+        </header>
 
+        <!-- Layout: LEFT hero image, RIGHT cards/panels -->
+        <div class="ms-plans__layout">
+            <figure class="ms-hero" aria-hidden="true">
+                <img id="ms-hero-img" src="images/home.jpg" alt="Smiling family using a phone together" data-fallback="images/home.jpg">
+            </figure>
+
+            <div class="ms-plans__panels">
+                <!-- HOME -->
+                <div id="panel-home" class="ms-panel is-visible" role="tabpanel" aria-labelledby="tab-home" data-panel="home"
+                     data-hero="images/home.jpg" data-hero-alt="Smiling family using a phone together">
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <rect x="1" y="1" width="22" height="22" rx="5" opacity="0.12"></rect>
+                                    <path d="M7 7h10v2h-4v8h-2V9H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams (free)</h3>
+                            <p class="ms-card__text">Send messages, schedule calls for up to 60 minutes, and create communities for every interest.</p>
+                            <a href="#" class="ms-card__cta">Learn more</a>
+                        </article>
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <rect x="1" y="1" width="22" height="22" rx="5" opacity="0.12"></rect>
+                                    <path d="M7 7h10v2h-4v8h-2V9H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams (free)</h3>
+                            <p class="ms-card__text">Send messages, schedule calls for up to 60 minutes, and create communities for every interest.</p>
+                            <a href="#" class="ms-card__cta">Learn more</a>
+                        </article>
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <rect x="2" y="2" width="8" height="8" rx="2"></rect>
+                                    <rect x="14" y="2" width="8" height="8" rx="2"></rect>
+                                    <rect x="2" y="14" width="8" height="8" rx="2"></rect>
+                                    <rect x="14" y="14" width="8" height="8" rx="2"></rect>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Microsoft 365 Family</h3>
+                            <p class="ms-card__text">Get Teams accounts for up to six people, plus Microsoft 365 apps and advanced security.</p>
+                            <a href="#" class="ms-card__cta">Learn more</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- BUSINESS -->
+                <div id="panel-business" class="ms-panel" role="tabpanel" aria-labelledby="tab-business" data-panel="business"
+                     data-hero="images/business.jpg" data-hero-alt="Business team in a meeting" hidden>
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <circle cx="12" cy="12" r="10" opacity="0.12"></circle>
+                                    <path d="M7 13h10v2H7zM7 9h10v2H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams Essentials</h3>
+                            <p class="ms-card__text">Affordable meetings & chat for small teams with no Microsoft 365 subscription needed.</p>
+                            <a href="#" class="ms-card__cta">See details</a>
+                        </article>
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <rect x="3" y="4" width="18" height="14" rx="3" opacity="0.12"></rect>
+                                    <path d="M7 9h10v2H7zM7 12h6v2H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams with Microsoft 365 Business</h3>
+                            <p class="ms-card__text">All the collaboration features plus apps like Word, Excel, and secure cloud storage.</p>
+                            <a href="#" class="ms-card__cta">See details</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ENTERPRISE -->
+                <div id="panel-enterprise" class="ms-panel" role="tabpanel" aria-labelledby="tab-enterprise" data-panel="enterprise"
+                     data-hero="images/enterprise.jpg" data-hero-alt="Enterprise office environment" hidden>
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <path d="M4 4h16v16H4z" opacity="0.12"></path>
+                                    <path d="M7 7h6v10H7zM15 7h2v10h-2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams E3</h3>
+                            <p class="ms-card__text">Advanced meetings, security, compliance, and device management for large orgs.</p>
+                            <a href="#" class="ms-card__cta">Explore</a>
+                        </article>
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <path d="M12 2l9 5v10l-9 5-9-5V7z" opacity="0.12"></path>
+                                    <path d="M7 9h10v2H7zM7 12h10v2H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams E5</h3>
+                            <p class="ms-card__text">Premium voice, analytics, and top-tier security add-ons for mission-critical needs.</p>
+                            <a href="#" class="ms-card__cta">Explore</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- EDUCATION -->
+                <div id="panel-education" class="ms-panel" role="tabpanel" aria-labelledby="tab-education" data-panel="education"
+                     data-hero="images/education.jpg" data-hero-alt="Teacher helping students in a classroom" hidden>
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                    <path d="M2 7l10-5 10 5-10 5z"></path>
+                                    <path d="M4 12v5l8 4 8-4v-5" opacity="0.12"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams for Education</h3>
+                            <p class="ms-card__text">Build classes, assignments, and secure collaboration for schools.</p>
+                            <a href="#" class="ms-card__cta">Learn more</a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    (function () {
+        const root = document.querySelector('.ms-plans');
+        if (!root) return;
+
+        const tabs = root.querySelectorAll('[role="tab"]');
+        const panels = root.querySelectorAll('[role="tabpanel"]');
+        const heroImg = root.querySelector('#ms-hero-img');
+
+        function activate(tab) {
+            // deactivate
+            tabs.forEach(t => {
+                t.classList.remove('is-active');
+                t.setAttribute('aria-selected', 'false');
+                t.setAttribute('tabindex', '-1');
+            });
+            panels.forEach(p => { p.hidden = true; p.classList.remove('is-visible'); });
+
+            // activate
+            tab.classList.add('is-active');
+            tab.setAttribute('aria-selected', 'true');
+            tab.removeAttribute('tabindex');
+
+            const id = tab.dataset.tab;
+            const panel = root.querySelector(`[data-panel="${id}"]`);
+            if (panel) {
+                panel.hidden = false;
+                panel.classList.add('is-visible');
+
+                // Swap hero image using data attributes on the panel
+                const src = panel.dataset.hero || heroImg.dataset.fallback;
+                const alt = panel.dataset.heroAlt || '';
+                if (src) heroImg.setAttribute('src', src);
+                heroImg.setAttribute('alt', alt);
+            }
+        }
+
+        tabs.forEach(t => {
+            t.addEventListener('click', () => activate(t));
+            t.addEventListener('keydown', (e) => {
+                const i = Array.from(tabs).indexOf(t);
+                if (e.key === 'ArrowRight') { e.preventDefault(); const n = tabs[(i + 1) % tabs.length]; n.focus(); activate(n); }
+                if (e.key === 'ArrowLeft') { e.preventDefault(); const p = tabs[(i - 1 + tabs.length) % tabs.length]; p.focus(); activate(p); }
+            });
+        });
+
+        // initialize to the currently active tab
+        const initial = root.querySelector('.ms-tab.is-active') || tabs[0];
+        if (initial) activate(initial);
+    })();
+</script>
 
 
 
