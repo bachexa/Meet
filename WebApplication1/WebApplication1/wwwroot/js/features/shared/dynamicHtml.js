@@ -216,5 +216,172 @@ export class DynamicHtmlManager {
            </div>`;
     }
 
+
+    static GetPlansSectionModalFromModel(section) {
+        //if (!section) return '';
+        const headerHtml = ` <div class="ms-plans__container">
+        <header class="ms-plans__header">
+            <p class="solutions-subtitle">Products and services</p>
+            <h1 class="solutions-title">Find the right <span>MeetDesk</span> plan and add-ons for your needs</h1>
+            <div class="ms-plans__tabs" role="tablist" aria-label="Plan categories">
+                <button role="tab" aria-selected="true" aria-controls="panel-home" id="tab-home" class="ms-tab is-active" data-tab="home">Home</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-business" id="tab-business" class="ms-tab" data-tab="business">Business</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-enterprise" id="tab-enterprise" class="ms-tab" data-tab="enterprise">Network</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-education" id="tab-education" class="ms-tab" data-tab="education">Education</button>
+            </div>
+        </header>
+
+        <!-- Layout: LEFT hero image, RIGHT cards/panels -->
+        <div class="ms-plans__layout">
+            <figure class="ms-hero" aria-hidden="true">
+                <img id="ms-hero-img" src="/images/home.jpg" alt="Smiling family using a phone together" data-fallback="/images/home.jpg">
+            </figure>
+
+            <div class="ms-plans__panels">
+                <!-- HOME -->
+                <div id="panel-home" class="ms-panel is-visible" role="tabpanel" aria-labelledby="tab-home" data-panel="home"
+                     data-hero="/images/home.png" data-hero-alt="Smiling family using a phone together">
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <path d="M4 4h16v16H4z" opacity="0.12"></path>
+                                    <path d="M7 7h6v10H7zM15 7h2v10h-2z"></path>
+                                </svg>
+
+                            </div>
+                            <h3 class="ms-card__title">Meet Desk (free)</h3>
+                            <p class="ms-card__text">Send messages, schedule calls for up to 60 minutes, and create communities for every interest.</p>
+                            <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </article>
+
+                        
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <circle cx="12" cy="12" r="10" opacity="0.12"></circle>
+                                    <path d="M7 13h10v2H7zM7 9h10v2H7z"></path>
+                                </svg>
+
+                            </div>
+                            <h3 class="ms-card__title">Meet Desk (free)</h3>
+                            <p class="ms-card__text">Send messages, schedule calls for up to 60 minutes, and create communities for every interest.</p>
+                            <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </article>
+
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <rect x="3" y="4" width="18" height="14" rx="3" opacity="0.12"></rect>
+                                    <path d="M7 9h10v2H7zM7 12h6v2H7z"></path>
+                                </svg>
+
+                            </div>
+                            <h3 class="ms-card__title">Setup Desk (free)</h3>
+                            <p class="ms-card__text">Send messages, schedule calls for up to 60 minutes, and create communities for every interest.</p>
+                            <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </article>
+
+                        
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <path d="M4 4h16v16H4z" opacity="0.12"></path>
+                                    <path d="M7 7h6v10H7zM15 7h2v10h-2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Meet Desk Desk Family</h3>
+                            <p class="ms-card__text">Get Teams accounts for up to six people, plus Setup Desk apps and advanced security.</p>
+                            <a href="#" class="card-cta"><span class="cta-dot">➜</span>Learn more</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- BUSINESS -->
+                <div id="panel-business" class="ms-panel" role="tabpanel" aria-labelledby="tab-business" data-panel="business"
+                     data-hero="/images/business.png" data-hero-alt="Business team in a meeting" hidden>
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <circle cx="12" cy="12" r="10" opacity="0.12"></circle>
+                                    <path d="M7 13h10v2H7zM7 9h10v2H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams Essentials</h3>
+                            <p class="ms-card__text">Affordable meetings & chat for small teams with no Microsoft 365 subscription needed.</p>
+                            <a href="#" class="ms-card__cta">See details</a>
+                        </article>
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <rect x="3" y="4" width="18" height="14" rx="3" opacity="0.12"></rect>
+                                    <path d="M7 9h10v2H7zM7 12h6v2H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams with Microsoft 365 Business</h3>
+                            <p class="ms-card__text">All the collaboration features plus apps like Word, Excel, and secure cloud storage.</p>
+                            <a href="#" class="ms-card__cta">See details</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ENTERPRISE -->
+                <div id="panel-enterprise" class="ms-panel" role="tabpanel" aria-labelledby="tab-enterprise" data-panel="enterprise"
+                     data-hero="/images/enterprise.png" data-hero-alt="Enterprise office environment" hidden>
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <path d="M4 4h16v16H4z" opacity="0.12"></path>
+                                    <path d="M7 7h6v10H7zM15 7h2v10h-2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams E3</h3>
+                            <p class="ms-card__text">Advanced meetings, security, compliance, and device management for large orgs.</p>
+                            <a href="#" class="ms-card__cta">Explore</a>
+                        </article>
+
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <path d="M12 2l9 5v10l-9 5-9-5V7z" opacity="0.12"></path>
+                                    <path d="M7 9h10v2H7zM7 12h10v2H7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams E5</h3>
+                            <p class="ms-card__text">Premium voice, analytics, and top-tier security add-ons for mission-critical needs.</p>
+                            <a href="#" class="ms-card__cta">Explore</a>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- EDUCATION -->
+                <div id="panel-education" class="ms-panel" role="tabpanel" aria-labelledby="tab-education" data-panel="education"
+                     data-hero="/images/education.png" data-hero-alt="Teacher helping students in a classroom" hidden>
+                    <div class="ms-cards">
+                        <article class="ms-card">
+                            <div class="ms-card__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="#0078d4">
+                                    <path d="M2 7l10-5 10 5-10 5z"></path>
+                                    <path d="M4 12v5l8 4 8-4v-5" opacity="0.12"></path>
+                                </svg>
+                            </div>
+                            <h3 class="ms-card__title">Teams for Education</h3>
+                            <p class="ms-card__text">Build classes, assignments, and secure collaboration for schools.</p>
+                            <a href="#" class="ms-card__cta">Learn more</a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>`;
+
+        return headerHtml;
+    }
+
     
 }
