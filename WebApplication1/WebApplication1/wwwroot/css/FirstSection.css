@@ -6,8 +6,8 @@
     --muted: #6b6b6b;
     --radius: 14px;
     --shadow: 0 8px 20px rgba(15,15,15,0.06);
-    --gap: 24px;
-    --pad: 28px;
+    --gap: 16px; 
+    --pad: 16px; 
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
@@ -25,7 +25,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Background decorative images */
 .bg-left, .bg-right {
     position: absolute;
     top: 20%;
@@ -47,7 +46,6 @@ body {
     filter: saturate(1.05);
 }
 
-/* main wrapper */
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -56,32 +54,27 @@ body {
     background: transparent;
 }
 
-/* header */
 .kicker {
-    color: #0078D7;
+    color: var(--accent);
     font-size: 16px;
     letter-spacing: 1px;
     margin: 4px 0 12px;
-    font-weight: 600;
 }
 
 .headline {
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0 0 36px;
     color: #111;
-    font-weight: 700;
 }
 
-/* cards grid */
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--gap);
-    align-items: stretch; /* THIS MAKES ALL CARDS SAME HEIGHT */
+    align-items: stretch;
 }
 
-/* responsive */
 @media (max-width: 1100px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);
@@ -98,51 +91,54 @@ body {
     }
 }
 
-/* single card */
 .card {
+    height: 100%;
     background: var(--card-bg);
     border-radius: var(--radius);
     padding: var(--pad);
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* ensures btn stays bottom */
-    min-height: 210px; /* enforce some minimum */
+    justify-content: space-between;
+    min-height: 180px;
     border: 1px solid rgba(15,15,15,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* top part (icon + text) */
+    .card:hover {
+        transform: translateY(-10px); 
+        box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    }
+
 .card-top {
     text-align: left;
 }
 
 .icon {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 8px;
     background: rgba(107,70,255,0.06);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .card h2 {
     margin: 0 0 12px;
-    font-size: 20px;
-    font-weight: 500;
-    color: black;
+    font-size: 18px;
     font-weight: 600;
+    color: black;
 }
 
 .card p {
     margin: 0 0 10px;
     color: #444;
     line-height: 1.6;
-    font-size: 14px;
+    font-size: 13px;
 }
 
-/* bottom: button */
 .card-bottom {
     text-align: left;
     margin-top: 16px;
@@ -150,19 +146,33 @@ body {
 
 .btn {
     display: inline-block;
-    padding: 12px 18px;
-    border-radius: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
     text-decoration: none;
     background: var(--accent);
     color: white;
     font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
 }
 
     .btn:hover {
-        background: var(--accent-hover); 
+        background: var(--accent-hover);
         color: white;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); 
-        transform: translateY(-3px); 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        transform: translateY(-3px);
     }
+
+.plans {
+    background-image: url("https://focus.flokk.com/hubfs/Flokk-images/Brands/background-images/Flokk-teams-zoom-background-image_09.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 50px 0;
+}
+
+#layeoutFooter,
+footer {
+    border-top: none !important;
+    background: #fff !important;
+}
