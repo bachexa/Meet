@@ -1,13 +1,13 @@
 ﻿:root {
     --max-width: 1200px;
     --accent: #0078D7;
-    --accent-hover: #0078D7;
+    --accent-hover: #005ea6;
     --card-bg: #fff;
     --muted: #6b6b6b;
     --radius: 14px;
     --shadow: 0 8px 20px rgba(15,15,15,0.06);
-    --gap: 16px; 
-    --pad: 16px; 
+    --gap: 16px;
+    --pad: 16px;
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
@@ -56,9 +56,10 @@ body {
 
 .kicker {
     color: var(--accent);
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 1px;
     margin: 4px 0 12px;
+    font-weight: 450;
 }
 
 .headline {
@@ -106,7 +107,7 @@ body {
 }
 
     .card:hover {
-        transform: translateY(-10px); 
+        transform: translateY(-8px);
         box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     }
 
@@ -145,23 +146,40 @@ body {
 }
 
 .btn {
-    display: inline-block;
-    padding: 10px 14px;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #1a1a1a;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 12px;
     text-decoration: none;
-    background: var(--accent);
-    color: white;
-    font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-    .btn:hover {
-        background: var(--accent-hover);
-        color: white;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        transform: translateY(-3px);
+    .btn .cta-dot {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: #e7f2fd;
+        color: var(--accent);
+        font-size: 16px;
+        transition: background 0.25s ease, color 0.25s ease;
     }
+
+    .btn:hover {
+        background: #f3f7fc;
+        color: var(--accent);
+    }
+
+        .btn:hover .cta-dot {
+            background: #e7f2fd; 
+            color: var(--accent); 
+        }
 
 .plans {
     background-image: url("../images/13d29be3-9843-4631-b987-9ea323793171.jpg");
