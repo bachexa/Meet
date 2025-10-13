@@ -124,6 +124,7 @@ body {
     border-radius: 8px;
     background: rgba(107,70,255,0.06);
     margin-bottom: 8px;
+    background: #f1f5ff;
 }
 
 .card h2 {
