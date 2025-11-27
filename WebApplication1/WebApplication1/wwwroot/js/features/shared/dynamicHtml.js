@@ -239,7 +239,11 @@ export class DynamicHtmlManager {
                         <div class="ms-card__icon" aria-hidden="true">${c.productCardSvg}</div>
                         <h3 class="ms-card__title">${c.productCardTitle}</h3>
                         <p class="ms-card__text">${c.productCardDescription}</p>
-                        <a href="#" class="ms-card__cta"><span class="cta-dot">➜</span>${c.productCardButton}</a>
+                        <div class="card-bottom">
+                    <a class="btn" href="#">
+                        <span class="cta-dot">➜</span>${c.productCardButton}
+                    </a>
+                </div>
                     </article>
                 `).join('');
 

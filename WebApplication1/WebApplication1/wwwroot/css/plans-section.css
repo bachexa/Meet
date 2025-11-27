@@ -68,6 +68,25 @@ img, svg {
     margin: 18px 0 26px;
 }
 
+.card-bottom {
+    text-align: left;
+    margin-top: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #1a1a1a;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 12px;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
 .ms-tab {
     appearance: none;
     border: none;
