@@ -1,5 +1,4 @@
-﻿
-import { on } from '../../core/bus.js';
+﻿import { on } from '../../core/bus.js';
 import { fetchJSON } from '../../core/api.js';
 import { DynamicHtmlManager } from '../shared/dynamicHtml.js';
 
@@ -34,6 +33,13 @@ async function mountProducts(lang) {
             education: '/images/education.png'
         };
 
+        // დაიწყე hero ფოტოთი პირველ panel-ზე
+        const firstPanel = container.querySelector('.ms-panel.is-visible');
+        if (firstPanel) {
+            const firstPanelName = firstPanel.dataset.panel;
+            hero.src = heroMap[firstPanelName] ?? '/images/home.jpg';
+        }
+
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('is-active'));
@@ -66,3 +72,5 @@ on('languageChanged', ({ lang }) => mountProducts(lang));
 
 // პირველი გაშვება
 mountProducts('en');
+
+export { mountProducts };

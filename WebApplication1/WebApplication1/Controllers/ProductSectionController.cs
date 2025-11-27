@@ -80,7 +80,7 @@ namespace WebApplication1.Controllers
                         // Enterprise
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams E3",
+                            ProductCardTitle = "SecureMeet",
                             ProductCardDescription = "Advanced meetings, security, compliance, and device management for large orgs.",
                             ProductCardButton = "Explore",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
@@ -91,7 +91,7 @@ namespace WebApplication1.Controllers
                         },
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams E5",
+                            ProductCardTitle = "SecureVoice",
                             ProductCardDescription = "Premium voice, analytics, and top-tier security add-ons for mission-critical needs.",
                             ProductCardButton = "Explore",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
@@ -151,7 +151,7 @@ namespace WebApplication1.Controllers
                         // Business
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams Essentials",
+                            ProductCardTitle = "გუნდების აუცილებელი ნივთები",
                             ProductCardDescription = "აფორმი შეხვედრები და ჩეთი მცირე გუნდებისთვის Microsoft 365-ის გამოწერის გარეშე.",
                             ProductCardButton = "დეტალები",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
@@ -162,7 +162,7 @@ namespace WebApplication1.Controllers
                         },
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams with Microsoft 365 Business",
+                            ProductCardTitle = "გუნდები Microsoft 365 Business-თან",
                             ProductCardDescription = "ყველა თანამშრომლობის ფუნქცია Word, Excel და უსაფრთხო Cloud შენახვით.",
                             ProductCardButton = "დეტალები",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
@@ -175,7 +175,7 @@ namespace WebApplication1.Controllers
                         // Enterprise
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams E3",
+                            ProductCardTitle = "უსაფრთხო შეხვედრები",
                             ProductCardDescription = "გაწვდილი შეხვედრები, უსაფრთხოება და მოწყობილობების მართვა დიდ ორგანიზაციებისთვის.",
                             ProductCardButton = "გაიგე მეტი",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
@@ -186,7 +186,7 @@ namespace WebApplication1.Controllers
                         },
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams E5",
+                            ProductCardTitle = "უსაფრთხო ხმოვანი სერვისი",
                             ProductCardDescription = "პრემიუმ ხმოვანი, ანალიტიკური და უსაფრთხოების დამატებები მნიშვნელოვანი საჭიროებისთვის.",
                             ProductCardButton = "გაიგე მეტი",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
@@ -199,7 +199,7 @@ namespace WebApplication1.Controllers
                         // Education
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Teams for Education",
+                            ProductCardTitle = "განათლების გუნდები",
                             ProductCardDescription = "კლასების, დავალებების და უსაფრთხო თანამშრომლობის შექმნა სკოლებისთვის.",
                             ProductCardButton = "გაიგე მეტი",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>

@@ -218,34 +218,37 @@ export class DynamicHtmlManager {
 
 
 
-    static RenderProductSectionFromModel(section = {}) {
+    static RenderProductSectionFromModel(section = {}, lang = 'en') {
         if (!section) return '';
 
         const title = section.productSectionTitle ?? '';
         const description = section.productSectionDescription ?? '';
         const cards = section.productCards ?? [];
 
-        const panels = ['home', 'business', 'enterprise', 'education'].map(panel => {
+        const tabLabels = {
+            en: { home: 'Home', business: 'Business', enterprise: 'Enterprise', education: 'Education' },
+            ka: { home: 'მთავარი', business: 'ბიზნესი', enterprise: 'ინდუსტრია', education: 'განათლება' }
+        };
+        const tabsForLang = tabLabels[lang] ?? tabLabels.en;
+
+        const panelsHtml = ['home', 'business', 'enterprise', 'education'].map((panel, index) => {
             const cardsHtml = cards
                 .filter(c => c.productCardPanel === panel)
                 .map(c => `
                     <article class="ms-card">
-                        <div class="ms-card__icon" aria-hidden="true">
-                            ${c.productCardSvg}
-                        </div>
+                        <div class="ms-card__icon" aria-hidden="true">${c.productCardSvg}</div>
                         <h3 class="ms-card__title">${c.productCardTitle}</h3>
                         <p class="ms-card__text">${c.productCardDescription}</p>
                         <a href="#" class="ms-card__cta"><span class="cta-dot">➜</span>${c.productCardButton}</a>
                     </article>
                 `).join('');
 
-            const visibleClass = panel === 'home' ? 'is-visible' : '';
+            const visibleClass = index === 0 ? 'is-visible' : '';
+            const hiddenAttr = index === 0 ? '' : 'hidden';
 
             return `
-            <div id="panel-${panel}" class="ms-panel ${visibleClass}" role="tabpanel" data-panel="${panel}" ${panel === 'home' ? '' : 'hidden'}>
-                <div class="ms-cards">
-                    ${cardsHtml}
-                </div>
+            <div id="panel-${panel}" class="ms-panel ${visibleClass}" role="tabpanel" data-panel="${panel}" ${hiddenAttr}>
+                <div class="ms-cards">${cardsHtml}</div>
             </div>`;
         }).join('');
 
@@ -255,20 +258,17 @@ export class DynamicHtmlManager {
                 <p class="ms-plans__eyebrow">${title}</p>
                 <h1 class="ms-plans__title">${description}</h1>
                 <div class="ms-plans__tabs" role="tablist">
-                    <button role="tab" class="ms-tab is-active" data-tab="home">Home</button>
-                    <button role="tab" class="ms-tab" data-tab="business">Business</button>
-                    <button role="tab" class="ms-tab" data-tab="enterprise">Enterprise</button>
-                    <button role="tab" class="ms-tab" data-tab="education">Education</button>
+                    <button role="tab" class="ms-tab is-active" data-tab="home">${tabsForLang.home}</button>
+                    <button role="tab" class="ms-tab" data-tab="business">${tabsForLang.business}</button>
+                    <button role="tab" class="ms-tab" data-tab="enterprise">${tabsForLang.enterprise}</button>
+                    <button role="tab" class="ms-tab" data-tab="education">${tabsForLang.education}</button>
                 </div>
             </header>
-
             <div class="ms-plans__layout">
                 <figure class="ms-hero">
                     <img id="ms-hero-img" src="/images/home.jpg" alt="Hero Image">
                 </figure>
-                <div class="ms-plans__panels">
-                    ${panels}
-                </div>
+                <div class="ms-plans__panels">${panelsHtml}</div>
             </div>
         </div>`;
     }
