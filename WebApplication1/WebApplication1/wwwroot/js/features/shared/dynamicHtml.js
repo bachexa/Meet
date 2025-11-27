@@ -382,6 +382,47 @@ export class DynamicHtmlManager {
 
         return headerHtml;
     }
+    static RenderPlansSectionFromModel(section = {}) {
+        if (!section) return '';
+
+        const sectionTitle = section.CardName ?? section.cardName ?? '';
+        const sectionDesc = section.CardDescription ?? section.cardDescription ?? '';
+        const cards = section.Cards ?? section.cards ?? [];
+
+        const cardsHtml = cards.map(c => {
+            const cardTitle = c.CardName ?? c.cardName ?? '';
+            const cardDesc = c.CardDescription ?? c.cardDescription ?? '';
+            const cardBtn = c.CardButton ?? c.cardButton ?? '';
+            const cardSvg = c.cardSvg ?? '';
+
+            return `
+            <article class="card">
+                <div class="card-top">
+                    <div class="icon" aria-hidden="true">
+                        ${cardSvg} 
+                    </div>
+                    <h2>${cardTitle}</h2>
+                    <p>${cardDesc}</p>
+                </div>
+                <div class="card-bottom">
+                    <a class="btn" href="#">
+                        <span class="cta-dot">➜</span>${cardBtn}
+                    </a>
+                </div>
+            </article>`;
+        }).join('');
+
+        return `
+        <section class="plans-section-container" style="background-image: url('../images/13d29be3-9843-4631-b987-9ea323793171.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            <main class="container">
+                <p class="kicker"><b>${sectionTitle}</b></p>
+                <h1 class="headline">${sectionDesc}</h1>
+                <section class="cards">
+                    ${cardsHtml}
+                </section>
+            </main>
+        </section>`;
+    }
 
     
 }

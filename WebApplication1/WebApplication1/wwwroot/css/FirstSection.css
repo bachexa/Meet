@@ -122,9 +122,8 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    background: rgba(107,70,255,0.06);
-    margin-bottom: 8px;
     background: #f1f5ff;
+    margin-bottom: 8px;
 }
 
 .card h2 {
@@ -178,11 +177,12 @@ body {
     }
 
         .btn:hover .cta-dot {
-            background: #e7f2fd; 
-            color: var(--accent); 
+            background: #e7f2fd;
+            color: var(--accent);
         }
 
-.plans {
+/* მთავარი plans-section background */
+.plans-section-container {
     background-image: url("../images/13d29be3-9843-4631-b987-9ea323793171.jpg");
     background-size: cover;
     background-position: center;
