@@ -86,8 +86,8 @@ async function mount(lang) {
     aborter = new AbortController();
 
     try {
-        // const model = await fetchJSON('/api/discoversection', { lang }, { signal: aborter.signal });
-        container.innerHTML = DynamicHtmlManager.GetPlansSectionModalFromModel("");
+         const model = await fetchJSON('/api/planssection', { lang }, { signal: aborter.signal });
+         container.innerHTML = DynamicHtmlManager.GetPlansSectionModalFromModel(model);
 
         // IMPORTANT: wire up the freshly injected DOM
         initPlans(container);
