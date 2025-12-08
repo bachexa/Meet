@@ -48,7 +48,6 @@ export class DynamicHtmlManager {
           <nav class="ms-nav" id="mainMenu">
             <a href="#">${t('layoutHeader.products', null, lang)}</a>
             <a href="#">${t('layoutHeader.features', null, lang)}</a>
-            <a href="#">${t('layoutHeader.pricing', null, lang)}</a>
             <a href="#">${t('layoutHeader.solutions', null, lang)}</a>
             <a href="#">${t('layoutHeader.resources', null, lang)}</a>
             <a href="#">${t('layoutHeader.support', null, lang)}</a>
