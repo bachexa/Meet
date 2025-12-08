@@ -17,8 +17,7 @@ namespace WebApplication1.Controllers
 
             if (plans == null)
                 return NotFound();
-
-            return Ok(plans); // single object
+            return Ok(plans); 
         }
 
 
