@@ -25,6 +25,7 @@ namespace WebApplication1.Controllers
                     CardName = "Get Started",
                     CardDescription = "Take the next step with MeetDesk",
                     Language = "en",
+                    BackgroundImg = "../images/13d29be3-9843-4631-b987-9ea323793171.jpg",
                     Cards = new List<ResourcesCardModel>
                     {
                         new ResourcesCardModel

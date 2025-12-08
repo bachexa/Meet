@@ -334,7 +334,8 @@ export class DynamicHtmlManager {
 
         const sectionTitle = section.CardName ?? section.cardName ?? '';
         const sectionDesc = section.CardDescription ?? section.cardDescription ?? '';
-        const cards = section.Cards ?? section.cards ?? [];
+        const cards = section.Cards ?? section.cards ?? [];//BackgroundImg
+        const backgroundImg = section.BackgroundImg ?? section.backgroundImg ?? [];
 
         const cardsHtml = cards.map(c => {
             const cardTitle = c.CardName ?? c.cardName ?? '';
@@ -360,7 +361,7 @@ export class DynamicHtmlManager {
         }).join('');
 
         return `
-     <section class="plans-section-container" style="background-image: url('../images/13d29be3-9843-4631-b987-9ea323793171.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+     <section class="plans-section-container" style="background-image: url(${backgroundImg}); background-size: cover; background-position: center; background-repeat: no-repeat;">
          <main class="container">
              <p class="kicker"><b>${sectionTitle}</b></p>
              <h1 class="headline">${sectionDesc}</h1>
