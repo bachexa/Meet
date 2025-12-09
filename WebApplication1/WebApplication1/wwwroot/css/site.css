@@ -234,9 +234,24 @@ body {
         font-size: 14px;
     }
 
+        /* hover for all buttons */
         .lang-menu .lang-btn:hover {
             background-color: #f3f3f3;
         }
+
+        /* active language (non-hover) */
+        .lang-menu .lang-btn.is-active {
+            border-bottom: 1px solid #000;
+            background-color: #f3f3f3; /* light blue so it looks selected */
+            color:#000;
+        }
+
+            /* hover for active language (slightly stronger) */
+            .lang-menu .lang-btn.is-active:hover {
+                background-color: #f3f3f3;
+                color: #000;
+            }
+
 
 
 .ms-btn.lang-toggle svg {

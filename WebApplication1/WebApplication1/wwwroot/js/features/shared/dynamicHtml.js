@@ -58,18 +58,16 @@ export class DynamicHtmlManager {
         const langENG = section.langENG;
         const langGeo = section.langGeo;
 
-        // Support both PascalCase and camelCase from JSON
         const items = (section.mneuItemName ?? section.MneuItemName ?? [])
             .map(x => x.menuItems ?? x.MenuItems ?? '')
             .filter(Boolean);
 
-        // Map menu index -> section selector on the page
         const targetsByIndex = [
-            '.slider',                 // 0: Products
-            '.discover',               // 1: Features
-            '.solutions',              // 2: Solutions
-            '.ms-plans',               // 3: Plans section
-            '.plans-section-container' // 4: Resources
+            '.slider',
+            '.discover',
+            '.solutions',
+            '.ms-plans',
+            '.plans-section-container'
         ];
 
         const menuHtml = items
@@ -80,51 +78,55 @@ export class DynamicHtmlManager {
             })
             .join('');
 
+        // decide which language is active
+        const isKaActive = lang === 'ka';
+        const isEnActive = lang === 'en';
+
         return `
-        <header class="ms-header">
-          <div class="ms-container">
-            <div class="ms-left">
-              <a href="/" style="text-decoration:none;">
-                <span style="font-family:'Segoe UI',sans-serif;font-size:20px;font-weight:600;color:#1a1a1a;">
-                  <span style="color:#0078d4;">Meet</span>Desk
-                </span>
-              </a>
-              <div class="ms-divider"></div>
-            </div>
+          <header class="ms-header">
+            <div class="ms-container">
+              <div class="ms-left">
+                <a href="/" style="text-decoration:none;">
+                  <span style="font-family:'Segoe UI',sans-serif;font-size:20px;font-weight:600;color:#1a1a1a;">
+                    <span style="color:#0078d4;">Meet</span>Desk
+                  </span>
+                </a>
+                <div class="ms-divider"></div>
+              </div>
 
-            <!-- Mobile toggle button (no inline onclick) -->
-            <button class="ms-toggle" type="button" aria-label="Toggle menu">☰</button>
+              <button class="ms-toggle" type="button" aria-label="Toggle menu">☰</button>
 
-            <nav class="ms-nav" id="mainMenu">
-              ${menuHtml}
-            </nav>
+              <nav class="ms-nav" id="mainMenu">
+                ${menuHtml}
+              </nav>
 
-            <div class="ms-buttons">
-              <button class="ms-btn" type="button">
-                  ${download}
-              </button>
-              <button class="ms-btn signin-btn" type="button">
-                  ${signIn}
-              </button>
-
-              <div class="lang-dropdown">
-                <button class="ms-btn lang-toggle" type="button" aria-label="Change language">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                      <path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18" 
-                            fill="none" stroke="currentColor" stroke-width="1.8"/>
-                    </svg>
+              <div class="ms-buttons">
+                <button class="ms-btn" type="button">
+                    ${download}
+                </button>
+                <button class="ms-btn signin-btn" type="button">
+                    ${signIn}
                 </button>
 
-                <div class="lang-menu" id="langMenu">
-                  <button class="lang-btn" data-lang="ka">${langGeo}</button>
-                  <button class="lang-btn" data-lang="en">${langENG}</button>
+                <div class="lang-dropdown">
+                  <button class="ms-btn lang-toggle" type="button" aria-label="Change language">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18" 
+                              fill="none" stroke="currentColor" stroke-width="1.8"/>
+                      </svg>
+                  </button>
+
+                  <div class="lang-menu" id="langMenu">
+                    <button class="lang-btn${isKaActive ? ' is-active' : ''}" data-lang="ka" type="button">${langGeo}</button>
+                    <button class="lang-btn${isEnActive ? ' is-active' : ''}" data-lang="en" type="button">${langENG}</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </header>`;
+          </header>`;
     }
+
 
 
 
