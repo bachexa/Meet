@@ -26,6 +26,22 @@ namespace WebApplication1.Controllers
                 new MainmenuItemsSection
                 {
                     Language = "en",
+                    Download = "Download MetDesk",
+                    SignIn = "Sign in",
+                    LangENG = "ENG",
+                    LangGeo = "GEO",
+                    FooterFirstText = "&copy; 2025 - MeetDesk. All rights reserved.",
+                    AuthCart = new AuthCart
+                    {
+                        UsernamePlaceholder = "Username or Email",
+                        PasswordPlaceholder = "Password",
+                        SignIn = "Sign in",
+                        GoogleSignIn = "Sign in with Google",
+                        MsSignIn = "Sign in with Microsoft",
+                        RegisterPrompt = "Don't have an account?",
+                        RegisterLink = "Register"
+                    },
+
                     MneuItemName = new List<MneuItems>
                     {
                         new MneuItems
@@ -47,13 +63,29 @@ namespace WebApplication1.Controllers
                         new MneuItems
                         {
                             MenuItems = "Support"
-                        }
+                        },
                     }
                 },
 
                 new MainmenuItemsSection
                 {
                     Language = "ka",
+                    Download = "გადმოწერე MeetDesk",
+                    SignIn = "შესვლა",
+                    LangENG = "ინგ",
+                    LangGeo = "ქარ",
+                    FooterFirstText = "&copy; 2025 - MeetDesk. ყველა უფლება დაცულია.",
+                    AuthCart = new AuthCart
+                    {
+                        UsernamePlaceholder = "მომხმარებელი ან ელფოსტა",
+                        PasswordPlaceholder = "პაროლი",
+                        SignIn = "შესვლა",
+                        GoogleSignIn = "შესვლა Google - ით",
+                        MsSignIn = "შესვლა Microsoft - ით",
+                        RegisterPrompt = "არ გაქვს ანგარიში?",
+                        RegisterLink = "რეგისტრაცია"
+                    },
+
                     MneuItemName = new List<MneuItems>
                     {
                         new MneuItems

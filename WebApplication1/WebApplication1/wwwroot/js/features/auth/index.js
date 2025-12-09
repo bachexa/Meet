@@ -1,5 +1,6 @@
 ﻿import { on } from '../../core/bus.js';
 import { getState } from '../../core/store.js';
+import { fetchJSON } from '../../core/api.js';
 import { DynamicHtmlManager } from '../shared/dynamicHtml.js';
 
 function closeAuthOverlay() {
@@ -11,9 +12,19 @@ function closeAuthOverlay() {
     }
 }
 
-function openAuthOverlay(lang = getState().lang) {
+async function openAuthOverlay(lang = getState().lang) {
     closeAuthOverlay();
-    const html = DynamicHtmlManager.GetAuthHtml(lang); // translations handled inside
+
+    let section;
+    try {
+        // reuse the same API: /api/MainMenuSection?lang=en|ka
+        section = await fetchJSON('/api/MainMenuSection', { lang });
+    } catch (e) {
+        console.error('Failed to load auth texts', e);
+        return;
+    }
+
+    const html = DynamicHtmlManager.GetAuthHtmlFromModel(section);
     const wrap = document.createElement('div');
     wrap.innerHTML = html.trim();
     const node = wrap.firstElementChild || wrap;
@@ -23,8 +34,16 @@ function openAuthOverlay(lang = getState().lang) {
     document.body.style.overflow = 'hidden';
 
     node.querySelector('.close-btn')?.addEventListener('click', closeAuthOverlay);
-    node.addEventListener('click', (e) => { if (e.target === node) closeAuthOverlay(); });
-    const onKey = (e) => { if (e.key === 'Escape') { closeAuthOverlay(); document.removeEventListener('keydown', onKey); } };
+    node.addEventListener('click', (e) => {
+        if (e.target === node) closeAuthOverlay();
+    });
+
+    const onKey = (e) => {
+        if (e.key === 'Escape') {
+            closeAuthOverlay();
+            document.removeEventListener('keydown', onKey);
+        }
+    };
     document.addEventListener('keydown', onKey);
 }
 

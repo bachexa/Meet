@@ -1,19 +1,52 @@
 ﻿import { emit } from '../../core/bus.js';
 import { getState, setState } from '../../core/store.js';
+import { fetchJSON } from '../../core/api.js';
 import { DynamicHtmlManager } from '../shared/dynamicHtml.js';
 
-function renderLayout(lang) {
+let headerAborter = null;
+
+function destroyHeader() {
+    if (headerAborter) {
+        headerAborter.abort();
+        headerAborter = null;
+    }
+}
+
+async function renderLayout(lang) {
     const header = document.getElementById('layeoutHeader');
     const footer = document.getElementById('layeoutFooter');
     if (!header || !footer) return;
 
-    header.innerHTML = DynamicHtmlManager.GetLayoutHeaderModal(lang);
-    footer.innerHTML = DynamicHtmlManager.GetLayoutFooterModal(lang);
+    destroyHeader();
+    headerAborter = new AbortController();
 
+    try {
+        // GET /api/MainMenuSection?lang=en|ka
+        const menuModel = await fetchJSON(
+            '/api/MainMenuSection',
+            { lang },
+            { signal: headerAborter.signal }
+        );
+
+        // Build header from API model
+        header.innerHTML = DynamicHtmlManager.GetLayoutHeaderFromModel(menuModel, lang);
+        footer.innerHTML = DynamicHtmlManager.GetLayoutFooterModal(menuModel,lang);
+    } catch (e) {
+        if (e.name === 'AbortError') return;
+        console.error(e);
+        header.innerHTML = `<div class="header-error"><p>Couldn’t load header. Please try again.</p></div>`;
+        footer.innerHTML = `<div class="footer-error"><p>Couldn’t load footer. Please try again.</p></div>`;
+    }
+
+    // Footer can still use your translation-based function
+    
+
+    // Inform other modules (plans, resources, etc.) that language changed
     emit('languageChanged', { lang });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // initial render
     renderLayout(getState().lang);
 
     // language change (delegated)

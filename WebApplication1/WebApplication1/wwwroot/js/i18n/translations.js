@@ -4,7 +4,7 @@
             usernamePlaceholder: "Username or Email",
             passwordPlaceholder: "Password",
             signInBtn: "Sign in",
-            googleSignIn: " Sign in with Google",
+            googleSignIn: "Sign in with Google",
             msSignIn: "Sign in with Microsoft",
             registerPrompt: "Don't have an account?",
             registerLink: "Register",

@@ -18,18 +18,17 @@ namespace WebApplication1.Controllers
         // ⬇️ დროებით ესე დავტოვოთ. მერე გადავიტანთ სერვისში, თუ გაინდება.
         private List<Slider> BuildSliderList()
         {
-            var slider = new List<Slider>();
-
-            slider.Add(new Slider
+            var slider = new List<Slider> {
+            new Slider
             {
                 HeaderText = "Organize your  meetings via<br /><span style='font-weight:700;font-size:42px;color:#1a1a1a;'><span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "Start meetings, share moments and work together easily! Start meetings, share moments and work together easily! Start meetings, share moments and work together easily!",
                 Img = "/images/teams-hero.png",
                 Language = "en",
                 SliderButton = "Download now"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "Find a friend if they are free. Via:<br />" +
                               "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
@@ -38,9 +37,9 @@ namespace WebApplication1.Controllers
                 Img = "/images/teams-hero2.png",
                 Language = "en",
                 SliderButton = "Download now"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "Organize your Daylly meetings via<br />" +
                               "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
@@ -49,9 +48,9 @@ namespace WebApplication1.Controllers
                 Img = "/images/teams-hero3.png",
                 Language = "en",
                 SliderButton = "Download now"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "Organize your Daylly meetings via<br />" +
                               "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
@@ -60,18 +59,18 @@ namespace WebApplication1.Controllers
                 Img = "/images/teams-hero4.png",
                 Language = "en",
                 SliderButton = "Download now"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "დაგეგმე შენი  შეხვედრები<br /><span style='font-weight:700;font-size:42px;color:#1a1a1a;'><span style='color:#0078d4;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
                 Img = "/images/teams-hero.png",
                 Language = "ka",
                 SliderButton = "გადმოწერეთ"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "იპოვე მეგობარი, თუ თავისუფალია. საშუალებით:<br />" +
                               "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
@@ -80,9 +79,9 @@ namespace WebApplication1.Controllers
                 Img = "/images/teams-hero2.png",
                 Language = "ka",
                 SliderButton = "გადმოწერეთ"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "დაასაწყობე შენი ყოველდღიური შეხვედრები<br />" +
                               "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
@@ -91,9 +90,9 @@ namespace WebApplication1.Controllers
                 Img = "/images/teams-hero3.png",
                 Language = "ka",
                 SliderButton = "გადმოწერეთ"
-            });
+            },
 
-            slider.Add(new Slider
+            new Slider
             {
                 HeaderText = "დაასაწყობე შენი ყოველდღიური შეხვედრები<br />" +
                               "<span style='font-weight:700;font-size:42px;color:#1a1a1a;'>" +
@@ -102,8 +101,7 @@ namespace WebApplication1.Controllers
                 Img = "/images/teams-hero4.png",
                 Language = "ka",
                 SliderButton = "გადმოწერეთ"
-            });
-
+            }};
             return slider;
         }
     }
