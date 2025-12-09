@@ -88,7 +88,7 @@ export class DynamicHtmlManager {
               <div class="ms-left">
                 <a href="/" style="text-decoration:none;">
                   <span style="font-family:'Segoe UI',sans-serif;font-size:20px;font-weight:600;color:#1a1a1a;">
-                    <span style="color:#0078d4;">Meet</span>Desk
+                    <span style="color:#1f5c4e;">Meet</span>Desk
                   </span>
                 </a>
                 <div class="ms-divider"></div>

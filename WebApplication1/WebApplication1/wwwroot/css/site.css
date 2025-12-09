@@ -25,7 +25,7 @@ body {
 /* Header */
 .ms-header {
     background-color: #fff;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #A9C984;
     padding: 10px 24px;
 }
 
@@ -68,7 +68,7 @@ body {
 
     .ms-nav a {
         text-decoration: none;
-        color: #000; /* მუქი ნაცრისფერი */
+        color: #1f5c4e; /* მუქი ნაცრისფერი */
         font-weight: 500;
         font-size: 15px;
         padding: 4px 8px;
@@ -76,7 +76,7 @@ body {
     }
 
         .ms-nav a:hover {
-            color: #0078d4; /* Microsoft blue */
+            color: #224541; /* Microsoft blue */
         }
 
 
@@ -90,16 +90,17 @@ body {
     padding: 6px 12px;
     font-size: 14px;
     font-weight: 500;
-    border: 1px solid #000;
+    border: 1px solid #A9C984;
     border-radius: 4px;
     text-decoration: none;
-    color: #000;
+    color: #1f5c4e;
     background-color: transparent;
     transition: background-color 0.2s;
 }
 
     .ms-btn:hover {
-        background-color: #f3f3f3;
+        background-color: #D1DBC5;
+        color:#224541;
     }
 
     .ms-btn.outline {
@@ -169,14 +170,14 @@ body {
     background: none;
     border: none;
     font-weight: 600;
-    color: #0078d4;
+    color: #1f5c4e;
     cursor: pointer;
     transition: color 0.3s, transform 0.2s;
     font-size: 14px;
 }
 
     .lang-btn:hover {
-        color: #005a9e;
+        color: #1f5c4e;
         transform: scale(1.05);
     }
 
@@ -249,7 +250,7 @@ body {
             /* hover for active language (slightly stronger) */
             .lang-menu .lang-btn.is-active:hover {
                 background-color: #f3f3f3;
-                color: #000;
+                color: #224541;
             }
 
 
