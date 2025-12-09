@@ -81,4 +81,33 @@ document.addEventListener('DOMContentLoaded', () => {
             if (menu) menu.classList.toggle('open');
         }
     });
+
+    // 🔽 ADD THIS BLOCK HERE (smooth scroll for nav links)
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('.ms-nav-link[data-target]');
+        if (!link) return;
+
+        e.preventDefault();
+
+        const selector = link.dataset.target;
+        if (!selector) return;
+
+        const section = document.querySelector(selector);
+        if (!section) return;
+
+        // Simple, reliable scroll
+        section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        // close mobile menu after click (optional)
+        const menu = document.getElementById('mainMenu');
+        if (menu && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+        }
+    });
+
 });
+
+
