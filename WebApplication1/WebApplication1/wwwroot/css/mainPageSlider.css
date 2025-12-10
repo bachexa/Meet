@@ -84,6 +84,7 @@
     position: relative;
     width: 100%;
     overflow: hidden; /* ეს მნიშვნელოვანია რომ მხოლოდ ერთი სლაიდი ჩანდეს */
+    
 }
 
 .slides-wrapper {
@@ -110,19 +111,19 @@
     .hero-content h1 {
         font-size: 48px;
         line-height: 1.2;
-        color: #1b1b1b;
+        color: #224541;
     }
 
     .hero-content p {
         margin-top: 20px;
         font-size: 18px;
-        color: #444;
+        color: #224541;
     }
 
 .download-btn {
     display: inline-block;
     margin-top: 30px;
-    background-color: #0078d4;
+    background-color: #1f5c4e;
     color: white;
     padding: 14px 28px;
     border-radius: 8px;
@@ -131,7 +132,7 @@
 }
 
     .download-btn:hover {
-        background-color: #005a9e;
+        background-color: #224541;
         box-shadow: 0 4px 12px rgba(0, 120, 212, 0.4);
     }
 
@@ -167,7 +168,7 @@
 }
 
     .dot.active {
-        background-color: #0078d4;
+        background-color: #224541;
     }
 
 /* Responsive */
