@@ -7,6 +7,7 @@
     position: relative;
     margin: 30px auto;
     font-family: 'Segoe UI', sans-serif;
+    
 }
 
 .close-btn {
@@ -27,18 +28,23 @@
     margin-top: 20px;
 }
 
+.auth-input::placeholder {
+    color: #1f5c4e; /* pick any color you like */
+    opacity: 1; /* some browsers make placeholder semi-transparent */
+}
+
 .auth-input {
     padding: 10px 14px;
     font-size: 14px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #224541;
     width: 100%;
     box-sizing: border-box;
 }
 
 .auth-action-btn {
     padding: 12px;
-    background-color: #0078d4;
+    background-color: #1f5c4e;
     color: white;
     font-weight: 600;
     border: none;
@@ -49,7 +55,7 @@
 }
 
     .auth-action-btn:hover {
-        background-color: #005ea2;
+        background-color: #224541;
     }
 
 .auth-separator {
@@ -76,13 +82,13 @@
 }
 
     .auth-btn.google {
-        border: 1px solid #d93025;
-        color: #d93025;
+        border: 1px solid #224541;
+        color: #1f5c4e;
     }
 
     .auth-btn.microsoft {
-        border: 1px solid #0078d4;
-        color: #0078d4;
+        border: 1px solid #224541;
+        color: #1f5c4e;
     }
 
     .auth-btn img {
@@ -94,18 +100,20 @@
     font-size: 13px;
     text-align: center;
     margin-top: 6px;
+    color: #224541;
 }
 
     .auth-link a {
-        color: #0078d4;
+        color: #1f5c4e;
         text-decoration: none;
+        font-weight:bold;
     }
 
 .auth-separator {
     display: flex;
     align-items: center;
     text-align: center;
-    color: #666;
+    color: #1f5c4e;
     margin: 20px 0;
     font-weight: bold;
     font-size: 14px;
@@ -115,7 +123,7 @@
     .auth-separator::after {
         content: "";
         flex: 1;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #A9C984;
         margin: 0 10px;
     }
 

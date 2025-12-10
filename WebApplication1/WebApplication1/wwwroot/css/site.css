@@ -90,17 +90,17 @@ body {
     padding: 6px 12px;
     font-size: 14px;
     font-weight: 500;
-    border: 1px solid #A9C984;
+    border: 1px solid #224541;
     border-radius: 4px;
     text-decoration: none;
-    color: #1f5c4e;
-    background-color: transparent;
+    color: white;
+    background-color: #1f5c4e;
     transition: background-color 0.2s;
 }
 
     .ms-btn:hover {
-        background-color: #D1DBC5;
-        color:#224541;
+        background-color: #224541;
+        color: white;
     }
 
     .ms-btn.outline {
@@ -199,17 +199,20 @@ body {
     padding: 6px 10px;
     border: 1px solid #1a1a1a;
     border-radius: 4px;
-    background-color: white;
+    background-color: #1f5c4e;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 }
 
     .lang-toggle svg {
         width: 20px;
         height: 20px;
         color: #555;
+        color: white;
+        background-color: #1f5c4e;
     }
 
 /* ჩამოშლადი მენიუ */
@@ -242,9 +245,9 @@ body {
 
         /* active language (non-hover) */
         .lang-menu .lang-btn.is-active {
-            border-bottom: 1px solid #000;
+            border-bottom: 1px solid #224541;
             background-color: #f3f3f3; /* light blue so it looks selected */
-            color:#000;
+            color: #224541;
         }
 
             /* hover for active language (slightly stronger) */
