@@ -322,7 +322,7 @@ export class DynamicHtmlManager {
             const slug = slugify(label) || `tab-${index}`;
             const isActive = index === 0;
             return `
-            <button class="products-service"
+            <button
                 role="tab"
                 aria-selected="${isActive ? 'true' : 'false'}"
                 aria-controls="panel-${slug}"

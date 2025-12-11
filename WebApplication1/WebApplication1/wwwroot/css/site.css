@@ -143,18 +143,18 @@ body {
 }
 
     .footer-links a {
-        color: #1a1a1a;
+        color: #1f5c4e;
         text-decoration: none;
         font-weight: 500;
         transition: color 0.2s ease;
     }
 
         .footer-links a:hover {
-            color: #0078d4;
+            color: #224541;
         }
 
 .footer-bottom-text {
-    color: #888;
+    color: #224541;
     font-size: 13px;
 }
 

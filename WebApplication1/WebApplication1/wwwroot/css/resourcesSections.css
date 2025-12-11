@@ -60,15 +60,14 @@ body {
     letter-spacing: 1px;
     margin: 4px 0 12px;
     font-weight: 450;
-    text-align:left;
+    color: #1f5c4e;
 }
 
 .headline {
     font-size: 40px;
     font-weight: 700;
     margin: 0 0 36px;
-    color: #111;
-    text-align:left;
+    color: #224541;
 }
 
 .cards {
@@ -106,6 +105,7 @@ body {
     min-height: 180px;
     border: 1px solid rgba(15,15,15,0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ECEBEA;
 }
 
     .card:hover {
@@ -133,6 +133,7 @@ body {
     font-size: 18px;
     font-weight: 600;
     color: black;
+    color:#1f5c4e;
 }
 
 .card p {
@@ -140,6 +141,7 @@ body {
     color: #444;
     line-height: 1.6;
     font-size: 13px;
+    color: #224541;
 }
 
 .card-bottom {
@@ -152,13 +154,14 @@ body {
     align-items: center;
     gap: 10px;
     background: transparent;
-    color: #1a1a1a;
+    color: #1f5c4e;
     font-weight: 600;
     border: none;
     border-radius: 12px;
     padding: 10px 12px;
     text-decoration: none;
     transition: background-color 0.25s ease, color 0.25s ease;
+    font-weight:bold;
 }
 
     .btn .cta-dot {
@@ -168,24 +171,25 @@ body {
         place-items: center;
         border-radius: 10px;
         background: #e7f2fd;
-        color: var(--accent);
+        color: #1f5c4e;
         font-size: 16px;
         transition: background 0.25s ease, color 0.25s ease;
     }
 
     .btn:hover {
         background: #f3f7fc;
-        color: var(--accent);
+        color: #224541;
     }
 
         .btn:hover .cta-dot {
             background: #e7f2fd;
-            color: var(--accent);
+            color: #224541;
+            
         }
 
 /* მთავარი plans-section background */
 .plans-section-container {
-    background-image: url("../images/13d29be3-9843-4631-b987-9ea323793171.jpg");
+    background-image: url("../images/redources.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
