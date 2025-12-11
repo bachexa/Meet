@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
                 new SolutionsSection
                 {
                     SolutionName = "SOLUTIONS",
-                    SolutionDescription = "Streamline communications all in one place via <span>MeetDesk</span>",
+                    SolutionDescription = "Streamline communications all in one place via <span style='color:#1f5c4e;'>MeetDesk</span>",
                     Language = "en",
                     Cards = new List<SolutionCard>
                     {
