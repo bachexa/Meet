@@ -80,7 +80,8 @@ img, svg {
 }
 
     .ms-tab:hover {
-        background: #e5e7eb;
+        background: #1f5c4e;
+        color: white;
     }
 
     .ms-tab:active {
@@ -88,8 +89,8 @@ img, svg {
     }
 
     .ms-tab.is-active {
-        background: #0078d4;
-        color: #fff;
+        background: #1f5c4e;
+        color: white;
     }
 
     .ms-tab:focus-visible {
@@ -189,12 +190,14 @@ img, svg {
     margin: 0 0 6px;
     font-size: 18px;
     font-weight: 800;
+    color:#1f5c4e;
 }
 
 .ms-card__text {
     margin: 0 0 14px;
     color: var(--ms-muted);
     line-height: 1.5;
+    color: #224541;
 }
 
 .ms-card__cta {
