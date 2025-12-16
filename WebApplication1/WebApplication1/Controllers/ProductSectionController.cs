@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -19,6 +18,12 @@ namespace WebApplication1.Controllers
 
         private List<ProductSectionModel> BuildProductSections()
         {
+            // common hero images
+            var heroHome = "/images/home.png";
+            var heroBusiness = "/images/business.png";
+            var heroEnterprise = "/images/enterprise.png";
+            var heroEducation = "/images/education.png";
+
             return new List<ProductSectionModel>
             {
                 // ========== EN ==========
@@ -27,6 +32,21 @@ namespace WebApplication1.Controllers
                     ProductSectionTitle = "Find the right MeetDesk plan",
                     ProductSectionDescription = "Choose the plan that fits your needs",
                     Language = "en",
+                    HeroImage = heroHome, // default hero (first shown)
+                    PanelHeroImages = new Dictionary<string,string>
+                    {
+                        ["home"] = heroHome,
+                        ["business"] = heroBusiness,
+                        ["enterprise"] = heroEnterprise,
+                        ["education"] = heroEducation
+                    },
+                    TabLabels = new Dictionary<string,string>
+                    {
+                        ["home"] = "Home",
+                        ["business"] = "Business",
+                        ["enterprise"] = "Enterprise",
+                        ["education"] = "Education"
+                    },
                     ProductCards = new List<ProductCardModel>
                     {
                         // Home
@@ -122,6 +142,21 @@ namespace WebApplication1.Controllers
                     ProductSectionTitle = "გაარჩიე MeetDesk გეგმა",
                     ProductSectionDescription = "შეარჩიეთ გეგმა თქვენს საჭიროებებზე",
                     Language = "ka",
+                    HeroImage = heroHome,
+                    PanelHeroImages = new Dictionary<string,string>
+                    {
+                        ["home"] = heroHome,
+                        ["business"] = heroBusiness,
+                        ["enterprise"] = heroEnterprise,
+                        ["education"] = heroEducation
+                    },
+                    TabLabels = new Dictionary<string,string>
+                    {
+                        ["home"] = "მთავარი",
+                        ["business"] = "ბიზნესი",
+                        ["enterprise"] = "ინდუსტრია",
+                        ["education"] = "განათლება"
+                    },
                     ProductCards = new List<ProductCardModel>
                     {
                         // Home
@@ -152,7 +187,7 @@ namespace WebApplication1.Controllers
                         new ProductCardModel
                         {
                             ProductCardTitle = "გუნდების აუცილებელი ნივთები",
-                            ProductCardDescription = "აფორმი შეხვედრები და ჩეთი მცირე გუნდებისთვის Microsoft 365-ის გამოწერის გარეშე.",
+                            ProductCardDescription = "ხელმისაწვდომი შეხვედრები და ჩათი მცირე გუნდებისთვის Microsoft 365-ის გამოწერის გარეშე.",
                             ProductCardButton = "დეტალები",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
                                                     <circle cx='12' cy='12' r='10' opacity='0.12'></circle>

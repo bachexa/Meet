@@ -40,6 +40,14 @@ img, svg {
     margin: 0 auto;
 }
 
+.plans-section-container {
+    background-image: url("../images/13d29be3-9843-4631-b987-9ea323793171.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 50px 0;
+}
+
 .ms-plans__eyebrow {
     color: #0078d4;
     font-size: 14px;

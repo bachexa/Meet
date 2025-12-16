@@ -217,64 +217,83 @@ export class DynamicHtmlManager {
     }
 
 
-
     static RenderProductSectionFromModel(section = {}, lang = 'en') {
         if (!section) return '';
 
-        const title = section.productSectionTitle ?? '';
-        const description = section.productSectionDescription ?? '';
-        const cards = section.productCards ?? [];
-
-        const tabLabels = {
-            en: { home: 'Home', business: 'Business', enterprise: 'Enterprise', education: 'Education' },
-            ka: { home: 'მთავარი', business: 'ბიზნესი', enterprise: 'ინდუსტრია', education: 'განათლება' }
+        const get = (obj, ...keys) => {
+            for (const k of keys) {
+                if (!obj) continue;
+                if (obj[k] !== undefined) return obj[k];
+            }
+            return undefined;
         };
-        const tabsForLang = tabLabels[lang] ?? tabLabels.en;
 
-        const panelsHtml = ['home', 'business', 'enterprise', 'education'].map((panel, index) => {
-            const cardsHtml = cards
-                .filter(c => c.productCardPanel === panel)
-                .map(c => `
-                    <article class="ms-card">
-                        <div class="ms-card__icon" aria-hidden="true">${c.productCardSvg}</div>
-                        <h3 class="ms-card__title">${c.productCardTitle}</h3>
-                        <p class="ms-card__text">${c.productCardDescription}</p>
-                        <div class="card-bottom">
-                    <a class="btn" href="#">
-                        <span class="cta-dot">➜</span>${c.productCardButton}
-                    </a>
-                </div>
-                    </article>
-                `).join('');
+        const title = get(section, 'ProductSectionTitle', 'productSectionTitle') ?? '';
+        const description = get(section, 'ProductSectionDescription', 'productSectionDescription') ?? '';
+        const heroImage = get(section, 'HeroImage', 'heroImage') ?? '';
+        const panelHeroImages = get(section, 'PanelHeroImages', 'panelHeroImages') ?? {};
+        const tabLabels = get(section, 'TabLabels', 'tabLabels') ?? {};
+        const cards = get(section, 'ProductCards', 'productCards') ?? [];
 
-            const visibleClass = index === 0 ? 'is-visible' : '';
-            const hiddenAttr = index === 0 ? '' : 'hidden';
+        const panels = ['home', 'business', 'enterprise', 'education'];
 
-            return `
-            <div id="panel-${panel}" class="ms-panel ${visibleClass}" role="tabpanel" data-panel="${panel}" ${hiddenAttr}>
-                <div class="ms-cards">${cardsHtml}</div>
-            </div>`;
+        const tabsHtml = panels.map((panel, idx) => {
+            const label = (tabLabels[panel] ?? tabLabels[panel.toLowerCase()])
+                || (lang === 'ka' ? { home: 'მთავარი', business: 'ბიზნესი', enterprise: 'ინდუსტრია', education: 'განათლება' }[panel] :
+                    { home: 'Home', business: 'Business', enterprise: 'Enterprise', education: 'Education' }[panel]);
+            return `<button role="tab" class="ms-tab ${idx === 0 ? 'is-active' : ''}" data-tab="${panel}" data-hero="${panelHeroImages[panel] ?? panelHeroImages[panel.toLowerCase()] ?? ''}">${label}</button>`;
         }).join('');
 
+        const panelsHtml = panels.map((panel, idx) => {
+            const cardsHtml = (cards || []).filter(c => {
+                const panelVal = c.ProductCardPanel ?? c.productCardPanel ?? '';
+                return (panelVal || '').toLowerCase() === panel;
+            }).map(c => {
+                const cardSvg = c.ProductCardSvg ?? c.productCardSvg ?? '';
+                const title = c.ProductCardTitle ?? c.productCardTitle ?? '';
+                const desc = c.ProductCardDescription ?? c.productCardDescription ?? '';
+                const btn = c.ProductCardButton ?? c.productCardButton ?? '';
+                return `
+                    <article class="ms-card">
+                        <div class="ms-card__icon" aria-hidden="true">${cardSvg}</div>
+                        <h3 class="ms-card__title">${title}</h3>
+                        <p class="ms-card__text">${desc}</p>
+                        <div class="card-bottom">
+                            <a class="btn" href="#"><span class="cta-dot">➜</span>${btn}</a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            const visibleClass = idx === 0 ? 'is-visible' : '';
+            const hiddenAttr = idx === 0 ? '' : 'hidden';
+            return `<div id="panel-${panel}" class="ms-panel ${visibleClass}" role="tabpanel" data-panel="${panel}" ${hiddenAttr}><div class="ms-cards">${cardsHtml}</div></div>`;
+        }).join('');
+
+        const firstPanelHero = (panelHeroImages && (panelHeroImages['home'] ?? panelHeroImages['Home'])) ?? '';
+        const initialHero = heroImage || firstPanelHero || '';
+
         return `
-        <div class="ms-plans__container">
-            <header class="ms-plans__header">
-                <p class="ms-plans__eyebrow">${title}</p>
-                <h1 class="ms-plans__title">${description}</h1>
-                <div class="ms-plans__tabs" role="tablist">
-                    <button role="tab" class="ms-tab is-active" data-tab="home">${tabsForLang.home}</button>
-                    <button role="tab" class="ms-tab" data-tab="business">${tabsForLang.business}</button>
-                    <button role="tab" class="ms-tab" data-tab="enterprise">${tabsForLang.enterprise}</button>
-                    <button role="tab" class="ms-tab" data-tab="education">${tabsForLang.education}</button>
+            <div class="ms-plans__container">
+                <header class="ms-plans__header">
+                    <p class="ms-plans__eyebrow">${title}</p>
+                    <h1 class="ms-plans__title">${description}</h1>
+                    <div class="ms-plans__tabs" role="tablist">
+                        ${tabsHtml}
+                    </div>
+                </header>
+
+                <div class="ms-plans__layout">
+                    <figure class="ms-hero">
+                        <img id="ms-hero-img" src="${initialHero}" alt="Hero Image" />
+                    </figure>
+
+                    <div class="ms-plans__panels">
+                        ${panelsHtml}
+                    </div>
                 </div>
-            </header>
-            <div class="ms-plans__layout">
-                <figure class="ms-hero">
-                    <img id="ms-hero-img" src="/images/home.jpg" alt="Hero Image">
-                </figure>
-                <div class="ms-plans__panels">${panelsHtml}</div>
             </div>
-        </div>`;
+        `;
     }
 
 

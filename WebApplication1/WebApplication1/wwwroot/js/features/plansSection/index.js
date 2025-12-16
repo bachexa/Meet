@@ -3,15 +3,11 @@ import { fetchJSON } from '../../core/api.js';
 import { DynamicHtmlManager } from '../shared/dynamicHtml.js';
 
 let aborter = null;
-
 function destroy() {
-    if (aborter) {
-        aborter.abort();
-        aborter = null;
-    }
+    if (aborter) { aborter.abort(); aborter = null; }
 }
 
-async function mountProducts(lang) {
+async function mountProducts(lang = 'en') {
     const container = document.querySelector('.ms-plans');
     if (!container) return;
 
@@ -26,18 +22,10 @@ async function mountProducts(lang) {
         const panels = container.querySelectorAll('.ms-panel');
         const hero = container.querySelector('#ms-hero-img');
 
-        const heroMap = {
-            home: '/images/home.jpg',
-            business: '/images/business.png',
-            enterprise: '/images/enterprise.png',
-            education: '/images/education.png'
-        };
-
-        // დაიწყე hero ფოტოთი პირველ panel-ზე
-        const firstPanel = container.querySelector('.ms-panel.is-visible');
-        if (firstPanel) {
-            const firstPanelName = firstPanel.dataset.panel;
-            hero.src = heroMap[firstPanelName] ?? '/images/home.jpg';
+        const firstTab = container.querySelector('.ms-tab.is-active');
+        if (firstTab && hero && !hero.src) {
+            const heroSrc = firstTab.getAttribute('data-hero') || '';
+            if (heroSrc) hero.src = heroSrc;
         }
 
         tabs.forEach(tab => {
@@ -45,9 +33,9 @@ async function mountProducts(lang) {
                 tabs.forEach(t => t.classList.remove('is-active'));
                 tab.classList.add('is-active');
 
-                const panelName = tab.dataset.tab;
+                const panelName = tab.getAttribute('data-tab');
                 panels.forEach(p => {
-                    if (p.dataset.panel === panelName) {
+                    if (p.getAttribute('data-panel') === panelName) {
                         p.classList.add('is-visible');
                         p.removeAttribute('hidden');
                     } else {
@@ -56,7 +44,8 @@ async function mountProducts(lang) {
                     }
                 });
 
-                hero.src = heroMap[panelName] ?? '/images/home.jpg';
+                const dataHero = tab.getAttribute('data-hero') || '';
+                if (hero && dataHero) hero.src = dataHero;
             });
         });
 
@@ -67,10 +56,7 @@ async function mountProducts(lang) {
     }
 }
 
-// ენის ცვლილება
 on('languageChanged', ({ lang }) => mountProducts(lang));
-
-// პირველი გაშვება
 mountProducts('en');
 
 export { mountProducts };
