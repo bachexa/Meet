@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
                     ProductSectionTitle = "Find the right MeetDesk plan",
                     ProductSectionDescription = "Choose the plan that fits your needs",
                     Language = "en",
-                    HeroImage = heroHome, // default hero (first shown)
+                    HeroImage = heroHome, 
                     PanelHeroImages = new Dictionary<string,string>
                     {
                         ["home"] = heroHome,
@@ -53,7 +53,7 @@ namespace WebApplication1.Controllers
                         new ProductCardModel
                         {
                             ProductCardTitle = "Meet Desk (Free)",
-                            ProductCardDescription = "Send messages, schedule calls for up to 60 minutes, and create communities.",
+                            ProductCardDescription = "Send messages, schedule calls for up to 60 minutes and create communities for every interest.",
                             ProductCardButton = "Learn more",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
                                                     <path d='M4 4h16v16H4z' opacity='0.12'></path>
@@ -63,12 +63,34 @@ namespace WebApplication1.Controllers
                         },
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Setup Desk",
-                            ProductCardDescription = "Setup Desk apps for enhanced collaboration and security.",
+                            ProductCardTitle = "Easy Communication",
+                            ProductCardDescription = "Bring calls, messages and group chats together in one place for simple and convenient communication.",
                             ProductCardButton = "Get started",
+                            ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
+                                                    <circle cx='12' cy='12' r='10' opacity='0.12'></circle>
+                                                    <path d='M7 13h10v2H7zM7 9h10v2H7z'></path>
+                                                </svg>",
+                            ProductCardPanel = "home"
+                        },
+                        new ProductCardModel
+                        {
+                            ProductCardTitle = "Secure & Reliable",
+                            ProductCardDescription = "A secure system with stable connections and a reliable platform for daily use at home or at work.",
+                            ProductCardButton = "Learn More",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
                                                     <rect x='3' y='4' width='18' height='14' rx='3' opacity='0.12'></rect>
                                                     <path d='M7 9h10v2H7zM7 12h6v2H7z'></path>
+                                                </svg>",
+                            ProductCardPanel = "home"
+                        },
+                        new ProductCardModel
+                        {
+                            ProductCardTitle = "Built for Everyone",
+                            ProductCardDescription = "Easy to use for everyone - Families,Students and Business teams alike",
+                            ProductCardButton = "Learn More",
+                            ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
+                                                    <path d='M4 4h16v16H4z' opacity='0.12'></path>
+                                                    <path d='M7 7h6v10H7zM15 7h2v10h-2z'></path>
                                                 </svg>",
                             ProductCardPanel = "home"
                         },
@@ -173,12 +195,34 @@ namespace WebApplication1.Controllers
                         },
                         new ProductCardModel
                         {
-                            ProductCardTitle = "Setup Desk",
-                            ProductCardDescription = "Setup Desk აპლიკაციები თანამშრომლობისა და უსაფრთხოების გასაუმჯობესებლად.",
-                            ProductCardButton = "დაიწყეთ",
+                            ProductCardTitle = "მარტივი კომუნიკაცია",
+                            ProductCardDescription = "ერთ სივრცეში გააერთიანე ზარები, შეტყობინებები და ჯგუფური საუბრები მარტივი და მოსახერხებელი კომუნიკაციისთვის.",
+                            ProductCardButton = "Get started",
+                            ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
+                                                    <circle cx='12' cy='12' r='10' opacity='0.12'></circle>
+                                                    <path d='M7 13h10v2H7zM7 9h10v2H7z'></path>
+                                                </svg>",
+                            ProductCardPanel = "home"
+                        },
+                        new ProductCardModel
+                        {
+                            ProductCardTitle = "უსაფრთხო და საიმედო",
+                            ProductCardDescription = "დაცული სისტემა, სტაბილური კავშირი და სანდო პლატფორმა ყოველდღიური გამოყენებისათვის, სახლში და სამუშაოშიც.",
+                            ProductCardButton = "Learn More",
                             ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
                                                     <rect x='3' y='4' width='18' height='14' rx='3' opacity='0.12'></rect>
                                                     <path d='M7 9h10v2H7zM7 12h6v2H7z'></path>
+                                                </svg>",
+                            ProductCardPanel = "home"
+                        },
+                        new ProductCardModel
+                        {
+                            ProductCardTitle = "შექმნილია ყველასთვის",
+                            ProductCardDescription = "გამოყენება მარტივია ყველასთვის- ოჯახისთვის, სტუდენტებისთვის და ბიზნეს გუნდებისთვის ერთნაირად.",
+                            ProductCardButton = "Learn More",
+                            ProductCardSvg = @"<svg viewBox='0 0 24 24' width='28' height='28' fill='#0078d4'>
+                                                    <path d='M4 4h16v16H4z' opacity='0.12'></path>
+                                                    <path d='M7 7h6v10H7zM15 7h2v10h-2z'></path>
                                                 </svg>",
                             ProductCardPanel = "home"
                         },
