@@ -187,14 +187,14 @@ namespace WebApplication1.Controllers
                            {
                                new PlansCard
                                {
-                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#0078d4\">\r\n <circle cx=\"12\" cy=\"12\" r=\"10\" opacity=\"0.12\"></circle>\r\n <path d=\"M7 13h10v2H7zM7 9h10v2H7z\"></path>\r\n</svg>",
+                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#1f5c4e\">\r\n <circle cx=\"12\" cy=\"12\" r=\"10\" opacity=\"0.12\"></circle>\r\n <path d=\"M7 13h10v2H7zM7 9h10v2H7z\"></path>\r\n</svg>",
                                    Title = "MeedDesk აუცილებელი ნივთები",
                                    Description = "ხელმისაწვდომი შეხვედრები და ჩატი მცირე გუნდებისთვის, Microsoft 365-ის გამოწერის გარეშე..",
                                    More = "დეტალების ნახვა"
                                },
                                new PlansCard
                                {
-                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#0078d4\">\r\n<circle cx=\"12\" cy=\"12\" r=\"10\" opacity=\"0.12\"></circle>\r\n <path d=\"M7 13h10v2H7zM7 9h10v2H7z\"></path>\r\n</svg>",
+                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#1f5c4e\">\r\n<circle cx=\"12\" cy=\"12\" r=\"10\" opacity=\"0.12\"></circle>\r\n <path d=\"M7 13h10v2H7zM7 9h10v2H7z\"></path>\r\n</svg>",
                                    Title = "MeetDesk Microsoft 365 Business-თან ერთად",
                                    Description = "ყველა თანამშრომლობის ფუნქცია პლუს აპლიკაციები, როგორიცაა Word, Excel და უსაფრთხო ღრუბლოვანი საცავი.",
                                    More = "დეტალების ნახვა"
@@ -210,14 +210,14 @@ namespace WebApplication1.Controllers
                            {
                                new PlansCard
                                {
-                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#0078d4\">\r\n <path d=\"M4 4h16v16H4z\" opacity=\"0.12\"></path>\r\n <path d=\"M7 7h6v10H7zM15 7h2v10h-2z\"></path>\r\n</svg>",
+                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#1f5c4e\">\r\n <path d=\"M4 4h16v16H4z\" opacity=\"0.12\"></path>\r\n <path d=\"M7 7h6v10H7zM15 7h2v10h-2z\"></path>\r\n</svg>",
                                    Title = "MettDesk E3",
                                    Description = "გაფართოებული შეხვედრები, უსაფრთხოება, შესაბამისობა და მოწყობილობების მართვა დიდი ორგანიზაციებისთვის.",
                                    More = "დათვალიერება"
                                },
                                new PlansCard
                                {
-                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#0078d4\">\r\n <path d=\"M12 2l9 5v10l-9 5-9-5V7z\" opacity=\"0.12\"></path>\r\n <path d=\"M7 9h10v2H7zM7 12h10v2H7z\"></path>\r\n </svg>",
+                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#1f5c4e\">\r\n <path d=\"M12 2l9 5v10l-9 5-9-5V7z\" opacity=\"0.12\"></path>\r\n <path d=\"M7 9h10v2H7zM7 12h10v2H7z\"></path>\r\n </svg>",
                                    Title = "MettDesk E5",
                                    Description = "პრემიუმ ხარისხის ხმოვანი, ანალიტიკური და უმაღლესი დონის უსაფრთხოების დამატებები მისიის კრიტიკულად მნიშვნელოვანი საჭიროებებისთვის.",
                                    More = "დათვალიერება"
@@ -233,7 +233,7 @@ namespace WebApplication1.Controllers
                            {
                                new PlansCard
                                {
-                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#0078d4\">\r\n <path d=\"M2 7l10-5 10 5-10 5z\"></path>\r\n<path d=\"M4 12v5l8 4 8-4v-5\" opacity=\"0.12\"></path>\r\n</svg>",
+                                   Icon = "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"#1f5c4e\">\r\n <path d=\"M2 7l10-5 10 5-10 5z\"></path>\r\n<path d=\"M4 12v5l8 4 8-4v-5\" opacity=\"0.12\"></path>\r\n</svg>",
                                    Title = "MeetDesk განათლებისთვის",
                                    Description = "შექმენით კლასები, დავალებები და უზრუნველყავით თანამშრომლობა სკოლებისთვის.",
                                    More = "მეტის გაგება"
