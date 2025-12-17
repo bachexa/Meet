@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
                         {
                             new DiscoverCard
                             {
-                                Img = "/images/discover-1.png",
+                                Img = "/images/discover1.jpg",
                                 DiscoverCardHeader = "From Threads to Workflows: New Features that Boost Productivity",
                                 DiscoverCardHeaderDescription = "Work faster with threads, multi-emoji reactions and emoji-triggered workflows built into MeetDesk.",
                                 DiscoverCardButton = "Learn more",
@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
                             },
                             new DiscoverCard
                             {
-                                Img = "/images/discover-2.png",
+                                Img = "/images/pc.png",
                                 DiscoverCardHeader = "2025: The Year the Frontier Firm Is Born",
                                 DiscoverCardHeaderDescription = "Read the latest research and insights from the Work Trend Index Annual Report.",
                                 DiscoverCardButton = "Read the report",
@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
                             },
                             new DiscoverCard
                             {
-                                Img = "/images/discover-3.png",
+                                Img = "/images/discover-3.jpg",
                                 DiscoverCardHeader = "Prompt like a pro with MeetDesk Copilot",
                                 DiscoverCardHeaderDescription = "Transform meetings with prompts: capture ideas, summarize decisions and move work forward.",
                                 DiscoverCardButton = "Learn more"
@@ -67,7 +67,7 @@ namespace WebApplication1.Controllers
                         {
                             new DiscoverCard
                             {
-                                Img = "/images/discover-1.png",
+                                Img = "/images/discoverKA1.jpg",
                                 DiscoverCardHeader = "თემებიდან სამუშაო პროცესებამდე: ახალი ფუნქციები პროდუქტიულობის გასაზრდელად",
                                 DiscoverCardHeaderDescription = "იმუშავე სწრაფად თემებით, მრავალ-ემოჯი რეაქციებით და ემოჯი-ტრიგერ სამუშაო პროცესებით MeetDesk-ში.",
                                 DiscoverCardButton = "გაიგე მეტი",
@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
                             },
                             new DiscoverCard
                             {
-                                Img = "/images/discover-2.png",
+                                Img = "/images/pcKa.png",
                                 DiscoverCardHeader = "2025: წელი, როდესაც შეიქმნა ფრონტიერ-კომპანია",
                                 DiscoverCardHeaderDescription = "წაიკითხე უახლესი კვლევები და შეხედულებები სამუშაო ტენდენციების წლიური ანგარიშიდან.",
                                 DiscoverCardButton = "წაიკითხე ანგარიში",
@@ -83,7 +83,7 @@ namespace WebApplication1.Controllers
                             },
                             new DiscoverCard
                             {
-                                Img = "/images/discover-3.png",
+                                Img = "/images/discoverKA-3.jpg",
                                 DiscoverCardHeader = "MeetDesk Copilot-თან ერთად იმუშავე როგორც პროფესიონალი",
                                 DiscoverCardHeaderDescription = "გადაწერე შეხვედრები პრომპტებით: შეაგროვე იდეები, შეაჯამე გადაწყვეტილებები და წინ წაიწიე სამუშაოში.",
                                 DiscoverCardButton = "გაიგე მეტი",
