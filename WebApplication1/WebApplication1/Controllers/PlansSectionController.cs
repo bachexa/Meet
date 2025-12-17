@@ -71,7 +71,7 @@ namespace WebApplication1.Controllers
 
                        new PlansAll
                        {
-                           Img = "/images/business.png",
+                           Img = "/images/business.jpg",
                            MenuItem = "Business",
                            Plans = new List<PlansCard>()
                            {
@@ -94,7 +94,7 @@ namespace WebApplication1.Controllers
 
                        new PlansAll
                        {
-                           Img = "/images/enterprise.png",
+                           Img = "/images/enterprise.jpg",
                            MenuItem = "Network",
                            Plans = new List<PlansCard>()
                            {
@@ -181,7 +181,7 @@ namespace WebApplication1.Controllers
 
                        new PlansAll
                        {
-                           Img = "/images/business.png",
+                           Img = "/images/business.jpg",
                            MenuItem = "ბიზნესი",
                            Plans = new List<PlansCard>()
                            {
@@ -204,7 +204,7 @@ namespace WebApplication1.Controllers
 
                        new PlansAll
                        {
-                           Img = "/images/enterprise.png",
+                           Img = "/images/enterprise.jpg",
                            MenuItem = "ქსელი",
                            Plans = new List<PlansCard>()
                            {

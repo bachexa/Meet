@@ -76,7 +76,7 @@ namespace WebApplication1.Controllers
                 new SolutionsSection
                 {
                     SolutionName = "გადაწყვეტილებები",
-                    SolutionDescription = "გაამარტივეთ კომუნიკაციები ერთ ადგილას <span>MeetDesk</span>",
+                    SolutionDescription = "გაამარტივეთ კომუნიკაციები ერთ ადგილას <span style='color:#1f5c4e;'>MeetDesk</span>",
                     Language = "ka",
                     Cards = new List<SolutionCard>
                     {
