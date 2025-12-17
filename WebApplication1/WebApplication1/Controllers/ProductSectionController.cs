@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
                 // ========== EN ==========
                 new ProductSectionModel
                 {
-                    ProductSectionTitle = "Find the right MeetDesk plan",
+                    ProductSectionTitle = "Products And Services",
                     ProductSectionDescription = "Choose the plan that fits your needs",
                     Language = "en",
                     HeroImage = heroHome, 
