@@ -1,9 +1,9 @@
 ﻿:root {
     --max-width: 1200px;
-    --accent: #0078D7;
-    --accent-hover: #005ea6;
+    --accent: #1f5c4e;
+    --accent-hover: #1f5c4e;
     --card-bg: #fff;
-    --muted: #6b6b6b;
+    --muted: #1f5c4e;
     --radius: 14px;
     --shadow: 0 8px 20px rgba(15,15,15,0.06);
     --gap: 16px;
