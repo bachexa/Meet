@@ -11,6 +11,7 @@ export class DynamicHtmlManager {
 
         const usernamePlaceholder = auth.usernamePlaceholder ?? auth.UsernamePlaceholder ?? 'Username';
         const passwordPlaceholder = auth.passwordPlaceholder ?? auth.PasswordPlaceholder ?? 'Password';
+        const forgotPassword = auth.forgotPassword ?? auth.ForgotPassword ?? 'Forgot your password?';
         const signIn = auth.signIn ?? auth.SignIn ?? 'Sign in';
         const googleSignIn = auth.googleSignIn ?? auth.GoogleSignIn ?? 'Sign in with Google';
         const msSignIn = auth.msSignIn ?? auth.MsSignIn ?? 'Sign in with Microsoft';
@@ -29,6 +30,9 @@ export class DynamicHtmlManager {
                     <input type="password"
                            placeholder="${passwordPlaceholder}"
                            class="auth-input" />
+                           <p class="forgot-password">
+                              <a href="/forgot-password">${auth.forgotPassword ?? 'Forgot your password?'}</a>
+                           </p>
                     <button class="auth-action-btn" type="button">${signIn}</button>
                     <div class="auth-separator"><span>or</span></div>
                     <button class="auth-btn google" type="button">

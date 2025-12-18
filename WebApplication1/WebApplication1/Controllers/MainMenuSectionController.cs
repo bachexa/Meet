@@ -35,6 +35,7 @@ namespace WebApplication1.Controllers
                     {
                         UsernamePlaceholder = "Username or Email",
                         PasswordPlaceholder = "Password",
+                        ForgotPassword = "Forgot password?",
                         SignIn = "Sign in",
                         GoogleSignIn = "Sign in with Google",
                         MsSignIn = "Sign in with Microsoft",
@@ -79,6 +80,7 @@ namespace WebApplication1.Controllers
                     {
                         UsernamePlaceholder = "მომხმარებელი ან ელფოსტა",
                         PasswordPlaceholder = "პაროლი",
+                        ForgotPassword = "დაგავიწყდა პაროლი?",
                         SignIn = "შესვლა",
                         GoogleSignIn = "შესვლა Google - ით",
                         MsSignIn = "შესვლა Microsoft - ით",

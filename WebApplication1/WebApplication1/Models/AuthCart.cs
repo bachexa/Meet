@@ -15,5 +15,7 @@
         public string? RegisterPrompt { get; set; }
 
         public string? RegisterLink { get; set; }
+
+        public string? ForgotPassword { get; set; }
     }
 }
