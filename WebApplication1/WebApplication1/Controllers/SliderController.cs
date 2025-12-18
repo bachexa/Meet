@@ -76,7 +76,7 @@ namespace WebApplication1.Controllers
                               "<span style='font-weight:700;font-size:42px;color:#224541;'>" +
                               "<span style='color:#1f5c4e;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
-                Img = "/images/FlyKa.png",
+                Img = "/images/Fly.png",
                 Language = "ka",
                 SliderButton = "გადმოწერეთ"
             },
@@ -87,7 +87,7 @@ namespace WebApplication1.Controllers
                               "<span style='font-weight:700;font-size:42px;color:#224541;'>" +
                               "<span style='color:#1f5c4e;'>Meet</span>Desk</span>",
                 ParagraphText = "დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!",
-                Img = "/images/FlyKa2.png",
+                Img = "/images/FlyKa200.png",
                 Language = "ka",
                 SliderButton = "გადმოწერეთ"
             },
