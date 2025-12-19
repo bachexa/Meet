@@ -20,38 +20,38 @@ export class DynamicHtmlManager {
         const registerLink = auth.registerLink ?? auth.RegisterLink ?? 'Register';
 
         return `
-              <div class="auth-overlay" id="authOverlay" role="dialog" aria-modal="true">
-                <div class="auth-card" id="authCard">
-                  <button class="close-btn" type="button" aria-label="Close">&times;</button>
+      <div class="auth-overlay" id="authOverlay" role="dialog" aria-modal="true" data-form="login">
+        <div class="auth-card">
+          <button class="close-btn" type="button" aria-label="Close">&times;</button>
 
-                  <div class="auth-section login-section">
-                    <input type="text"
-                           placeholder="${usernamePlaceholder}"
-                           class="auth-input" />
-                    <input type="password"
-                           placeholder="${passwordPlaceholder}"
-                           class="auth-input" />
-                           <p class="forgot-password">
-                              <a href="/forgot-password">${auth.forgotPassword ?? 'Forgot your password?'}</a>
-                           </p>
-                    <button class="auth-action-btn" type="button">${signIn}</button>
-                    <div class="auth-separator"><span>or</span></div>
-                    <button class="auth-btn google" type="button">
-                      <img src="/images/google-icon.png" alt="Google" />
-                      ${googleSignIn}
-                    </button>
-                    <button class="auth-btn microsoft" type="button">
-                      <img src="/images/microsoft-icon.png" alt="Microsoft" />
-                      ${msSignIn}
-                    </button>
-                    <p class="auth-link">
-                      ${registerPrompt}
-                      <a href="#" id="showRegister">${registerLink}</a>
-                    </p>
-                  </div>
-                </div>
-              </div>`;
+          <div class="auth-section login-section">
+            <input type="text" placeholder="${usernamePlaceholder}" class="auth-input" data-field="username" />
+            <input type="password" placeholder="${passwordPlaceholder}" class="auth-input" data-field="password" />
 
+            <p class="forgot-password">
+              <a href="#" id="showForgot" class="forgot-link">${forgotPassword}</a>
+            </p>
+
+            <button class="auth-action-btn" type="button" id="doSignIn">${signIn}</button>
+
+            <div class="auth-separator"><span>or</span></div>
+
+            <button class="auth-btn google" type="button">
+              <img src="/images/google-icon.png" alt="Google" /> ${googleSignIn}
+            </button>
+
+            <button class="auth-btn microsoft" type="button">
+              <img src="/images/microsoft-icon.png" alt="Microsoft" /> ${msSignIn}
+            </button>
+
+            <p class="auth-link">
+              ${registerPrompt}
+              <a href="#" id="showRegister">${registerLink}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    `.trim();
     }
 
     //00000000
@@ -65,7 +65,7 @@ export class DynamicHtmlManager {
             phone: lang === 'ka' ? 'ტელ. ნომერი' : 'Phone number',
             pass: lang === 'ka' ? 'პაროლი' : 'Password',
             pass2: lang === 'ka' ? 'გაიმეორეთ პაროლი' : 'Confirm password',
-            submit: lang === 'ka' ? 'გაგზავნა' : 'Submit',
+            submit: lang === 'ka' ? 'შექმნა' : 'Create',
             back: lang === 'ka' ? 'უკან' : 'Back'
         };
 
