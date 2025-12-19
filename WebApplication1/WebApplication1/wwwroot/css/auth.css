@@ -140,3 +140,143 @@
     align-items: center;
     z-index: 9999;
 }
+
+/* ჩამატება */
+
+
+/* Overlay background */
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5); /* შავი ნახევრად გამჭვირვალე ფონით */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Card */
+.auth-card {
+    background-color: #ffffff;
+    padding: 32px 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    width: 360px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+    .auth-card:hover {
+        transform: translateY(-2px);
+    }
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+    .close-btn:hover {
+        color: #1f5c4e;
+    }
+
+/* Headline */
+.auth-card h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #1f5c4e;
+    margin-bottom: 10px;
+}
+
+/* Input fields */
+.auth-input {
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    .auth-input:focus {
+        border-color: #1f5c4e;
+        box-shadow: 0 0 6px rgba(31, 92, 78, 0.4);
+    }
+
+/* Action button */
+.auth-action-btn {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #1f5c4e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+    .auth-action-btn:hover {
+        background-color: #224541;
+        box-shadow: 0 4px 12px rgba(31, 92, 78, 0.4);
+    }
+
+/* Back link */
+#goBack {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #1f5c4e;
+    text-decoration: none;
+    margin-top: 8px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+    #goBack:hover {
+        color: #224541;
+        text-decoration: underline;
+    }
+
+/* Spacing between input fields and button */
+.auth-card input + input {
+    margin-top: 5px;
+}
+
+.auth-card input + button,
+.auth-card input + a {
+    margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .auth-card {
+        padding: 24px 20px;
+    }
+
+        .auth-card h2 {
+            font-size: 20px;
+        }
+
+    .auth-action-btn {
+        font-size: 15px;
+    }
+}

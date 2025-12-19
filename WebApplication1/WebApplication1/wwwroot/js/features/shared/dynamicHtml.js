@@ -1,4 +1,5 @@
-﻿import { t } from '../../core/i18n.js';
+﻿
+import { t } from '../../core/i18n.js';
 
 export class DynamicHtmlManager {
 
@@ -50,7 +51,84 @@ export class DynamicHtmlManager {
                   </div>
                 </div>
               </div>`;
+
     }
+
+    //00000000
+
+
+    static GetRegisterHtml(lang = 'en') {
+        const tr = {
+            title: lang === 'ka' ? 'რეგისტრაცია' : 'Register',
+            user: lang === 'ka' ? 'სახელი' : 'First name',
+            last: lang === 'ka' ? 'გვარი' : 'Last name',
+            phone: lang === 'ka' ? 'ტელ. ნომერი' : 'Phone number',
+            pass: lang === 'ka' ? 'პაროლი' : 'Password',
+            pass2: lang === 'ka' ? 'გაიმეორეთ პაროლი' : 'Confirm password',
+            submit: lang === 'ka' ? 'გაგზავნა' : 'Submit',
+            back: lang === 'ka' ? 'უკან' : 'Back'
+        };
+
+        return `
+<div id="authOverlay" class="auth-overlay" data-form="register" role="dialog" aria-modal="true">
+  <div class="auth-card auth-card--center">
+    <button class="close-btn" title="Close">&times;</button>
+
+    <div class="auth-body">
+      <h2 class="auth-title">${tr.title}</h2>
+
+      <div class="auth-section register-section">
+        <input class="auth-input" data-field="username" placeholder="${tr.user}" />
+        <input class="auth-input" data-field="LastName" placeholder="${tr.last}" />
+        <input class="auth-input" data-field="phone" placeholder="${tr.phone}" />
+        <input class="auth-input" data-field="password" type="password" placeholder="${tr.pass}" />
+        <input class="auth-input" data-field="password2" type="password" placeholder="${tr.pass2}" />
+
+        <button class="auth-action-btn" id="sendRegister">${tr.submit}</button>
+
+        <p class="auth-link">
+          <a href="#" id="goBack">${tr.back}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`.trim();
+    }
+
+    static GetForgotPasswordHtml(lang = 'en') {
+        const tr = {
+            title: lang === 'ka' ? 'პაროლის აღდგენა' : 'Forgot password?',
+            text: lang === 'ka' ? 'შეიყვანეთ ტელეფონის ნომერი' : 'Enter your phone number',
+            phone: lang === 'ka' ? 'ტელ. ნომერი' : 'Phone number',
+            submit: lang === 'ka' ? 'კოდის გაგზავნა' : 'Send code',
+            back: lang === 'ka' ? 'უკან' : 'Back'
+        };
+
+        return `
+<div id="authOverlay" class="auth-overlay" data-form="forgot" role="dialog" aria-modal="true">
+  <div class="auth-card auth-card--center">
+    <button class="close-btn" title="Close">&times;</button>
+
+    <div class="auth-body">
+      <h2 class="auth-title">${tr.title}</h2>
+      <p class="auth-desc">${tr.text}</p>
+
+      <div class="auth-section forgot-section">
+        <input class="auth-input" data-field="phone" placeholder="${tr.phone}" />
+        <button class="auth-action-btn" id="sendForgot">${tr.submit}</button>
+
+        <p class="auth-link">
+          <a href="#" id="goBack">${tr.back}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
+  `.trim();
+    }
+
+    //0000000
 
 
     // in DynamicHtmlManager
