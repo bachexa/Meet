@@ -98,7 +98,7 @@ export class DynamicHtmlManager {
 
     static GetForgotPasswordHtml(lang = 'en') {
         const tr = {
-            title: lang === 'ka' ? 'პაროლის აღდგენა' : 'Forgot password?',
+            title: lang === 'ka' ? 'იპოვეთ თქვენი ანგარიში' : 'Find your account',
             text: lang === 'ka' ? 'შეიყვანეთ ტელეფონის ნომერი' : 'Enter your phone number',
             phone: lang === 'ka' ? 'ტელ. ნომერი' : 'Phone number',
             submit: lang === 'ka' ? 'კოდის გაგზავნა' : 'Send code',
