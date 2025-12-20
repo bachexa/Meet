@@ -1,4 +1,5 @@
-﻿import { on } from '../../core/bus.js';
+﻿
+import { on } from '../../core/bus.js';
 import { getState } from '../../core/store.js';
 import { fetchJSON } from '../../core/api.js';
 import { DynamicHtmlManager } from '../shared/dynamicHtml.js';

@@ -58,42 +58,74 @@ export class DynamicHtmlManager {
 
 
     static GetRegisterHtml(lang = 'en') {
-        const tr = {
-            title: lang === 'ka' ? 'რეგისტრაცია' : 'Register',
-            user: lang === 'ka' ? 'სახელი' : 'First name',
-            last: lang === 'ka' ? 'გვარი' : 'Last name',
-            phone: lang === 'ka' ? 'ტელ. ნომერი' : 'Phone number',
-            pass: lang === 'ka' ? 'პაროლი' : 'Password',
-            pass2: lang === 'ka' ? 'გაიმეორეთ პაროლი' : 'Confirm password',
-            submit: lang === 'ka' ? 'შექმნა' : 'Create',
-            back: lang === 'ka' ? 'უკან' : 'Back'
+
+        const t = {
+            title: lang === 'ka' ? "ახალი ანგარიშის შექმნა" : "Create a new account",
+            first: lang === 'ka' ? "სახელი" : "First name",
+            last: lang === 'ka' ? "გვარი" : "Last name",
+            bday: lang === 'ka' ? "დაბადების თარიღი" : "Birthday",
+            gender: lang === 'ka' ? "სქესი" : "Gender",
+            female: lang === 'ka' ? "ქალი" : "Female",
+            male: lang === 'ka' ? "კაცი" : "Male",
+            custom: lang === 'ka' ? "სხვა" : "Other",
+            phoneMail: lang === 'ka' ? "ტელეფონის ნომერი ან მეილი" : "Mobile number or email",
+            password: lang === 'ka' ? "პაროლი" : "Password",
+            submit: lang === 'ka' ? "რეგისტრაცია" : "Sign Up",
+            back: lang === 'ka' ? "უკან ავტორიზაციაზე" : "Back"
         };
 
         return `
-<div id="authOverlay" class="auth-overlay" data-form="register" role="dialog" aria-modal="true">
-  <div class="auth-card auth-card--center">
-    <button class="close-btn" title="Close">&times;</button>
+<div id="authOverlay" class="auth-overlay facebook-style" data-form="register">
+  <div class="auth-card fb-card">
 
-    <div class="auth-body">
-      <h2 class="auth-title">${tr.title}</h2>
+    <button class="close-btn">&times;</button>
 
-      <div class="auth-section register-section">
-        <input class="auth-input" data-field="username" placeholder="${tr.user}" />
-        <input class="auth-input" data-field="LastName" placeholder="${tr.last}" />
-        <input class="auth-input" data-field="phone" placeholder="${tr.phone}" />
-        <input class="auth-input" data-field="password" type="password" placeholder="${tr.pass}" />
-        <input class="auth-input" data-field="password2" type="password" placeholder="${tr.pass2}" />
+    <h2 class="fb-title">${t.title}</h2>
 
-        <button class="auth-action-btn" id="sendRegister">${tr.submit}</button>
-
-        <p class="auth-link">
-          <a href="#" id="goBack">${tr.back}</a>
-        </p>
-      </div>
+    <div class="fb-row">
+      <input class="auth-input fb-input half" data-field="username" placeholder="${t.first}">
+      <input class="auth-input fb-input half" data-field="LastName" placeholder="${t.last}">
     </div>
+    <div class="input-error"></div>
+
+    <label class="fb-label">${t.bday}</label>
+    <div class="fb-row">
+      <select class="auth-input fb-input third" data-field="month">
+        <option>Jan</option><option>Feb</option><option>Mar</option>
+        <option>Apr</option><option>May</option><option>Jun</option>
+        <option>Jul</option><option>Aug</option><option>Sep</option>
+        <option>Oct</option><option>Nov</option><option>Dec</option>
+      </select>
+
+      <select class="auth-input fb-input third" data-field="day">
+        ${[...Array(31)].map((_, i) => `<option>${i + 1}</option>`).join('')}
+      </select>
+
+      <select class="auth-input fb-input third" data-field="year">
+        ${[...Array(100)].map((_, i) => `<option>${2025 - i}</option>`).join('')}
+      </select>
+    </div>
+
+    <label class="fb-label">${t.gender}</label>
+    <div class="fb-row">
+      <label class="fb-radio"><input type="radio" name="gender" value="female"> ${t.female}</label>
+      <label class="fb-radio"><input type="radio" name="gender" value="male"> ${t.male}</label>
+      <label class="fb-radio"><input type="radio" name="gender" value="custom"> ${t.custom}</label>
+    </div>
+
+    <input class="auth-input fb-input full" data-field="phone" placeholder="${t.phoneMail}">
+    <div class="input-error"></div>
+
+    <input class="auth-input fb-input full" data-field="password" type="password" placeholder="${t.password}">
+    <div class="input-error"></div>
+
+    <button class="fb-submit" id="sendRegister">${t.submit}</button>
+
+    <a href="#" id="goBack" class="fb-back">${t.back}</a>
+
   </div>
 </div>
-`.trim();
+`;
     }
 
     static GetForgotPasswordHtml(lang = 'en') {
