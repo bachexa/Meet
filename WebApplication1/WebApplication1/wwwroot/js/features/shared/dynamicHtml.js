@@ -57,38 +57,42 @@ export class DynamicHtmlManager {
     //00000000
 
 
-    static GetRegisterHtml(lang = 'en') {
+    static GetRegisterHtmlFromModel(section) {
+        if (!section) return '';
 
-        const t = {
-            title: lang === 'ka' ? "ახალი ანგარიშის შექმნა" : "Create a new account",
-            first: lang === 'ka' ? "სახელი" : "First name",
-            last: lang === 'ka' ? "გვარი" : "Last name",
-            bday: lang === 'ka' ? "დაბადების თარიღი" : "Birthday",
-            gender: lang === 'ka' ? "სქესი" : "Gender",
-            female: lang === 'ka' ? "ქალი" : "Female",
-            male: lang === 'ka' ? "კაცი" : "Male",
-            custom: lang === 'ka' ? "სხვა" : "Other",
-            phoneMail: lang === 'ka' ? "ტელეფონის ნომერი ან მეილი" : "Mobile number or email",
-            password: lang === 'ka' ? "პაროლი" : "Password",
-            submit: lang === 'ka' ? "რეგისტრაცია" : "Sign Up",
-            back: lang === 'ka' ? "უკან ავტორიზაციაზე" : "Back"
-        };
+        const reg = section.registerCart ?? section.RegisterCart ?? section ?? {};
+
+        const title = reg.title ?? reg.Title ?? '';
+        const first = reg.first ?? reg.First ?? 'First name';
+        const last = reg.last ?? reg.Last ?? 'Last name';
+        const bday = reg.bday ?? reg.Bday ?? 'Birthday';
+        const gender = reg.gender ?? reg.Gender ?? 'Gender';
+
+        const female = reg.female ?? reg.Female ?? 'Female';
+        const male = reg.male ?? reg.Male ?? 'Male';
+        const custom = reg.custom ?? reg.Custom ?? 'Other';
+
+        const phoneMail = reg.phoneMail ?? reg.PhoneMail ?? 'Mobile number or email';
+        const password = reg.password ?? reg.Password ?? 'Password';
+        const confirmPassword = reg.confirmPassword ?? reg.ConfirmPassword ?? 'Confirm password';
+
+        const submit = reg.submit ?? reg.Submit ?? 'Sign Up';
+        const back = reg.back ?? reg.Back ?? 'Back';
 
         return `
 <div id="authOverlay" class="auth-overlay facebook-style" data-form="register">
   <div class="auth-card fb-card">
 
-    <button class="close-btn">&times;</button>
+    <button class="close-btn" type="button">&times;</button>
 
-    <h2 class="fb-title">${t.title}</h2>
+    <h2 class="fb-title">${title}</h2>
 
     <div class="fb-row">
-      <input class="auth-input fb-input half" data-field="username" placeholder="${t.first}">
-      <input class="auth-input fb-input half" data-field="LastName" placeholder="${t.last}">
+      <input class="auth-input fb-input half" data-field="firstName" placeholder="${first}">
+      <input class="auth-input fb-input half" data-field="lastName" placeholder="${last}">
     </div>
-    <div class="input-error"></div>
 
-    <label class="fb-label">${t.bday}</label>
+    <label class="fb-label">${bday}</label>
     <div class="fb-row">
       <select class="auth-input fb-input third" data-field="month">
         <option>Jan</option><option>Feb</option><option>Mar</option>
@@ -102,30 +106,28 @@ export class DynamicHtmlManager {
       </select>
 
       <select class="auth-input fb-input third" data-field="year">
-        ${[...Array(100)].map((_, i) => `<option>${2025 - i}</option>`).join('')}
+        ${[...Array(100)].map((_, i) => `<option>${new Date().getFullYear() - i}</option>`).join('')}
       </select>
     </div>
 
-    <label class="fb-label">${t.gender}</label>
+    <label class="fb-label">${gender}</label>
     <div class="fb-row">
-      <label class="fb-radio"><input type="radio" name="gender" value="female"> ${t.female}</label>
-      <label class="fb-radio"><input type="radio" name="gender" value="male"> ${t.male}</label>
-      <label class="fb-radio"><input type="radio" name="gender" value="custom"> ${t.custom}</label>
+      <label class="fb-radio"><input type="radio" name="gender" value="female"> ${female}</label>
+      <label class="fb-radio"><input type="radio" name="gender" value="male"> ${male}</label>
+      <label class="fb-radio"><input type="radio" name="gender" value="custom"> ${custom}</label>
     </div>
 
-    <input class="auth-input fb-input full" data-field="phone" placeholder="${t.phoneMail}">
-    <div class="input-error"></div>
+    <input class="auth-input fb-input full" data-field="phone" placeholder="${phoneMail}">
+    <input class="auth-input fb-input full" type="password" data-field="password" placeholder="${password}">
+    <input class="auth-input fb-input full" type="password" data-field="confirmPassword" placeholder="${confirmPassword}">
 
-    <input class="auth-input fb-input full" data-field="password" type="password" placeholder="${t.password}">
-    <div class="input-error"></div>
+    <button class="fb-submit" id="sendRegister">${submit}</button>
 
-    <button class="fb-submit" id="sendRegister">${t.submit}</button>
-
-    <a href="#" id="goBack" class="fb-back">${t.back}</a>
+    <a href="#" id="goBack" class="fb-back">${back}</a>
 
   </div>
 </div>
-`;
+`.trim();
     }
 
     static GetForgotPasswordHtml(lang = 'en') {
