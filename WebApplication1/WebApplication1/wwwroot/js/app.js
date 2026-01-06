@@ -6,5 +6,6 @@ import './features/discover/index.js';
 import './features/solutions/index.js';
 import './features/plansSection/index.js';
 import './features/resources/index.js';
+import './features/shared/infoModal.js';
 
 

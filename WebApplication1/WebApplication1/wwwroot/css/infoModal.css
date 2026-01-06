@@ -1,0 +1,136 @@
+﻿/* MeetDesk – Info Modal (Learn more popup) */
+
+.md-info-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0,0,0,.55);
+    z-index: 9999;
+}
+
+    .md-info-overlay.is-open {
+        display: flex;
+    }
+
+.md-info-card {
+    position: relative;
+    width: min(980px,100%);
+    background: #fff;
+    border: 1px solid rgba(31,92,78,.55);
+    border-radius: 16px;
+    box-shadow: 0 18px 70px rgba(0,0,0,.25);
+    overflow: hidden;
+    transform: translateY(10px) scale(.99);
+    opacity: 0;
+    transition: transform .18s ease, opacity .18s ease;
+}
+
+.md-info-overlay.is-open .md-info-card {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.md-info-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(31,92,78,.35);
+    border-radius: 10px;
+    background: rgba(31,92,78,.08);
+    color: #1f5c4e;
+    font-size: 28px;
+    line-height: 34px;
+    cursor: pointer;
+}
+
+    .md-info-close:hover {
+        background: rgba(31,92,78,.14);
+    }
+
+.md-info-body {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    min-height: 360px;
+}
+
+.md-info-text {
+    padding: 28px;
+}
+
+.md-info-kicker {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #1f5c4e;
+    margin-bottom: 10px;
+}
+
+.md-info-title {
+    margin: 0 0 12px 0;
+    font-size: 26px;
+    color: #1a1a1a;
+}
+
+.md-info-desc {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #224541;
+    opacity: .95;
+}
+
+.md-info-actions {
+    margin-top: 18px;
+}
+
+.md-info-primary {
+    border: 1px solid #224541;
+    background: #1f5c4e;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .md-info-primary:hover {
+        background: #224541;
+    }
+
+.md-info-media {
+    background: #f3f6f5;
+    border-left: 1px solid rgba(31,92,78,.18);
+}
+
+    .md-info-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+.md-info-card.no-image .md-info-body {
+    grid-template-columns: 1fr;
+}
+
+.md-info-card.no-image .md-info-media {
+    display: none;
+}
+
+@media (max-width:860px) {
+    .md-info-body {
+        grid-template-columns: 1fr;
+    }
+
+    .md-info-media {
+        border-left: none;
+        border-top: 1px solid rgba(31,92,78,.18);
+        min-height: 220px;
+    }
+}
