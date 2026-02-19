@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
 
 namespace WebApplication1.Controllers
 {
@@ -8,91 +9,22 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class DiscoverSectionController : ControllerBase
     {
+        private readonly IDiscoverRepository _repository;
+
+        public DiscoverSectionController(IDiscoverRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         public IActionResult Get([FromQuery] string lang = "en")
         {
-            var dsList = BuildDiscoverSectionList();
-            var section = dsList.FirstOrDefault(s => s.Language == lang);
+            var section = _repository.GetDiscoverSection(lang);
 
             if (section == null)
                 return NotFound();
 
-            return Ok(section); // single object
-        }
-
-        private List<DiscoverSection> BuildDiscoverSectionList()
-        {
-            var dsList = new List<DiscoverSection>
-                {
-                    // English
-                    new DiscoverSection
-                    {
-                        DiscoverHeader = "Discover what’s happening with <span>MeetDesk</span>",
-                        Language = "en",
-                        Cards = new List<DiscoverCard>
-                        {
-                            new DiscoverCard
-                            {
-                                Img = "/images/discover1.jpg",
-                                DiscoverCardHeader = "From Threads to Workflows: New Features that Boost Productivity",
-                                DiscoverCardHeaderDescription = "Work faster with threads, multi-emoji reactions and emoji-triggered workflows built into MeetDesk.",
-                                DiscoverCardButton = "Learn more",
-                                //Language = "en"
-                            },
-                            new DiscoverCard
-                            {
-                                Img = "/images/pc.png",
-                                DiscoverCardHeader = "2025: The Year the Frontier Firm Is Born",
-                                DiscoverCardHeaderDescription = "Read the latest research and insights from the Work Trend Index Annual Report.",
-                                DiscoverCardButton = "Read the report",
-                                //Language = "en"
-                            },
-                            new DiscoverCard
-                            {
-                                Img = "/images/discover-3.jpg",
-                                DiscoverCardHeader = "Prompt like a pro with MeetDesk Copilot",
-                                DiscoverCardHeaderDescription = "Transform meetings with prompts: capture ideas, summarize decisions and move work forward.",
-                                DiscoverCardButton = "Learn more"
-                                //Language = "en"
-                            }
-                        }
-                    },
-
-                    // Georgian
-                    new DiscoverSection
-                    {
-                        DiscoverHeader = "აღმოაჩინე რა ხდება <span>MeetDesk</span>-თან ერთად",
-                        Language = "ka",
-                        Cards = new List<DiscoverCard>
-                        {
-                            new DiscoverCard
-                            {
-                                Img = "/images/discoverKA1.jpg",
-                                DiscoverCardHeader = "თემებიდან სამუშაო პროცესებამდე: ახალი ფუნქციები პროდუქტიულობის გასაზრდელად",
-                                DiscoverCardHeaderDescription = "იმუშავე სწრაფად თემებით, მრავალ-ემოჯი რეაქციებით და ემოჯი-ტრიგერ სამუშაო პროცესებით MeetDesk-ში.",
-                                DiscoverCardButton = "გაიგე მეტი",
-                                //Language = "ka"
-                            },
-                            new DiscoverCard
-                            {
-                                Img = "/images/pcKa.png",
-                                DiscoverCardHeader = "2025: წელი, როდესაც შეიქმნა ფრონტიერ-კომპანია",
-                                DiscoverCardHeaderDescription = "წაიკითხე უახლესი კვლევები და შეხედულებები სამუშაო ტენდენციების წლიური ანგარიშიდან.",
-                                DiscoverCardButton = "წაიკითხე ანგარიში",
-                                //Language = "ka"
-                            },
-                            new DiscoverCard
-                            {
-                                Img = "/images/discoverKA-3.jpg",
-                                DiscoverCardHeader = "MeetDesk Copilot-თან ერთად იმუშავე როგორც პროფესიონალი",
-                                DiscoverCardHeaderDescription = "გადაწერე შეხვედრები პრომპტებით: შეაგროვე იდეები, შეაჯამე გადაწყვეტილებები და წინ წაიწიე სამუშაოში.",
-                                DiscoverCardButton = "გაიგე მეტი",
-                                //Language = "ka"
-                            }
-                        }
-                    }
-                };
-            return dsList;
+            return Ok(section);
         }
     }
 }

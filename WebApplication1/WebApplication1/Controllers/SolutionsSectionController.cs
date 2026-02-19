@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
 
 namespace WebApplication1.Controllers
 {
@@ -8,126 +9,22 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class SolutionsSectionController : ControllerBase
     {
+        private readonly ISolutionRepository _repository;
+
+        public SolutionsSectionController(ISolutionRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         public IActionResult Get([FromQuery] string lang = "en")
         {
-            var dsList = BuildSolutionSectionList();
-            var section = dsList.FirstOrDefault(s => s.Language == lang);
+            var section = _repository.GetSolutionSection(lang);
 
             if (section == null)
                 return NotFound();
 
-            return Ok(section); // single object
+            return Ok(section);
         }
-
-        private List<SolutionsSection> BuildSolutionSectionList()
-        {
-            var solutionSections = new List<SolutionsSection>{
-                new SolutionsSection
-                {
-                    SolutionName = "SOLUTIONS",
-                    SolutionDescription = "Streamline communications all in one place via <span style='color:#1f5c4e;'>MeetDesk</span>",
-                    Language = "en",
-                    Cards = new List<SolutionCard>
-                    {
-                        new SolutionCard
-                        {
-                            SolutionCardName = "Meet",
-                            SolutionCardDescription = "Make meetings more impactful with features like PowerPoint Live, Microsoft Whiteboard,and AI-generated meeting notes.",
-                            SolutionCardButton = "Learn more",
-                            SolutionCardSliderImg = "images/solutions-sample.jpg",
-                            Language = "en"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "Call",
-                            SolutionCardDescription = "Connect instantly with high-quality voice and video calls.",
-                            SolutionCardButton = "Learn more",
-                            SolutionCardSliderImg = "images/solutions-sample-2.jpg",
-                            Language = "en"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "Collaborate",
-                            SolutionCardDescription = "Work together seamlessly with shared documents and tasks.",
-                            SolutionCardButton = "Learn more",
-                            SolutionCardSliderImg = "solutions-sample-3.png",
-                            Language= "en"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "Chat",
-                            SolutionCardDescription = "Stay connected with direct and group messaging.",
-                            SolutionCardButton = "Learn more",
-                            SolutionCardSliderImg = "images/solutions-sample.jpg",
-                            Language= "en"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "Search Free Persons",
-                            SolutionCardDescription = "Stay connected with direct and group messaging.",
-                            SolutionCardButton = "Learn more",
-                            SolutionCardSliderImg = "images/solutions-sample-2.jpg",
-                            Language= "en"
-                        }
-                    }
-                },
-
-                new SolutionsSection
-                {
-                    SolutionName = "გადაწყვეტილებები",
-                    SolutionDescription = "გაამარტივეთ კომუნიკაციები ერთ ადგილას <span style='color:#1f5c4e;'>MeetDesk</span>",
-                    Language = "ka",
-                    Cards = new List<SolutionCard>
-                    {
-                        new SolutionCard
-                        {
-                            SolutionCardName = "შეხვედრა",
-                            SolutionCardDescription = "გახადეთ შეხვედრები უფრო შთამბეჭდავი ისეთი ფუნქციებით, როგორიცაა PowerPoint Live, Microsoft Whiteboard და ხელოვნური ინტელექტის მიერ გენერირებული შეხვედრების ჩანაწერები.",
-                            SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSliderImg = "images/solutionsKa-sample.jpg",
-                            Language = "ka"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "ზარი",
-                            SolutionCardDescription = "მყისიერად დაუკავშირდით მაღალი ხარისხის ხმოვან და ვიდეო ზარებს.",
-                            SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSliderImg = "images/solutionsKa-sample-2.jpg",
-                            Language = "ka"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "თანამშრომლობა",
-                            SolutionCardDescription = "შეუფერხებლად იმუშავეთ ერთად გაზიარებულ დოკუმენტებთან და დავალებებთან.",
-                            SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSliderImg = "solutions-sample-3.png",
-                            Language= "ka"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "ჩატი",
-                            SolutionCardDescription = "დარჩით კავშირზე პირდაპირი და ჯგუფური შეტყობინებებით.",
-                            SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSliderImg = "images/solutionsKa-sample.jpg",
-                            Language= "ka"
-                        },
-                        new SolutionCard
-                        {
-                            SolutionCardName = "თავისუფალი პირების ძიება",
-                            SolutionCardDescription = "დარჩით კავშირზე პირდაპირი და ჯგუფური შეტყობინებებით.",
-                            SolutionCardButton = "შეიტყვეთ მეტი",
-                            SolutionCardSliderImg = "images/solutionsKa-sample-2.jpg",
-                            Language= "ka"
-                        }
-                    }
-                }
-
-            };
-
-            return solutionSections;
-        }
-
-
     }
 }

@@ -1,0 +1,324 @@
+-- Drop all Foreign Key constraints first to enable clean table drops
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql += N'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
+    + '.' + QUOTENAME(OBJECT_NAME(parent_object_id)) + 
+    ' DROP CONSTRAINT ' + QUOTENAME(name) + ';' + CHAR(13) + CHAR(10)
+FROM sys.foreign_keys;
+EXEC sp_executesql @sql;
+GO
+
+-- Drop tables (Order matters less now, but good practice)
+IF OBJECT_ID('dbo.SolutionCards', 'U') IS NOT NULL DROP TABLE dbo.SolutionCards;
+GO
+IF OBJECT_ID('dbo.SolutionSections', 'U') IS NOT NULL DROP TABLE dbo.SolutionSections;
+GO
+
+IF OBJECT_ID('dbo.PlansCards', 'U') IS NOT NULL DROP TABLE dbo.PlansCards;
+GO
+IF OBJECT_ID('dbo.PlansAll', 'U') IS NOT NULL DROP TABLE dbo.PlansAll;
+GO
+IF OBJECT_ID('dbo.PlansSections', 'U') IS NOT NULL DROP TABLE dbo.PlansSections;
+GO
+
+IF OBJECT_ID('dbo.DiscoverCards', 'U') IS NOT NULL DROP TABLE dbo.DiscoverCards;
+GO
+IF OBJECT_ID('dbo.DiscoverSections', 'U') IS NOT NULL DROP TABLE dbo.DiscoverSections;
+GO
+
+IF OBJECT_ID('dbo.Sliders', 'U') IS NOT NULL DROP TABLE dbo.Sliders;
+GO
+
+IF OBJECT_ID('dbo.AuthCarts', 'U') IS NOT NULL DROP TABLE dbo.AuthCarts;
+GO
+IF OBJECT_ID('dbo.MenuItems', 'U') IS NOT NULL DROP TABLE dbo.MenuItems;
+GO
+IF OBJECT_ID('dbo.MainMenuSections', 'U') IS NOT NULL DROP TABLE dbo.MainMenuSections;
+GO
+
+IF OBJECT_ID('dbo.RegisterTexts', 'U') IS NOT NULL DROP TABLE dbo.RegisterTexts;
+GO
+
+IF OBJECT_ID('dbo.ResourcesCards', 'U') IS NOT NULL DROP TABLE dbo.ResourcesCards;
+GO
+IF OBJECT_ID('dbo.ResourcesSections', 'U') IS NOT NULL DROP TABLE dbo.ResourcesSections;
+GO
+
+-- Create tables
+CREATE TABLE SolutionSections (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    SolutionName NVARCHAR(255),
+    SolutionDescription NVARCHAR(MAX),
+    Language NVARCHAR(10)
+);
+GO
+
+CREATE TABLE SolutionCards (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    SolutionSectionId INT FOREIGN KEY REFERENCES SolutionSections(Id),
+    SolutionCardName NVARCHAR(255),
+    SolutionCardDescription NVARCHAR(MAX),
+    SolutionCardButton NVARCHAR(50),
+    SolutionCardSliderImg NVARCHAR(255),
+    Language NVARCHAR(10)
+);
+GO
+
+CREATE TABLE PlansSections (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Language NVARCHAR(10),
+    PlansTitle NVARCHAR(255),
+    PlansDescription NVARCHAR(MAX)
+);
+GO
+
+CREATE TABLE PlansAll (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PlansSectionId INT FOREIGN KEY REFERENCES PlansSections(Id),
+    Img NVARCHAR(255),
+    MenuItem NVARCHAR(50)
+);
+GO
+
+CREATE TABLE PlansCards (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PlansAllId INT FOREIGN KEY REFERENCES PlansAll(Id),
+    Icon NVARCHAR(MAX),
+    Title NVARCHAR(255),
+    Description NVARCHAR(MAX),
+    More NVARCHAR(50)
+);
+GO
+
+CREATE TABLE DiscoverSections (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    DiscoverHeader NVARCHAR(255),
+    Language NVARCHAR(10)
+);
+GO
+
+CREATE TABLE DiscoverCards (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    DiscoverSectionId INT FOREIGN KEY REFERENCES DiscoverSections(Id),
+    Img NVARCHAR(255),
+    DiscoverCardHeader NVARCHAR(255),
+    DiscoverCardHeaderDescription NVARCHAR(MAX),
+    DiscoverCardButton NVARCHAR(50)
+);
+GO
+
+CREATE TABLE Sliders (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    HeaderText NVARCHAR(MAX),
+    ParagraphText NVARCHAR(MAX),
+    Img NVARCHAR(255),
+    Language NVARCHAR(10),
+    SliderButton NVARCHAR(50)
+);
+GO
+
+-- Main Menu Section
+CREATE TABLE MainMenuSections (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Language NVARCHAR(10),
+    Download NVARCHAR(100),
+    SignIn NVARCHAR(100),
+    LangGeo NVARCHAR(10),
+    LangENG NVARCHAR(10),
+    FooterFirstText NVARCHAR(255)
+);
+GO
+
+CREATE TABLE AuthCarts (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    MainMenuSectionId INT FOREIGN KEY REFERENCES MainMenuSections(Id),
+    UsernamePlaceholder NVARCHAR(100),
+    PasswordPlaceholder NVARCHAR(100),
+    ForgotPassword NVARCHAR(100),
+    SignIn NVARCHAR(100),
+    GoogleSignIn NVARCHAR(100),
+    MsSignIn NVARCHAR(100),
+    RegisterPrompt NVARCHAR(100),
+    RegisterLink NVARCHAR(100)
+);
+GO
+
+CREATE TABLE MenuItems (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    MainMenuSectionId INT FOREIGN KEY REFERENCES MainMenuSections(Id),
+    MenuItemText NVARCHAR(100)
+);
+GO
+
+-- Register Text Section
+CREATE TABLE RegisterTexts (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Language NVARCHAR(10),
+    Title NVARCHAR(100),
+    FirstName NVARCHAR(100),
+    LastName NVARCHAR(100),
+    Birthday NVARCHAR(100),
+    Gender NVARCHAR(100),
+    Female NVARCHAR(100),
+    Male NVARCHAR(100),
+    Custom NVARCHAR(100),
+    PhoneMail NVARCHAR(100),
+    Password NVARCHAR(100),
+    ConfirmPassword NVARCHAR(100),
+    Submit NVARCHAR(100),
+    Back NVARCHAR(100)
+);
+GO
+
+-- Resources Section
+CREATE TABLE ResourcesSections (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Language NVARCHAR(10),
+    CardName NVARCHAR(100),
+    CardDescription NVARCHAR(255),
+    BackgroundImg NVARCHAR(255)
+);
+GO
+
+CREATE TABLE ResourcesCards (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ResourcesSectionId INT FOREIGN KEY REFERENCES ResourcesSections(Id),
+    CardName NVARCHAR(100),
+    CardDescription NVARCHAR(255),
+    CardButton NVARCHAR(100),
+    CardSvg NVARCHAR(MAX)
+);
+GO
+
+-- Seed Data (EN)
+INSERT INTO SolutionSections (SolutionName, SolutionDescription, Language)
+VALUES ('SOLUTIONS', 'Streamline communications all in one place via <span style=''color:#1f5c4e;''>MeetDesk</span>', 'en');
+
+DECLARE @EnSectionId INT = SCOPE_IDENTITY();
+
+INSERT INTO SolutionCards (SolutionSectionId, SolutionCardName, SolutionCardDescription, SolutionCardButton, SolutionCardSliderImg, Language)
+VALUES 
+(@EnSectionId, 'Meet', 'Make meetings more impactful with features like PowerPoint Live, Microsoft Whiteboard,and AI-generated meeting notes.', 'Learn more', 'images/solutions-sample.jpg', 'en'),
+(@EnSectionId, 'Call', 'Connect instantly with high-quality voice and video calls.', 'Learn more', 'images/solutions-sample-2.jpg', 'en'),
+(@EnSectionId, 'Collaborate', 'Work together seamlessly with shared documents and tasks.', 'Learn more', 'solutions-sample-3.png', 'en'),
+(@EnSectionId, 'Chat', 'Stay connected with direct and group messaging.', 'Learn more', 'images/solutions-sample.jpg', 'en'),
+(@EnSectionId, 'Search Free Persons', 'Stay connected with direct and group messaging.', 'Learn more', 'images/solutions-sample-2.jpg', 'en');
+GO
+
+-- Seed Data (KA)
+INSERT INTO SolutionSections (SolutionName, SolutionDescription, Language)
+VALUES (N'გადაწყვეტილებები', N'გაამარტივეთ კომუნიკაციები ერთ ადგილას <span style=''color:#1f5c4e;''>MeetDesk</span>', 'ka');
+
+DECLARE @KaSectionId INT = SCOPE_IDENTITY();
+
+INSERT INTO SolutionCards (SolutionSectionId, SolutionCardName, SolutionCardDescription, SolutionCardButton, SolutionCardSliderImg, Language)
+VALUES 
+(@KaSectionId, N'შეხვედრა', N'გახადეთ შეხვედრები უფრო შთამბეჭდავი ისეთი ფუნქციებით, როგორიცაა PowerPoint Live, Microsoft Whiteboard და ხელოვნური ინტელექტის მიერ გენერირებული შეხვედრების ჩანაწერები.', N'შეიტყვეთ მეტი', 'images/solutionsKa-sample.jpg', 'ka'),
+(@KaSectionId, N'ზარი', N'მყისიერად დაუკავშირდით მაღალი ხარისხის ხმოვან და ვიდეო ზარებს.', N'შეიტყვეთ მეტი', 'images/solutionsKa-sample-2.jpg', 'ka'),
+(@KaSectionId, N'თანამშრომლობა', N'შეუფერხებლად იმუშავეთ ერთად გაზიარებულ დოკუმენტებთან და დავალებებთან.', N'შეიტყვეთ მეტი', 'solutions-sample-3.png', 'ka'),
+(@KaSectionId, N'ჩატი', N'დარჩით კავშირზე პირდაპირი და ჯგუფური შეტყობინებებით.', N'შეიტყვეთ მეტი', 'images/solutionsKa-sample.jpg', 'ka'),
+(@KaSectionId, N'თავისუფალი პირების ძიება', N'დარჩით კავშირზე პირდაპირი და ჯგუფური შეტყობინებებით.', N'შეიტყვეთ მეტი', 'images/solutionsKa-sample-2.jpg', 'ka');
+GO
+
+-- Seed Slider Data
+INSERT INTO Sliders (HeaderText, ParagraphText, Img, Language, SliderButton)
+VALUES 
+('Organize your  meetings via<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', 'Start meetings, share moments and work together easily! Start meetings, share moments and work together easily! Start meetings, share moments and work together easily!', '/images/videocalls.png', 'en', 'Download now'),
+('Find a friend if they are free. Via:<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', 'Start meetings, share moments and work together easily!', '/images/Fly.png', 'en', 'Download now'),
+('Organize your Daylly meetings via<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', 'Start meetings, share moments and work together easily!', '/images/Fly2.png', 'en', 'Download now'),
+('Organize your Daylly meetings via<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', 'Start meetings, share moments and work together easily!', '/images/videocall2.png', 'en', 'Download now');
+
+INSERT INTO Sliders (HeaderText, ParagraphText, Img, Language, SliderButton)
+VALUES 
+(N'დაგეგმე შენი  შეხვედრები<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', N'დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!', '/images/videocalls.png', 'ka', N'გადმოწერეთ'),
+(N'იპოვე მეგობარი, თუ თავისუფალია. საშუალებით:<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', N'დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!', '/images/Fly.png', 'ka', N'გადმოწერეთ'),
+(N'დაასაწყობე შენი ყოველდღიური შეხვედრები<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', N'დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!', '/images/FlyKa200.png', 'ka', N'გადმოწერეთ'),
+(N'დაასაწყობე შენი ყოველდღიური შეხვედრები<br /><span style=''font-weight:700;font-size:42px;color:#224541;''>MeetDesk</span>', N'დაიწყე შეხვედრები, გააზიარე მომენტები და იმუშავე მარტივად ერთად!', '/images/videocall2.png', 'ka', N'გადმოწერეთ');
+GO
+
+-- Seed Discover Data
+INSERT INTO DiscoverSections (DiscoverHeader, Language) VALUES ('Discover what’s happening with <span>MeetDesk</span>', 'en');
+DECLARE @EnDiscoverId INT = SCOPE_IDENTITY();
+
+INSERT INTO DiscoverCards (DiscoverSectionId, Img, DiscoverCardHeader, DiscoverCardHeaderDescription, DiscoverCardButton)
+VALUES
+(@EnDiscoverId, '/images/discover1.jpg', 'From Threads to Workflows: New Features that Boost Productivity', 'Work faster with threads, multi-emoji reactions and emoji-triggered workflows built into MeetDesk.', 'Learn more'),
+(@EnDiscoverId, '/images/pc.png', '2025: The Year the Frontier Firm Is Born', 'Read the latest research and insights from the Work Trend Index Annual Report.', 'Read the report'),
+(@EnDiscoverId, '/images/discover-3.jpg', 'Prompt like a pro with MeetDesk Copilot', 'Transform meetings with prompts: capture ideas, summarize decisions and move work forward.', 'Learn more');
+
+INSERT INTO DiscoverSections (DiscoverHeader, Language) VALUES (N'აღმოაჩინე რა ხდება <span>MeetDesk</span>-თან ერთად', 'ka');
+DECLARE @KaDiscoverId INT = SCOPE_IDENTITY();
+
+INSERT INTO DiscoverCards (DiscoverSectionId, Img, DiscoverCardHeader, DiscoverCardHeaderDescription, DiscoverCardButton)
+VALUES
+(@KaDiscoverId, '/images/discoverKA1.jpg', N'თემებიდან სამუშაო პროცესებამდე: ახალი ფუნქციები პროდუქტიულობის გასაზრდელად', N'იმუშავე სწრაფად თემებით, მრავალ-ემოჯი რეაქციებით და ემოჯი-ტრიგერ სამუშაო პროცესებით MeetDesk-ში.', N'გაიგე მეტი'),
+(@KaDiscoverId, '/images/pcKa.png', N'2025: წელი, როდესაც შეიქმნა ფრონტიერ-კომპანია', N'წაიკითხე უახლესი კვლევები და შეხედულებები სამუშაო ტენდენციების წლიური ანგარიშიდან.', N'წაიკითხე ანგარიში'),
+(@KaDiscoverId, '/images/discoverKA-3.jpg', N'MeetDesk Copilot-თან ერთად იმუშავე როგორც პროფესიონალი', N'გადაწერე შეხვედრები პრომპტებით: შეაგროვე იდეები, შეაჯამე გადაწყვეტილებები და წინ წაიწიე სამუშაოში.', N'გაიგე მეტი');
+GO
+
+-- Seed Data for MainMenu (EN)
+INSERT INTO MainMenuSections (Language, Download, SignIn, LangGeo, LangENG, FooterFirstText)
+VALUES ('en', 'Download MetDesk', 'Sign in', 'GEO', 'ENG', '&copy; 2025 - MeetDesk. All rights reserved.');
+
+DECLARE @MainMenuEnId INT = SCOPE_IDENTITY();
+
+INSERT INTO AuthCarts (MainMenuSectionId, UsernamePlaceholder, PasswordPlaceholder, ForgotPassword, SignIn, GoogleSignIn, MsSignIn, RegisterPrompt, RegisterLink)
+VALUES (@MainMenuEnId, 'Username or Email', 'Password', 'Forgot password?', 'Sign in', 'Sign in with Google', 'Sign in with Microsoft', 'Don''t have an account?', 'Register');
+
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuEnId, 'Products');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuEnId, 'Features');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuEnId, 'Solutions');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuEnId, 'Resources');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuEnId, 'Support');
+GO
+
+-- Seed Data for MainMenu (KA)
+INSERT INTO MainMenuSections (Language, Download, SignIn, LangGeo, LangENG, FooterFirstText)
+VALUES ('ka', N'გადმოწერე MeetDesk', N'შესვლა', N'ქარ', N'ინგ', N'&copy; 2025 - MeetDesk. ყველა უფლება დაცულია.');
+
+DECLARE @MainMenuKaId INT = SCOPE_IDENTITY();
+
+INSERT INTO AuthCarts (MainMenuSectionId, UsernamePlaceholder, PasswordPlaceholder, ForgotPassword, SignIn, GoogleSignIn, MsSignIn, RegisterPrompt, RegisterLink)
+VALUES (@MainMenuKaId, N'მომხმარებელი ან ელფოსტა', N'პაროლი', N'დაგავიწყდა პაროლი?', N'შესვლა', N'შესვლა Google - ით', N'შესვლა Microsoft - ით', N'არ გაქვს ანგარიში?', N'რეგისტრაცია');
+
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuKaId, N'პროდუქტები');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuKaId, N'ფუნქციები');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuKaId, N'გადაწყვეტები');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuKaId, N'რესურსები');
+INSERT INTO MenuItems (MainMenuSectionId, MenuItemText) VALUES (@MainMenuKaId, N'მხარდაჭერა');
+GO
+
+-- Seed Data for RegisterText (EN)
+INSERT INTO RegisterTexts (Language, Title, FirstName, LastName, Birthday, Gender, Female, Male, Custom, PhoneMail, Password, ConfirmPassword, Submit, Back)
+VALUES ('en', 'Create a new account', 'First name', 'Last name', 'Birthday', 'Gender', 'Female', 'Male', 'Other', 'Mobile number or email', 'Password', 'Confirm Password', 'Sign Up', 'Back to login');
+
+-- Seed Data for RegisterText (KA)
+INSERT INTO RegisterTexts (Language, Title, FirstName, LastName, Birthday, Gender, Female, Male, Custom, PhoneMail, Password, ConfirmPassword, Submit, Back)
+VALUES ('ka', N'ახალი ანგარიშის შექმნა', N'სახელი', N'გვარი', N'დაბადების თარიღი', N'სქესი', N'ქალი', N'კაცი', N'სხვა', N'ტელეფონის ნომერი ან მეილი', N'პაროლი', N'დაადასტურეთ პაროლი', N'რეგისტრაცია', N'უკან ავტორიზაციაზე');
+GO
+
+-- Seed Data for Resources (EN)
+INSERT INTO ResourcesSections (Language, CardName, CardDescription, BackgroundImg)
+VALUES ('en', 'Get Started', 'Take the next step with MeetDesk', '../images/redources.png');
+
+DECLARE @ResourcesEnId INT = SCOPE_IDENTITY();
+
+INSERT INTO ResourcesCards (ResourcesSectionId, CardName, CardDescription, CardButton, CardSvg)
+VALUES 
+(@ResourcesEnId, 'For business', 'Grow your customer base with communications software designed for up to 300 employees.', 'Contact sales', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><rect x=''3'' y=''4'' width=''18'' height=''14'' rx=''3'' opacity=''0.12''></rect><path d=''M7 9h10v2H7zM7 12h6v2H7z''></path></svg>'),
+(@ResourcesEnId, 'For personal use', 'Plan events, share photos, and connect with your friends, family, and community.', 'Get started free', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><path d=''M4 4h16v16H4z'' opacity=''0.12''></path><path d=''M7 7h6v10H7zM15 7h2v10h-2z''></path></svg>'),
+(@ResourcesEnId, 'For enterprise', 'Achieve more with Teams accounts for more than 300 people.', 'Get started', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><circle cx=''12'' cy=''12'' r=''10'' opacity=''0.12''></circle><path d=''M7 13h10v2H7zM7 9h10v2H7z''></path></svg>'),
+(@ResourcesEnId, 'For education', 'Make learning collaborative—for both students and educators.', 'Learn more', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><path d=''M2 7l10-5 10 5-10 5z''></path><path d=''M4 12v5l8 4 8-4v-5'' opacity=''0.12''></path></svg>');
+
+-- Seed Data for Resources (KA)
+INSERT INTO ResourcesSections (Language, CardName, CardDescription, BackgroundImg)
+VALUES ('ka', N'დაიწყე', N'გადადგით შემდეგი ნაბიჯი MeetDesk-თან ერთად', '../images/redources.png');
+
+DECLARE @ResourcesKaId INT = SCOPE_IDENTITY();
+
+INSERT INTO ResourcesCards (ResourcesSectionId, CardName, CardDescription, CardButton, CardSvg)
+VALUES 
+(@ResourcesKaId, N'ბიზნესისთვის', N'გაზარდეთ თქვენი მომხმარებელთა ბაზა 300-მდე თანამშრომლისთვის შექმნილი საკომუნიკაციო პროგრამული უზრუნველყოფით', N'გაყიდვებთან დაკავშირება', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><rect x=''3'' y=''4'' width=''18'' height=''14'' rx=''3'' opacity=''0.12''></rect><path d=''M7 9h10v2H7zM7 12h6v2H7z''></path></svg>'),
+(@ResourcesKaId, N'პირადი გამოყენებისთვის', N'დაგეგმეთ ღონისძიებები, გააზიარეთ ფოტოები და დაუკავშირდით თქვენს მეგობრებს, ოჯახს და საზოგადოებას', N'დაიწყეთ უფასოდ', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><path d=''M4 4h16v16H4z'' opacity=''0.12''></path><path d=''M7 7h6v10H7zM15 7h2v10h-2z''></path></svg>'),
+(@ResourcesKaId, N'საწარმოსთვის', N'მიაღწიეთ მეტს Teams ანგარიშებით 300-ზე მეტი ადამიანის ანგარიშებით', N'დაიწყეთ', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><circle cx=''12'' cy=''12'' r=''10'' opacity=''0.12''></circle><path d=''M7 13h10v2H7zM7 9h10v2H7z''></path></svg>'),
+(@ResourcesKaId, N'განათლებისთვის', N'სწავლის თანამშრომლობითი გახადეთ — როგორც სტუდენტებისთვის, ასევე პედაგოგებისთვის.', N'შეიტყვეთ მეტი', '<svg viewBox=''0 0 24 24'' width=''28'' height=''28'' fill=''#1f5c4e''><path d=''M2 7l10-5 10 5-10 5z''></path><path d=''M4 12v5l8 4 8-4v-5'' opacity=''0.12''></path></svg>');
+GO

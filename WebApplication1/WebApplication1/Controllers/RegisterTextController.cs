@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
 
 namespace WebApplication1.Controllers
 {
@@ -8,47 +9,28 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class RegisterTextController : ControllerBase
     {
+        private readonly IRegisterTextRepository _repository;
+
+        public RegisterTextController(IRegisterTextRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         public IActionResult Get([FromQuery] string lang = "en")
         {
-            var texts = new Dictionary<string, object>
+            var textModel = _repository.GetRegisterText(lang);
+            
+            // If lang not found or model empty (check a required field)
+            if (textModel == null || string.IsNullOrEmpty(textModel.Title))
             {
-                ["en"] = new
-                {
-                    title = "Create a new account",
-                    first = "First name",
-                    last = "Last name",
-                    bday = "Birthday",
-                    gender = "Gender",
-                    female = "Female",
-                    male = "Male",
-                    custom = "Other",
-                    phoneMail = "Mobile number or email",
-                    password = "Password",
-                    ConfirmPassword = "Confirm Password",
-                    submit = "Sign Up",
-                    back = "Back to login",
-                },
-                ["ka"] = new
-                {
-                    title = "ახალი ანგარიშის შექმნა",
-                    first = "სახელი",
-                    last = "გვარი",
-                    bday = "დაბადების თარიღი",
-                    gender = "სქესი",
-                    female = "ქალი",
-                    male = "კაცი",
-                    custom = "სხვა",
-                    phoneMail = "ტელეფონის ნომერი ან მეილი",
-                    password = "პაროლი",
-                    ConfirmPassword = "დაადასტურეთ პაროლი",
-                    submit = "რეგისტრაცია",
-                    back = "უკან ავტორიზაციაზე",
-                }
-            };
+                 // Fallback to 'en' if not found, similar to original logic
+                 textModel = _repository.GetRegisterText("en");
+            }
+            
+            if (textModel == null) return NotFound();
 
-            if (!texts.ContainsKey(lang)) lang = "en";
-            return Ok(texts[lang]);
+            return Ok(textModel);
         }
     }
 }
