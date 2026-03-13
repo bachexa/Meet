@@ -8,6 +8,7 @@ namespace WebApplication1.Repositories
     public interface ISliderRepository
     {
         List<Slider> GetSliders(string language);
+        bool UpdateSlider(Slider model);
     }
 
     public class SliderRepository : ISliderRepository
@@ -50,5 +51,39 @@ namespace WebApplication1.Repositories
 
             return sliders;
         }
+
+
+
+        public bool UpdateSlider(Slider model)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                    UPDATE Sliders
+                    SET 
+                        HeaderText = @HeaderText,
+                        ParagraphText = @ParagraphText,
+                        Img = @Img,
+                        SliderButton = @SliderButton
+                    WHERE Language = @Language";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@HeaderText", (object?)model.HeaderText ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@ParagraphText", (object?)model.ParagraphText ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Img", (object?)model.Img ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@SliderButton", (object?)model.SliderButton ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Language", (object?)model.Language ?? DBNull.Value);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
     }
+
+
+
 }
