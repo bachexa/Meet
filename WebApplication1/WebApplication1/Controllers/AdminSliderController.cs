@@ -75,5 +75,39 @@ namespace WebApplication1.Controllers
 
             return Ok(new { message = "Slider updated successfully." });
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var deleted = _sliderRepository.DeleteSlider(id);
+
+            if (!deleted)
+                return NotFound();
+
+            return Ok(new { message = "Slider deleted successfully." });
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] UpdateSliderAdminDto model)
+        {
+            if (model == null)
+                return BadRequest();
+
+            var slider = new Slider
+            {
+                HeaderText = model.HeaderText,
+                ParagraphText = model.ParagraphText,
+                Img = model.Img,
+                Language = model.Language,
+                SliderButton = model.SliderButton
+            };
+
+            var created = _sliderRepository.CreateSlider(slider);
+
+            if (!created)
+                return BadRequest("Slider creation failed.");
+
+            return Ok(new { message = "Slider created successfully." });
+        }
     }
 }
