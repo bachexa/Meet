@@ -4,6 +4,6 @@ namespace WebApplication1.Repositories
 {
     public interface IMainMenuRepository
     {
-        MainmenuItemsSection GetMainMenuSection(string language);
+        MainmenuItemsSection? GetMainMenuSection(string language);
     }
 }

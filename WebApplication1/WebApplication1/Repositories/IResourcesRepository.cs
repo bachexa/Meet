@@ -4,6 +4,6 @@ namespace WebApplication1.Repositories
 {
     public interface IResourcesRepository
     {
-        ResourcesSectionModel GetResourcesSection(string language);
+        ResourcesSectionModel? GetResourcesSection(string language);
     }
 }

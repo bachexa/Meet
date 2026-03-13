@@ -7,7 +7,7 @@ namespace WebApplication1.Repositories
 {
     public interface IDiscoverRepository
     {
-        DiscoverSection GetDiscoverSection(string language);
+        DiscoverSection? GetDiscoverSection(string language);
     }
 
     public class DiscoverRepository : IDiscoverRepository
@@ -16,10 +16,11 @@ namespace WebApplication1.Repositories
 
         public DiscoverRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
-        public DiscoverSection GetDiscoverSection(string language)
+        public DiscoverSection? GetDiscoverSection(string language)
         {
             var section = new DiscoverSection();
             section.Cards = new List<DiscoverCard>();

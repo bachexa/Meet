@@ -7,7 +7,7 @@ namespace WebApplication1.Repositories
 {
     public interface ISolutionRepository
     {
-        SolutionsSection GetSolutionSection(string language);
+        SolutionsSection? GetSolutionSection(string language);
     }
 
     public class SolutionRepository : ISolutionRepository
@@ -16,10 +16,11 @@ namespace WebApplication1.Repositories
 
         public SolutionRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
-        public SolutionsSection GetSolutionSection(string language)
+        public SolutionsSection? GetSolutionSection(string language)
         {
             var section = new SolutionsSection();
             section.Cards = new List<SolutionCard>();

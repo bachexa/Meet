@@ -4,6 +4,6 @@ namespace WebApplication1.Repositories
 {
     public interface IRegisterTextRepository
     {
-        RegisterTextModel GetRegisterText(string language);
+        RegisterTextModel? GetRegisterText(string language);
     }
 }

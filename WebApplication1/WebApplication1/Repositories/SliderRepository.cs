@@ -1,13 +1,11 @@
-using System.Data;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using WebApplication1.Models;
 
 namespace WebApplication1.Repositories
 {
     public interface ISliderRepository
     {
-        List<Slider> GetSliders(string language);
+        List<Slider> GetSliders(string? language = null);
         Slider? GetSliderById(int id);
         bool UpdateSlider(Slider model);
     }
@@ -18,7 +16,8 @@ namespace WebApplication1.Repositories
 
         public SliderRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
         public List<Slider> GetSliders(string? language = null)

@@ -9,10 +9,11 @@ namespace WebApplication1.Repositories
 
         public MainMenuRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                 ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
-        public MainmenuItemsSection GetMainMenuSection(string language)
+        public MainmenuItemsSection? GetMainMenuSection(string language)
         {
             var section = new MainmenuItemsSection();
             section.MneuItemName = new List<MneuItems>();

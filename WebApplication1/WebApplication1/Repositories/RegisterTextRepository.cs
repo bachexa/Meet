@@ -9,10 +9,11 @@ namespace WebApplication1.Repositories
 
         public RegisterTextRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
-        public RegisterTextModel GetRegisterText(string language)
+        public RegisterTextModel? GetRegisterText(string language)
         {
             var model = new RegisterTextModel();
 

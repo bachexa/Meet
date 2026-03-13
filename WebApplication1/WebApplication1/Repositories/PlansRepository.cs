@@ -1,4 +1,3 @@
-using System.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using WebApplication1.Models;
@@ -7,7 +6,7 @@ namespace WebApplication1.Repositories
 {
     public interface IPlansRepository
     {
-        PlansSection GetPlansSection(string language);
+        PlansSection? GetPlansSection(string language);
     }
 
     public class PlansRepository : IPlansRepository
@@ -16,92 +15,93 @@ namespace WebApplication1.Repositories
 
         public PlansRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
-        public PlansSection GetPlansSection(string language)
+        public PlansSection? GetPlansSection(string language)
         {
-            var section = new PlansSection();
-            section.AllPlans = new List<PlansAll>();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            using (var connection = new SqlConnection(_connectionString))
+            const string sectionQuery = @"
+                SELECT TOP 1 Id, Language, PlansTitle, PlansDescription
+                FROM PlansSections
+                WHERE Language = @Language;";
+
+            int sectionId;
+            var section = new PlansSection
             {
-                connection.Open();
+                AllPlans = new List<PlansAll>()
+            };
 
-                // Get Section
-                string sectionQuery = "SELECT TOP 1 * FROM PlansSections WHERE Language = @Language";
-                int sectionId = 0;
+            using (var command = new SqlCommand(sectionQuery, connection))
+            {
+                command.Parameters.AddWithValue("@Language", language);
+                using var reader = command.ExecuteReader();
 
-                using (var command = new SqlCommand(sectionQuery, connection))
+                if (!reader.Read())
                 {
-                    command.Parameters.AddWithValue("@Language", language);
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            sectionId = (int)reader["Id"];
-                            section.Language = reader["Language"].ToString();
-                            section.PlansTitle = reader["PlansTitle"].ToString();
-                            section.PlansDescription = reader["PlansDescription"].ToString();
-                        }
-                        else
-                        {
-                            return null;
-                        }
-                    }
+                    return null;
                 }
 
-                // Get PlansAll (Categories)
-                string plansAllQuery = "SELECT * FROM PlansAll WHERE PlansSectionId = @SectionId";
-                
-                // We'll fetch into a list first because we need nested queries
-                var allPlansList = new List<PlansAll>();
-                var allPlansIds = new List<int>();
+                sectionId = reader.GetInt32(reader.GetOrdinal("Id"));
+                section.Language = reader["Language"]?.ToString();
+                section.PlansTitle = reader["PlansTitle"]?.ToString();
+                section.PlansDescription = reader["PlansDescription"]?.ToString();
+            }
 
-                using (var command = new SqlCommand(plansAllQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@SectionId", sectionId);
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var planAll = new PlansAll
-                            {
-                                Img = reader["Img"].ToString(),
-                                MenuItem = reader["MenuItem"].ToString(),
-                                Plans = new List<PlansCard>()
-                            };
-                            allPlansList.Add(planAll);
-                            allPlansIds.Add((int)reader["Id"]);
-                        }
-                    }
-                }
-                
-                // Now iterate and fill children using the IDs
-                for (int i = 0; i < allPlansList.Count; i++)
-                {
-                    var planAll = allPlansList[i];
-                    int id = allPlansIds[i];
-                    section.AllPlans.Add(planAll); // Add to section
+            const string plansWithCardsQuery = @"
+                SELECT
+                    pa.Id AS PlanId,
+                    pa.Img,
+                    pa.MenuItem,
+                    pc.Icon,
+                    pc.Title,
+                    pc.Description,
+                    pc.More
+                FROM PlansAll pa
+                LEFT JOIN PlansCards pc ON pa.Id = pc.PlansAllId
+                WHERE pa.PlansSectionId = @SectionId
+                ORDER BY pa.Id;";
 
-                    string cardsQuery = "SELECT * FROM PlansCards WHERE PlansAllId = @PlansAllId";
-                    using (var command = new SqlCommand(cardsQuery, connection))
+            var plansMap = new Dictionary<int, PlansAll>();
+
+            using (var command = new SqlCommand(plansWithCardsQuery, connection))
+            {
+                command.Parameters.AddWithValue("@SectionId", sectionId);
+                using var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var planId = reader.GetInt32(reader.GetOrdinal("PlanId"));
+
+                    if (!plansMap.TryGetValue(planId, out var planAll))
                     {
-                        command.Parameters.AddWithValue("@PlansAllId", id);
-                        using (var reader = command.ExecuteReader())
+                        planAll = new PlansAll
                         {
-                            while (reader.Read())
-                            {
-                                planAll.Plans.Add(new PlansCard
-                                {
-                                    Icon = reader["Icon"].ToString(),
-                                    Title = reader["Title"].ToString(),
-                                    Description = reader["Description"].ToString(),
-                                    More = reader["More"].ToString()
-                                });
-                            }
-                        }
+                            Img = reader["Img"]?.ToString(),
+                            MenuItem = reader["MenuItem"]?.ToString(),
+                            Plans = new List<PlansCard>()
+                        };
+
+                        plansMap[planId] = planAll;
+                        (section.AllPlans ??= new List<PlansAll>()).Add(planAll);
                     }
+
+                    var iconValue = reader["Icon"];
+                    if (iconValue is DBNull)
+                    {
+                        continue;
+                    }
+
+                    (planAll.Plans ??= new List<PlansCard>()).Add(new PlansCard
+                    {
+                        Icon = iconValue.ToString(),
+                        Title = reader["Title"]?.ToString(),
+                        Description = reader["Description"]?.ToString(),
+                        More = reader["More"]?.ToString()
+                    });
                 }
             }
 

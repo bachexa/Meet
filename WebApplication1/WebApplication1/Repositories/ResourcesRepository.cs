@@ -9,10 +9,11 @@ namespace WebApplication1.Repositories
 
         public ResourcesRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")
+                 ?? throw new InvalidOperationException("DefaultConnection connection string is not configured.");
         }
 
-        public ResourcesSectionModel GetResourcesSection(string language)
+        public ResourcesSectionModel? GetResourcesSection(string language)
         {
             var section = new ResourcesSectionModel();
             section.Cards = new List<ResourcesCardModel>();
