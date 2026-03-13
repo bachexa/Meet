@@ -2,6 +2,7 @@
 {
     public class UpdateSliderAdminDto
     {
+        public int Id { get; set; }
         public string? HeaderText { get; set; }
         public string? ParagraphText { get; set; }
         public string? Img { get; set; }

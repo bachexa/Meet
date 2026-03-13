@@ -17,12 +17,13 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(string language = "en")
+        public IActionResult Get(string? language = null)
         {
             var sliders = _sliderRepository.GetSliders(language);
 
             var result = sliders.Select(x => new SliderAdminDto
             {
+                Id = x.Id,
                 HeaderText = x.HeaderText,
                 ParagraphText = x.ParagraphText,
                 Img = x.Img,
@@ -33,14 +34,33 @@ namespace WebApplication1.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
-        public IActionResult Update([FromBody] UpdateSliderAdminDto model)
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
-            if (model == null || string.IsNullOrWhiteSpace(model.Language))
-                return BadRequest("Language is required.");
+            var slider = _sliderRepository.GetSliderById(id);
+            if (slider == null)
+                return NotFound();
+
+            return Ok(new SliderAdminDto
+            {
+                Id = slider.Id,
+                HeaderText = slider.HeaderText,
+                ParagraphText = slider.ParagraphText,
+                Img = slider.Img,
+                Language = slider.Language,
+                SliderButton = slider.SliderButton
+            });
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] UpdateSliderAdminDto model)
+        {
+            if (model == null || id != model.Id)
+                return BadRequest();
 
             var slider = new Slider
             {
+                Id = model.Id,
                 HeaderText = model.HeaderText,
                 ParagraphText = model.ParagraphText,
                 Img = model.Img,
@@ -51,7 +71,7 @@ namespace WebApplication1.Controllers
             var updated = _sliderRepository.UpdateSlider(slider);
 
             if (!updated)
-                return NotFound("Slider not found.");
+                return NotFound();
 
             return Ok(new { message = "Slider updated successfully." });
         }

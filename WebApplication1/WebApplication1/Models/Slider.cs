@@ -2,6 +2,7 @@
 {
     public class Slider
     {
+        public int Id { get; set; }
         public string? HeaderText { get; set; }
 
         public string? ParagraphText { get; set; }
