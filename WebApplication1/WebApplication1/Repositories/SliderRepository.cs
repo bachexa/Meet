@@ -91,7 +91,9 @@ namespace WebApplication1.Repositories
                                 Id = Convert.ToInt32(reader["Id"]),
                                 HeaderText = reader["HeaderText"].ToString(),
                                 ParagraphText = reader["ParagraphText"].ToString(),
-                                Img = reader["Img"].ToString(),
+                                Img = reader["Img"] == DBNull.Value ? null : reader["Img"].ToString(),
+                                ImgData = reader["ImgData"] == DBNull.Value ? null : (byte[])reader["ImgData"],
+                                ImgContentType = reader["ImgContentType"] == DBNull.Value ? null : reader["ImgContentType"].ToString(),
                                 Language = reader["Language"].ToString(),
                                 SliderButton = reader["SliderButton"].ToString()
                             });
@@ -124,7 +126,9 @@ namespace WebApplication1.Repositories
                                 Id = Convert.ToInt32(reader["Id"]),
                                 HeaderText = reader["HeaderText"].ToString(),
                                 ParagraphText = reader["ParagraphText"].ToString(),
-                                Img = reader["Img"].ToString(),
+                                Img = reader["Img"] == DBNull.Value ? null : reader["Img"].ToString(),
+                                ImgData = reader["ImgData"] == DBNull.Value ? null : (byte[])reader["ImgData"],
+                                ImgContentType = reader["ImgContentType"] == DBNull.Value ? null : reader["ImgContentType"].ToString(),
                                 Language = reader["Language"].ToString(),
                                 SliderButton = reader["SliderButton"].ToString()
                             };
@@ -142,15 +146,34 @@ namespace WebApplication1.Repositories
             {
                 connection.Open();
 
-                string query = @"
-            UPDATE Sliders
-            SET 
-                HeaderText = @HeaderText,
-                ParagraphText = @ParagraphText,
-                Img = @Img,
-                Language = @Language,
-                SliderButton = @SliderButton
-            WHERE Id = @Id";
+                string query;
+
+                if (model.ImgData != null && model.ImgData.Length > 0)
+                {
+                    query = @"
+                UPDATE Sliders
+                SET 
+                    HeaderText = @HeaderText,
+                    ParagraphText = @ParagraphText,
+                    Img = @Img,
+                    ImgData = @ImgData,
+                    ImgContentType = @ImgContentType,
+                    Language = @Language,
+                    SliderButton = @SliderButton
+                WHERE Id = @Id";
+                }
+                else
+                {
+                    query = @"
+                UPDATE Sliders
+                SET 
+                    HeaderText = @HeaderText,
+                    ParagraphText = @ParagraphText,
+                    Img = @Img,
+                    Language = @Language,
+                    SliderButton = @SliderButton
+                WHERE Id = @Id";
+                }
 
                 using (var command = new SqlCommand(query, connection))
                 {
@@ -160,6 +183,12 @@ namespace WebApplication1.Repositories
                     command.Parameters.AddWithValue("@Img", (object?)model.Img ?? DBNull.Value);
                     command.Parameters.AddWithValue("@Language", (object?)model.Language ?? DBNull.Value);
                     command.Parameters.AddWithValue("@SliderButton", (object?)model.SliderButton ?? DBNull.Value);
+
+                    if (model.ImgData != null && model.ImgData.Length > 0)
+                    {
+                        command.Parameters.AddWithValue("@ImgData", model.ImgData);
+                        command.Parameters.AddWithValue("@ImgContentType", (object?)model.ImgContentType ?? DBNull.Value);
+                    }
 
                     int rowsAffected = command.ExecuteNonQuery();
                     return rowsAffected > 0;

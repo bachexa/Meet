@@ -64,6 +64,8 @@ namespace WebApplication1.Controllers
                 HeaderText = model.HeaderText,
                 ParagraphText = model.ParagraphText,
                 Img = model.Img,
+                ImgData = model.ImgData,
+                ImgContentType = model.ImgContentType,
                 Language = model.Language,
                 SliderButton = model.SliderButton
             };
